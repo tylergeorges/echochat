@@ -2,28 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background: 49 51 56;
+    --background-secondary: 43 45 49;
+    --background-tertiary: 30 31 34;
+    --foreground: 219 219 220;
+
+    --card: 34 35 36;
+    --card-foreground: 255 255 255;
+
+    --card-gradient-primary: 19 68 95;
+    --card-gradient-secondary: 49 33 95;
+
+    --card-gradient-border-primary: 0 163 255;
+    --card-gradient-border-secondary: 101 48 255;
+
+    --primary: 99 102 241;
+    --primary-foreground: 255 255 255;
+
+    --secondary: 51 51 51;
+    --secondary-foreground: 255 255 255;
+
+    --muted: 51 51 51;
+    --muted-foreground: 164 164 164;
+
+    --input: 63 63 70;
+
+    --channel-icon: 128 132 142;
+
+    --interactive-normal: 181 186 193;
+    --interactive-muted: 78 80 88;
+    --interactive-hover: 219 222 225;
+    --interactive-active: 255 255 255;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@layer base {
+  * {
+    @apply border-muted-foreground;
+  }
+
+  html {
+    @apply size-full flex-1 scroll-smooth;
+  }
+  body {
+    @apply bg-background text-primary;
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+  }
 }
 
 @layer utilities {
