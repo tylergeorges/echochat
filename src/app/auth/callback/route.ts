@@ -11,7 +11,7 @@ export async function GET(req: NextRequest) {
   const code = searchParams.get('code');
 
   if (code) {
-    const supabase = await createClient();
+    const supabase =  createClient();
 
     const {
       error,

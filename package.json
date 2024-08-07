@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:turbo": "next dev --turbo",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -15,8 +16,9 @@
     "db:generate": "drizzle-kit generate:pg"
   },
   "dependencies": {
-    "@supabase/ssr": "^0.3.0",
-    "@supabase/supabase-js": "^2.43.1",
+    "@supabase/ssr": "latest",
+    "@supabase/supabase-js": "latest",
+    "@tanstack/react-query": "^5.51.21",
     "dotenv": "^16.4.5",
     "drizzle-kit": "^0.20.14",
     "drizzle-orm": "^0.30.8",
@@ -28,9 +30,11 @@
     "react-dom": "^18",
     "react-textarea-autosize": "^8.5.3",
     "server-only": "^0.0.1",
+    "sonner": "^1.5.0",
     "tailwind-variants": "^0.2.1"
   },
   "devDependencies": {
+    "@tanstack/react-query-devtools": "^5.51.21",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

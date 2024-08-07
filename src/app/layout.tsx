@@ -1,10 +1,13 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { Toaster } from 'sonner';
 
 import { siteConfig } from '@/config/site';
 import { fontSans } from '@/lib/fonts';
 import { cn } from '@/lib/utils';
+
 import { ModalRenderer } from '@/components/modal';
+import { ReactQueryProvider } from '@/providers/react-query-client-provider';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -28,9 +31,13 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        <ModalRenderer />
+        <ReactQueryProvider>
+          <ModalRenderer />
 
-        <main className="relative z-0 flex-1 horizontal">{children}</main>
+          <Toaster richColors />
+
+          <main className="relative z-0 flex-1 horizontal">{children}</main>
+        </ReactQueryProvider>
       </body>
     </html>
   );

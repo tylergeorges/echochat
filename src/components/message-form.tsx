@@ -1,18 +1,28 @@
 'use client';
 
-import { insertMessage } from '@/lib/db/queries/message';
-import { Channel } from '@/lib/db/schema';
+import { useQueryClient } from '@tanstack/react-query';
+
 import { createClient } from '@/lib/supabase/client';
+import type { Channel } from '@/lib/db/schema';
+
+import { useSendMessageMutation } from '@/hooks/use-send-message-mutation';
+import { messagesQueryKey } from '@/hooks/use-messages-query';
+import { Message } from '@/lib/db/queries/message';
 
 interface MessageFormProps {
   channel: Channel;
 }
 
 export const MessageForm = ({ channel }: MessageFormProps) => {
+  const sendMessageMutation = useSendMessageMutation();
+  const queryClient = useQueryClient();
+
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const content = e.target[0].value?.trim() as string;
+    const inputElement = e.target[0] as HTMLInputElement;
+
+    const content = inputElement.value?.trim() as string;
 
     if (!content) return;
 
@@ -24,7 +34,33 @@ export const MessageForm = ({ channel }: MessageFormProps) => {
 
     const { user } = data;
 
-    await insertMessage({ authorId: user.id, channelId: channel.id, content });
+    inputElement.value = '';
+
+    const message: Message = {
+      channelId: channel.id,
+      content,
+      id: crypto.randomUUID(),
+      author: {
+        avatarUrl: user.user_metadata.avatar_url,
+        id: user.id,
+        username: user.user_metadata.name
+      },
+      createdAt: new Date()
+    };
+
+    sendMessageMutation.mutate(message, {
+      onSettled: () => {
+        queryClient.invalidateQueries({
+          queryKey: messagesQueryKey
+        });
+      },
+
+      onSuccess: () => {
+        queryClient.invalidateQueries({
+          queryKey: messagesQueryKey
+        });
+      }
+    });
   };
 
   return (
@@ -35,7 +71,7 @@ export const MessageForm = ({ channel }: MessageFormProps) => {
         placeholder={`Message #${channel.name}`}
       />
 
-      <button type="submit" className="hidden" />
+      {/* <button type="submit" className="hidden" /> */}
     </form>
   );
 };

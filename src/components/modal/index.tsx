@@ -64,7 +64,7 @@ const Modal = ({ modal, removeModal, children }: ModalProps) => {
         role="dialog"
         aria-modal
         className={cn(
-          'absolute flex min-w-60 text-foreground',
+          'absolute flex center size-full min-w-60 text-foreground flex-1',
 
           `transition duration-[${MODAL_DURATION}ms] `,
 

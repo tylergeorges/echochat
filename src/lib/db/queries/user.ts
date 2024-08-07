@@ -1,4 +1,7 @@
+'use server';
+
 import { cache } from 'react';
+
 import { eq } from 'drizzle-orm';
 
 import { db } from '@/lib/db';

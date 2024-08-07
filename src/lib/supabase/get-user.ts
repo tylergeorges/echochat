@@ -1,4 +1,4 @@
-import 'server-only';
+'use server';
 
 import { cache } from 'react';
 
@@ -7,7 +7,7 @@ import type { User } from '@/lib/db/schema';
 import { createClient } from '@/lib/supabase/server';
 
 export const getAuthUser = cache(async () => {
-  const supabase = await createClient();
+  const supabase = createClient();
 
   const res = await supabase.auth.getUser();
 
@@ -15,9 +15,9 @@ export const getAuthUser = cache(async () => {
 });
 
 export const getUser = cache(async (): Promise<User | null> => {
-  const supabase = await createClient();
+  const supabase = createClient();
 
-  const { data } = await supabase.auth.getSession()
+  const { data } = await supabase.auth.getSession();
 
   if (!data || !data.session?.user) return null;
 

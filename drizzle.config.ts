@@ -1,7 +1,5 @@
-import * as dotenv from 'dotenv';
+import 'dotenv/config';
 import { defineConfig } from 'drizzle-kit';
-
-dotenv.config({ path: '.env.local' });
 
 export default defineConfig({
   schema: './src/lib/db/schema.ts',
@@ -10,7 +8,7 @@ export default defineConfig({
   schemaFilter: ['public'],
   driver: 'pg',
   dbCredentials: {
-    connectionString: process.env.DATABASE_URL!
-    // url: process.env.DATABASE_URL!
+    connectionString: process.env.POSTGRES_URL!,
+    database: process.env.POSTGRES_URL!
   }
 });

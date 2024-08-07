@@ -23,7 +23,7 @@ export const ChannelLink = ({ channel }: ChannelLinkProps) => {
         'w-full justify-start gap-2 rounded-md px-2 py-1.5 font-medium transition horizontal center-v',
         isActive
           ? 'bg-modifier-selected text-interactive-hover'
-          : 'hover:bg-modifier-hover active:bg-modifier-active text-channel-icon hover:text-interactive-normal'
+          : 'text-channel-icon hover:bg-modifier-hover hover:text-interactive-normal active:bg-modifier-active'
       )}
       href={`/channels/${channel.guildId}/${channel.id}`}
     >
