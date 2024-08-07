@@ -65,13 +65,13 @@ export const ChannelForm = ({ guild, closeModal }: ChannelFormProps) => {
   };
 
   return (
-    <Card className="w-full max-w-lg border-none bg-card vertical">
+    <Card className="max-w-lg border-none bg-card vertical">
       <form
         onSubmit={createChannel}
-        className="w-full flex-1 space-y-1.5 vertical"
+        className="w-full flex-1 space-y-2 vertical"
         id="create-server-form"
       >
-        <CardHeader className="pointer-events-none select-none p-4 pt-8 text-center vertical sm:text-left">
+        <CardHeader className="pointer-events-none select-none mb-8 p-4 pt-8 text-center vertical sm:text-left">
           <CardTitle className="text-center">Create Channel</CardTitle>
 
           <CardDescription className="text-center">
