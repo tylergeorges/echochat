@@ -4,7 +4,7 @@ import { toast } from 'sonner';
 import { insertMessage, Message } from '@/lib/db/queries/message';
 import { messagesQueryKey } from '@/hooks/use-messages-query';
 
-export const useSendMessageMutation = () => {
+export const useSendMessageMutation = (channelId: string) => {
   const queryClient = useQueryClient();
 
   const mutationFn = async (message: Message) =>
@@ -14,25 +14,24 @@ export const useSendMessageMutation = () => {
       content: message.content
     });
 
+  const queryKey = [...messagesQueryKey, channelId];
+
   return useMutation({
     mutationFn,
 
     onMutate: async msg => {
-      await queryClient.cancelQueries({ queryKey: messagesQueryKey });
+      await queryClient.cancelQueries({ queryKey });
 
-      const prevMessages = queryClient.getQueryData<Message[]>(messagesQueryKey) ?? [];
+      const prevMessages = queryClient.getQueryData<Message[]>(queryKey) ?? [];
 
-      queryClient.setQueryData(messagesQueryKey, () => [
-        ...prevMessages,
-        { ...msg, state: 'sending' }
-      ]);
+      queryClient.setQueryData(queryKey, () => [...prevMessages, { ...msg, state: 'sending' }]);
 
       return { prevMessages };
     },
 
     // If the mutation fails, use the context we returned above
     onError: (err, newMessage, context) => {
-      queryClient.setQueryData(messagesQueryKey, [
+      queryClient.setQueryData(queryKey, [
         ...(context?.prevMessages ?? []),
         { ...newMessage, state: 'error' }
       ]);
@@ -41,7 +40,7 @@ export const useSendMessageMutation = () => {
     },
 
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: messagesQueryKey });
+      queryClient.invalidateQueries({ queryKey });
     }
   });
 };

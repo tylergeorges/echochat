@@ -14,7 +14,7 @@ interface MessageFormProps {
 }
 
 export const MessageForm = ({ channel }: MessageFormProps) => {
-  const sendMessageMutation = useSendMessageMutation();
+  const sendMessageMutation = useSendMessageMutation(channel.id);
   const queryClient = useQueryClient();
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

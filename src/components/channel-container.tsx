@@ -1,4 +1,8 @@
-import type { Channel } from '@/lib/db/schema';
+'use client';
+
+import { useQuery } from '@tanstack/react-query';
+
+import { useChannelQuery } from '@/hooks/use-channel-query';
 
 import { Column } from '@/components/flex';
 import { Icons } from '@/components/icons';
@@ -6,11 +10,15 @@ import { MessageForm } from '@/components/message-form';
 import { MessagesList } from '@/components/messages-list';
 
 interface ChannelContainerProps {
-  channel: Channel;
+  channelId: string;
 }
 
-export const ChannelContainer = ({ channel }: ChannelContainerProps) => {
-  const channelName = `#${channel.name}`;
+export const ChannelContainer = ({ channelId }: ChannelContainerProps) => {
+  const { data: channel } = useQuery(useChannelQuery(channelId));
+
+  if (!channel) return null;
+
+  const channelName = `#${channel?.name}`;
 
   return (
     <Column className="relative size-full flex-1">
@@ -21,8 +29,8 @@ export const ChannelContainer = ({ channel }: ChannelContainerProps) => {
 
       <Column className="flex-1 justify-end overflow-hidden">
         <Column className="flex-1 overflow-auto">
-          <Column className="mb-4 justify-end p-4">
-            <div className="size-min flex-1 rounded-full bg-interactive-muted/50 p-2">
+          <Column className="mb-4 h-full justify-end p-4">
+            <div className="size-min rounded-full bg-interactive-muted/50 p-2">
               <Icons.TextChannelHash className="size-12 text-interactive-active" />
             </div>
 

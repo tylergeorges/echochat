@@ -14,5 +14,5 @@ export const useMessagesQuery = (
     return messages || [];
   };
 
-  return { queryKey: messagesQueryKey, queryFn, ...queryOptions };
+  return { queryKey: [...messagesQueryKey, channelId], queryFn, ...queryOptions };
 };
