@@ -4,6 +4,7 @@ import './globals.css';
 import { siteConfig } from '@/config/site';
 import { fontSans } from '@/lib/fonts';
 import { cn } from '@/lib/utils';
+import { ModalRenderer } from '@/components/modal';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -27,7 +28,9 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        {children}
+        <ModalRenderer />
+
+        <main className="relative z-0 flex-1 horizontal">{children}</main>
       </body>
     </html>
   );

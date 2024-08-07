@@ -8,14 +8,14 @@ const buttonVariants = tv({
   base: cn(
     'relative inline-flex items-center whitespace-nowrap rounded-md px-4 py-2 text-center text-sm transition duration-300 ease-out',
     'outline-none ring-border focus-visible:ring-2',
-    'items-center justify-center overflow-hidden align-middle font-semibold disabled:cursor-not-allowed disabled:opacity-50'
+    'items-center justify-center overflow-hidden align-middle font-medium disabled:cursor-not-allowed disabled:opacity-50'
   ),
 
   variants: {
     color: {
       default: 'bg-primary text-primary-foreground hover:bg-primary/90',
       destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
-      outline: 'border-input hover:bg-accent hover:text-accent-foreground border',
+      outline: 'hover:bg-accent hover:text-accent-foreground border border-input',
       secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
     },
 
@@ -83,13 +83,13 @@ const buttonVariants = tv({
     {
       color: 'default',
       variant: 'ghost',
-      className: 'text-brand hover:bg-brand hover:text-brand-foreground bg-transparent'
+      className: 'text-primary hover:bg-primary hover:text-primary-foreground bg-transparent'
     },
     {
-      color: 'default',
+      color: 'secondary',
       variant: 'ghost',
       className:
-        'bg-transparent text-primary-foreground hover:bg-primary hover:text-primary-foreground'
+        'bg-transparent  hover:bg-interactive-hover  hover:text-interactive-hover text-channel-icon'
     },
     {
       color: 'destructive',

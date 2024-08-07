@@ -45,7 +45,15 @@ const config: Config = {
       colors: {
         foreground: 'rgb(var(--foreground) / <alpha-value>)',
         border: 'rgb(var(--muted-foreground) / <alpha-value>)',
-        input: 'rgb(var(--input) / <alpha-value>)',
+        input: {
+          DEFAULT: 'rgb(var(--input) / <alpha-value>)',
+          form: 'rgb(var(--input-form) / <alpha-value>)'
+        },
+        modifier: {
+          active: 'rgb(var(--modifier-active) / <alpha-value>)',
+          hover: 'rgb(var(--modifier-hover) / <alpha-value>)',
+          selected: 'rgb(var(--modifier-selected) / <alpha-value>)'
+        },
         'channel-icon': 'rgb(var(--channel-icon) / <alpha-value>)',
         background: {
           DEFAULT: 'rgb(var(--background) / <alpha-value>)',
@@ -56,7 +64,7 @@ const config: Config = {
           normal: 'rgb(var(--interactive-normal) / <alpha-value>)',
           hover: 'rgb(var(--interactive-hover) / <alpha-value>)',
           active: 'rgb(var(--interactive-active) / <alpha-value>)',
-          muted: 'rgb(var(--interactive-muted) / <alpha-value>)',
+          muted: 'rgb(var(--interactive-muted) / <alpha-value>)'
         },
         primary: {
           DEFAULT: 'rgb(var(--primary) / <alpha-value>)',
