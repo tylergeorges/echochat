@@ -1,4 +1,3 @@
-import type { Message } from '@/lib/db/queries/message';
 import type { Channel } from '@/lib/db/schema';
 
 import { Column } from '@/components/flex';

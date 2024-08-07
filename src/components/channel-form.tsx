@@ -30,8 +30,7 @@ export const ChannelForm = ({ guild, closeModal }: ChannelFormProps) => {
   const createChannel = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const { target } = e;
-
+    const target = e.target as HTMLFormElement;
     const inputElement = target[0] as HTMLInputElement;
 
     const channelName = inputElement.value?.trim() as string;

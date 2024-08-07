@@ -20,10 +20,6 @@ export const inputVariants = tv({
       form: 'bg-input-form'
     }
   }
-
-  //   defaultVariants: {
-  //     variant: 'default'
-  //   }
 });
 
 export type InputVariants = VariantProps<typeof inputVariants>;
@@ -69,7 +65,7 @@ export const MagicTextArea = forwardRef<HTMLTextAreaElement, MagicTextAreaProps>
       const target = e.target as HTMLTextAreaElement;
 
       switch (e.key) {
-        case 'Enter':
+        case 'Enter': {
           const text = target.value?.trim();
           if (!e.shiftKey) {
             e.preventDefault();
@@ -83,7 +79,7 @@ export const MagicTextArea = forwardRef<HTMLTextAreaElement, MagicTextAreaProps>
           }
 
           return;
-
+        }
         default:
           if (onKeyDown) onKeyDown(e);
           break;

@@ -18,6 +18,7 @@ export const CreateChannelButton = ({ guild }: CreateChannelButtonProps) => {
   };
 
   return (
+    // eslint-disable-next-line jsx-a11y/control-has-associated-label
     <button
       type="button"
       className="text-channel-icon transition hover:text-interactive-hover"

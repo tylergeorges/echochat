@@ -60,11 +60,10 @@ const Modal = ({ modal, removeModal, children }: ModalProps) => {
       />
 
       <div
-        tabIndex={0}
         role="dialog"
         aria-modal
         className={cn(
-          'absolute flex center size-full min-w-60 text-foreground flex-1',
+          'absolute flex size-full min-w-60 flex-1 text-foreground center',
 
           `transition duration-[${MODAL_DURATION}ms] `,
 

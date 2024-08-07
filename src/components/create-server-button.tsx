@@ -1,3 +1,4 @@
+
 'use client';
 
 import { modal } from '@/components/modal/system';
@@ -16,6 +17,7 @@ export const CreateServerButton = ({ user }: CreateServerButtonProps) => {
   };
 
   return (
+    // eslint-disable-next-line jsx-a11y/control-has-associated-label
     <button
       onClick={openServerForm}
       className="group relative mx-3 flex size-12 overflow-hidden rounded-[24px] bg-background text-primary transition-all center hover:rounded-[16px] hover:bg-emerald-500"

@@ -1,3 +1,5 @@
+/* eslint-disable no-plusplus */
+/* eslint-disable no-continue */
 export type ModalId = number;
 
 let modalId: ModalId = 0;

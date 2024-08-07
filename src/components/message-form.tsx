@@ -20,7 +20,9 @@ export const MessageForm = ({ channel }: MessageFormProps) => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const inputElement = e.target[0] as HTMLInputElement;
+    const target = e.target as HTMLFormElement
+
+    const inputElement = target[0] as  HTMLInputElement;
 
     const content = inputElement.value?.trim() as string;
 

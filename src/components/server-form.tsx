@@ -22,8 +22,10 @@ export const ServerForm = ({ user, closeModal }: ServerFormProps) => {
   const createServer = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const { target } = e;
-    const serverName = target[0].value as string;
+    const target = e.target as HTMLFormElement;
+    const inputElement = target[0] as HTMLInputElement;
+
+    const serverName = inputElement.value as string;
 
     if (!serverName.trim() || !user) return;
 

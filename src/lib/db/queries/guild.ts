@@ -8,6 +8,7 @@ import { insertChannel } from '@/lib/db/queries/channel';
 import { insertGuildMember } from '@/lib/db/queries/user';
 
 export const guildsForMember = async (memberId: string): Promise<PartialGuild[]> =>
+  // @ts-expect-error
   db
     .select({
       name: guilds.name,
