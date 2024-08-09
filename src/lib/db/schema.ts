@@ -25,7 +25,8 @@ export const guilds = pgTable('guilds', {
   ownerId: uuid('owner_id')
     .notNull()
     .references(() => users.id, { onDelete: 'cascade' }),
-  name: text('name').notNull()
+  name: text('name').notNull(),
+  icon: text('icon')
 });
 
 export type InsertGuild = typeof guilds.$inferInsert;

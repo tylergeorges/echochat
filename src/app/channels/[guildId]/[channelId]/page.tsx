@@ -1,26 +1,30 @@
 'use server';
 
-import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
+import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
 
 import { useMessagesQuery } from '@/hooks/use-messages-query';
 import { useChannelQuery } from '@/hooks/use-channel-query';
 
-import { ChannelContainer } from '@/components/channel-container';
+import { Chat } from '@/components/chat';
+import { getQueryClient } from '@/lib/get-query-client';
 
 export default async function ChannelPage({
   params
 }: PageProps<{ channelId: string; guildId: string }>) {
-  const queryClient = new QueryClient();
+  const queryClient = getQueryClient();
 
-  await Promise.all([
-    queryClient.prefetchQuery(useChannelQuery(params.channelId)),
-    queryClient.prefetchQuery(useMessagesQuery(params.channelId))
-  ]);
+  // await Promise.all([
+  //   queryClient.prefetchQuery(useChannelQuery(params.channelId)),
+  //   queryClient.prefetchQuery(useMessagesQuery(params.channelId))
+  // ]);
+
+  queryClient.prefetchQuery(useChannelQuery(params.channelId));
+  queryClient.prefetchQuery(useMessagesQuery(params.channelId));
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <main className="relative z-0 flex-1 horizontal">
-        <ChannelContainer channelId={params.channelId} />
+        <Chat channelId={params.channelId} />
       </main>
     </HydrationBoundary>
   );

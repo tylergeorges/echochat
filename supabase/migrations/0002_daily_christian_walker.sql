@@ -1,0 +1,1 @@
+ALTER TABLE "guilds" RENAME COLUMN "guild_icon" TO "icon";

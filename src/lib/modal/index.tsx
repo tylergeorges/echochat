@@ -2,8 +2,8 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { cn } from '@/lib/utils';
 import { useKey } from '@/hooks/use-key';
+import { Dialog, DialogOverlay } from '@/components/ui/dialog';
 import { ModalSystem, type ModalContent, type ModalData } from './system';
 
 interface ModalProps {
@@ -12,10 +12,10 @@ interface ModalProps {
   children: ModalContent;
 }
 
-const MODAL_DURATION = 200;
-
 const Modal = ({ modal, removeModal, children }: ModalProps) => {
   const [visible, setIsVisible] = useState(false);
+
+  const MODAL_DURATION = 200;
 
   const deleteModalTimeoutRef = useRef<NodeJS.Timeout>();
 
@@ -48,33 +48,10 @@ const Modal = ({ modal, removeModal, children }: ModalProps) => {
   }
 
   return (
-    <>
-      <div
-        className={`duration-[${
-          MODAL_DURATION + 100
-        }ms] absolute h-screen w-full bg-black transition-opacity ${
-          visible ? 'opacity-70' : 'pointer-events-none opacity-0'
-        } `}
-        onClick={deleteModal}
-        aria-hidden
-      />
-
-      <div
-        role="dialog"
-        aria-modal
-        className={cn(
-          'absolute flex size-full min-w-60 flex-1 text-foreground center',
-
-          `transition duration-[${MODAL_DURATION}ms] `,
-
-          visible
-            ? 'scale-100 transform-none opacity-100 ease-out'
-            : 'ease pointer-events-none translate-y-4 scale-[.9] opacity-0'
-        )}
-      >
-        {children(deleteModal)}
-      </div>
-    </>
+    <Dialog open={visible}>
+      <DialogOverlay onClick={deleteModal} />
+      {children(deleteModal)}
+    </Dialog>
   );
 };
 

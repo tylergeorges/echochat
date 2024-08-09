@@ -8,11 +8,11 @@ import { cn } from '@/lib/utils';
 
 import { Icons } from '@/components/icons';
 
-interface ChannelLinkProps {
+interface GuildChannelProps {
   channel: Channel;
 }
 
-export const ChannelLink = ({ channel }: ChannelLinkProps) => {
+export const GuildChannel = ({ channel }: GuildChannelProps) => {
   const { channelId } = useAppRouter();
 
   const isActive = channelId === channel.id;

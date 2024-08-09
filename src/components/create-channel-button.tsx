@@ -1,9 +1,9 @@
 'use client';
 
 import type { PartialGuild } from '@/lib/db/schema';
+import { modal } from '@/lib/modal/system';
 
-import { modal } from '@/components/modal/system';
-import { ChannelForm } from '@/components/channel-form';
+import { CreateChannelModal } from '@/components/modals/create-channel-modal';
 import { Icons } from '@/components/icons';
 
 interface CreateChannelButtonProps {
@@ -11,10 +11,10 @@ interface CreateChannelButtonProps {
 }
 
 export const CreateChannelButton = ({ guild }: CreateChannelButtonProps) => {
-  const openChannelForm = (e: React.SyntheticEvent) => {
+  const openChannelModal = (e: React.SyntheticEvent) => {
     e.preventDefault();
 
-    modal(closeModal => <ChannelForm closeModal={closeModal} guild={guild} />, 20);
+    modal(closeModal => <CreateChannelModal closeModal={closeModal} guild={guild} />, 20);
   };
 
   return (
@@ -22,7 +22,7 @@ export const CreateChannelButton = ({ guild }: CreateChannelButtonProps) => {
     <button
       type="button"
       className="text-channel-icon transition hover:text-interactive-hover"
-      onClick={openChannelForm}
+      onClick={openChannelModal}
     >
       <Icons.Plus className="size-4" />
     </button>

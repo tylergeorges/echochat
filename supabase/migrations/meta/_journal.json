@@ -8,6 +8,20 @@
       "when": 1723053178559,
       "tag": "0000_wild_kitty_pryde",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1723231638885,
+      "tag": "0001_illegal_maddog",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1723231671940,
+      "tag": "0002_daily_christian_walker",
+      "breakpoints": true
     }
   ]
 }

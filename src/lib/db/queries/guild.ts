@@ -3,16 +3,17 @@
 import { eq, sql } from 'drizzle-orm';
 
 import { db } from '@/lib/db';
-import { PartialGuild, guildMembers, guilds, InsertGuild } from '@/lib/db/schema';
+import { guildMembers, guilds, InsertGuild, Guild } from '@/lib/db/schema';
 import { insertChannel } from '@/lib/db/queries/channel';
 import { insertGuildMember } from '@/lib/db/queries/user';
 
-export const guildsForMember = async (memberId: string): Promise<PartialGuild[]> =>
+export const guildsForMember = async (memberId: string): Promise<Guild[]> =>
   // @ts-expect-error
   db
     .select({
       name: guilds.name,
       id: guilds.id,
+      icon: guilds.icon,
       ownerId: guilds.ownerId,
       isOwner: sql<boolean>`${guilds.ownerId}=${guildMembers.memberId}`
     })
@@ -20,8 +21,8 @@ export const guildsForMember = async (memberId: string): Promise<PartialGuild[]>
     .fullJoin(guilds, eq(guildMembers.guildId, guilds.id))
     .where(eq(guildMembers.memberId, memberId));
 
-export const insertGuild = async ({ name, ownerId }: InsertGuild) => {
-  const [res] = await db.insert(guilds).values({ name, ownerId }).returning();
+export const insertGuild = async ({ name, ownerId, icon }: InsertGuild) => {
+  const [res] = await db.insert(guilds).values({ name, ownerId, icon }).returning();
 
   await insertChannel({
     name: 'general',

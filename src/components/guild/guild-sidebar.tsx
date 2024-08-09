@@ -1,21 +1,21 @@
 'use client';
 
 import type { PartialGuild } from '@/lib/db/schema';
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { useChannelsQuery } from '@/hooks/use-channels-query';
 
-import { ChannelLink } from '@/components/channel-link';
+import { GuildChannel } from '@/components/guild/guild-channel';
 import { Column, Row } from '@/components/flex';
 import { Label } from '@/components/ui/label';
 import { CreateChannelButton } from '@/components/create-channel-button';
 
-interface ChannelNavProps {
+interface GuildSidebarProps {
   guild: PartialGuild;
 }
 
-export const ChannelNav = ({ guild }: ChannelNavProps) => {
-  const { data: channels } = useQuery(useChannelsQuery(guild.id));
+export const GuildSidebar = ({ guild }: GuildSidebarProps) => {
+  const { data: channels } = useSuspenseQuery(useChannelsQuery(guild.id));
 
   return (
     <aside className="z-20 w-[240px] bg-background-secondary vertical">
@@ -30,7 +30,7 @@ export const ChannelNav = ({ guild }: ChannelNavProps) => {
           <CreateChannelButton guild={guild} />
         </Row>
 
-        {channels?.map(ch => <ChannelLink channel={ch} key={ch.id} />)}
+        {channels?.map(ch => <GuildChannel channel={ch} key={ch.id} />)}
       </Column>
     </aside>
   );

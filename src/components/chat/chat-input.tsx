@@ -9,20 +9,20 @@ import { useSendMessageMutation } from '@/hooks/use-send-message-mutation';
 import { messagesQueryKey } from '@/hooks/use-messages-query';
 import { Message } from '@/lib/db/queries/message';
 
-interface MessageFormProps {
+interface ChatInputProps {
   channel: Channel;
 }
 
-export const MessageForm = ({ channel }: MessageFormProps) => {
+export const ChatInput = ({ channel }: ChatInputProps) => {
   const sendMessageMutation = useSendMessageMutation(channel.id);
   const queryClient = useQueryClient();
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const target = e.target as HTMLFormElement
+    const target = e.target as HTMLFormElement;
 
-    const inputElement = target[0] as  HTMLInputElement;
+    const inputElement = target[0] as HTMLInputElement;
 
     const content = inputElement.value?.trim() as string;
 
@@ -72,8 +72,6 @@ export const MessageForm = ({ channel }: MessageFormProps) => {
         className="h-10 w-full rounded-md bg-input px-2.5 outline-none ring-0"
         placeholder={`Message #${channel.name}`}
       />
-
-      {/* <button type="submit" className="hidden" /> */}
     </form>
   );
 };

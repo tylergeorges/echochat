@@ -13,9 +13,11 @@
     "db:migrate": "drizzle-kit migrate",
     "db:generate-clean": "rm -rf ./supabase/migrations && pnpm run db:generate",
     "supabase:gen": "supabase gen types typescript --project-id \"$PROJECT_REF\" --schema public > types/supabase.ts",
-    "db:generate": "drizzle-kit generate:pg"
+    "db:generate": "drizzle-kit generate:pg",
+    "db:supabase-gen": "npx supabase gen types typescript --linked  > src/types/supabase.ts"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.1",
     "@supabase/ssr": "latest",
     "@supabase/supabase-js": "latest",
     "@tanstack/react-query": "^5.51.21",

@@ -1,34 +1,29 @@
 'use client';
 
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { useChannelQuery } from '@/hooks/use-channel-query';
 
 import { Column } from '@/components/flex';
-import { Icons } from '@/components/icons';
-import { MessageForm } from '@/components/message-form';
-import { MessagesList } from '@/components/messages-list';
+import { ChatMessages } from '@/components/chat/chat-messages';
+import { ChatHeader } from '@/components/chat/chat-header';
+import { ChatInput } from '@/components/chat/chat-input';
 
-interface ChannelContainerProps {
+interface ChatProps {
   channelId: string;
 }
 
-export const ChannelContainer = ({ channelId }: ChannelContainerProps) => {
-  const { data: channel } = useQuery(useChannelQuery(channelId));
+export const Chat = ({ channelId }: ChatProps) => {
+  const { data: channel } = useSuspenseQuery(useChannelQuery(channelId));
 
   if (!channel) return null;
 
-  const channelName = `#${channel?.name}`;
-
   return (
     <Column className="relative size-full flex-1">
-      <header className="text-md flex h-12 items-center border-b border-foreground/15 px-3 font-semibold">
-        <Icons.TextChannelHash className="mr-2 text-channel-icon" />
-        {channel.name}
-      </header>
+      <ChatHeader channel={channel} />
 
       <Column className="flex-1 justify-end overflow-hidden">
-        <Column className="flex-1 overflow-auto">
+        {/* <Column className="flex-1 overflow-auto">
           <Column className="mb-4 h-full justify-end p-4">
             <div className="size-min rounded-full bg-interactive-muted/50 p-2">
               <Icons.TextChannelHash className="size-12 text-interactive-active" />
@@ -42,10 +37,11 @@ export const ChannelContainer = ({ channelId }: ChannelContainerProps) => {
             </Column>
           </Column>
 
-          <MessagesList channelId={channel.id} />
-        </Column>
+          <ChatMessages channelId={channel.id} />
+        </Column> */}
 
-        <MessageForm channel={channel} />
+        <ChatMessages channel={channel} channelId={channel.id} />
+        <ChatInput channel={channel} />
       </Column>
     </Column>
   );

@@ -1,28 +1,31 @@
 'use server';
 
-import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
+import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
 
 import { getUser } from '@/lib/supabase/get-user';
 import { getGuildInfo } from '@/lib/db/queries/guild';
 
-import { GuildNav } from '@/components/guild-nav';
-import { ChannelNav } from '@/components/channel-nav';
+import { Guilds } from '@/components/guild/guilds';
+import { GuildSidebar } from '@/components/guild/guild-sidebar';
 import { useChannelsQuery } from '@/hooks/use-channels-query';
+import { getQueryClient } from '@/lib/get-query-client';
 
 export default async function GuildLayout({ params, children }: LayoutProps<{ guildId: string }>) {
-  const queryClient = new QueryClient();
+  const queryClient = getQueryClient();
+  // const queryClient = new QueryClient();
 
   const user = await getUser();
 
   const [guild] = await getGuildInfo(params.guildId, user?.id ?? '');
 
-  await queryClient.prefetchQuery(useChannelsQuery(params.guildId));
+  queryClient.prefetchQuery(useChannelsQuery(params.guildId));
+  // await queryClient.prefetchQuery(useChannelsQuery(params.guildId));
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <main className="relative z-0 flex-1 horizontal">
-        <GuildNav user={user} />
-        <ChannelNav guild={guild} />
+        <Guilds user={user} />
+        <GuildSidebar guild={guild} />
         {children}
       </main>
     </HydrationBoundary>

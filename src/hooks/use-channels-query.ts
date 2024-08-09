@@ -15,5 +15,5 @@ export const useChannelsQuery = (
     return channels || [];
   };
 
-  return { queryKey: channelsQueryKey, queryFn, ...queryOptions };
+  return { queryKey: [...channelsQueryKey,guildId], queryFn, ...queryOptions };
 };
