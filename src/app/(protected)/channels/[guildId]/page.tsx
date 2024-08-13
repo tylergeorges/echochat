@@ -2,7 +2,7 @@
 
 import { redirect } from 'next/navigation';
 
-import { getGeneralChannel } from '@/lib/db/queries/guild';
+import { getGuildInfo } from '@/lib/db/queries/guild';
 import { getUser } from '@/lib/supabase/get-user';
 
 export default async function GuildPage({ params }: PageProps<{ guildId: string }>) {
@@ -10,10 +10,14 @@ export default async function GuildPage({ params }: PageProps<{ guildId: string 
 
   if (!user) redirect('/login');
 
-  const [guild] = await getGeneralChannel(params.guildId, user.id);
+  const data = await getGuildInfo(params.guildId, user.id);
+
+  if (!data) redirect('/');
+
+  const { guild } = data;
 
   if (guild) {
-     redirect(`/channels/${params.guildId}/${guild.defaultChannelId}`);
+    redirect(`/channels/${params.guildId}/${guild.defaultChannelId}`);
   }
 
   return (
