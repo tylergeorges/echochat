@@ -17,7 +17,10 @@
     --card: 49 51 56;
     --card-foreground: 255 255 255;
 
-    --primary: 99 102 241;
+    --popover: 17 18 20;
+    --popover-foreground: var(--foreground);
+
+    --primary: 88 101 242;
     --primary-foreground: 255 255 255;
 
     --secondary: 51 51 51;
@@ -30,6 +33,9 @@
     --input-form: 30 31 34;
 
     --channel-icon: 128 132 142;
+
+    --destructive: 237 66 69;
+    --success: 87 242 135;
 
     --interactive-normal: 181 186 193;
     --interactive-muted: 78 80 88;

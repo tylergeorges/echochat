@@ -14,8 +14,8 @@ const avatar = tv({
       md: 'h-4 w-4',
       lg: 'h-[28px] w-[28px]',
       xl: 'size-12',
-
-      '2xl': 'size-16'
+      '2xl': 'size-16',
+      '3xl': 'size-20'
     }
   },
 

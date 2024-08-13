@@ -13,11 +13,6 @@ export default async function ChannelPage({
 }: PageProps<{ channelId: string; guildId: string }>) {
   const queryClient = getQueryClient();
 
-  // await Promise.all([
-  //   queryClient.prefetchQuery(useChannelQuery(params.channelId)),
-  //   queryClient.prefetchQuery(useMessagesQuery(params.channelId))
-  // ]);
-
   queryClient.prefetchQuery(useChannelQuery(params.channelId));
   queryClient.prefetchQuery(useMessagesQuery(params.channelId));
 

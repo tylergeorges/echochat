@@ -45,6 +45,12 @@ const config: Config = {
       },
       colors: {
         foreground: 'rgb(var(--foreground) / <alpha-value>)',
+        destructive: 'rgb(var(--destructive) / <alpha-value>)',
+        success: 'rgb(var(--success) / <alpha-value>)',
+        popover: {
+          DEFAULT: 'rgb(var(--popover) / <alpha-value>)',
+          foreground: 'rgb(var(--popover-foreground) / <alpha-value>)'
+        },
         border: 'rgb(var(--muted-foreground) / <alpha-value>)',
         input: {
           DEFAULT: 'rgb(var(--input) / <alpha-value>)',

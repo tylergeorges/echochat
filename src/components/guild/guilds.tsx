@@ -2,8 +2,8 @@ import { guildsForMember } from '@/lib/db/queries/guild';
 import type { User } from '@/lib/db/schema';
 
 import { CreateGuildButton } from '@/components/create-guild-button';
-import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import { GuildButton } from '@/components/guild/guild-button';
+import { UserButton } from '@/components/user-button';
 
 interface GuildsProps {
   user: User | null;
@@ -24,11 +24,10 @@ export const Guilds = async ({ user }: GuildsProps) => {
             ))}
           </div>
 
-          <Avatar size="xl">
-            <AvatarImage src={user.avatarUrl} alt={`${user.username}'s avatar.`} />
-          </Avatar>
         </>
       )}
+      
+      <UserButton user={user} />
     </aside>
   );
 };

@@ -21,14 +21,10 @@ const buttonVariants = tv({
 
     variant: {
       default: '',
-
       link: 'bg-transparent hover:underline',
-
       outline:
         'border border-border bg-transparent text-primary hover:bg-secondary hover:text-secondary-foreground',
-
       ghost: 'hover:bg-accent border-none bg-transparent text-primary',
-
       transparent: 'bg-transparent'
     },
 
@@ -81,26 +77,22 @@ const buttonVariants = tv({
     },
 
     {
-      color: 'default',
-      variant: 'ghost',
-      className: 'text-primary hover:bg-primary hover:text-primary-foreground bg-transparent'
-    },
-    {
       color: 'secondary',
       variant: 'ghost',
       className:
-        'bg-transparent  hover:bg-interactive-hover  hover:text-interactive-hover text-channel-icon'
+        'bg-transparent text-channel-icon hover:bg-interactive-hover hover:text-interactive-hover'
     },
     {
       color: 'destructive',
       variant: 'ghost',
       className:
-        'text-destructive hover:bg-destructive hover:text-destructive-foreground bg-transparent'
+        'text-destructive hover:bg-destructive active:bg-destructive/90 bg-transparent hover:text-primary-foreground active:text-primary-foreground'
     },
     {
       color: 'default',
       variant: 'ghost',
-      className: 'hover:bg-accent bg-transparent text-primary'
+      className:
+        'bg-transparent text-interactive-normal hover:bg-primary hover:text-primary-foreground active:bg-primary/90 active:text-primary-foreground'
     }
   ]
 });
