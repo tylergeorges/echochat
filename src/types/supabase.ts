@@ -63,16 +63,19 @@ export type Database = {
       guild_members: {
         Row: {
           guild_id: string
+          id: string
           joined_at: string
           member_id: string
         }
         Insert: {
           guild_id: string
+          id?: string
           joined_at?: string
           member_id: string
         }
         Update: {
           guild_id?: string
+          id?: string
           joined_at?: string
           member_id?: string
         }
@@ -95,18 +98,21 @@ export type Database = {
       }
       guilds: {
         Row: {
+          default_channel_id: string
           icon: string | null
           id: string
           name: string
           owner_id: string
         }
         Insert: {
+          default_channel_id: string
           icon?: string | null
           id?: string
           name: string
           owner_id: string
         }
         Update: {
+          default_channel_id?: string
           icon?: string | null
           id?: string
           name?: string

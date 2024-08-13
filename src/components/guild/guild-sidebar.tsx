@@ -1,6 +1,6 @@
 'use client';
 
-import type { PartialGuild } from '@/lib/db/schema';
+import type { PartialGuild } from '@/lib/db/schema/guilds';
 import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { useChannelsQuery } from '@/hooks/use-channels-query';

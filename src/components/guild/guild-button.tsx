@@ -4,7 +4,7 @@
 
 import { useRouter } from 'next/navigation';
 
-import type { Guild } from '@/lib/db/schema';
+import type { Guild } from '@/lib/db/schema/guilds';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { getGuildIcon } from '@/lib/get-bucket-asset';
 

@@ -3,7 +3,8 @@
 import { eq } from 'drizzle-orm';
 
 import { db } from '@/lib/db';
-import { InsertMessage, messages, SelectMessage, users } from '@/lib/db/schema';
+import { InsertMessage, messages, SelectMessage } from '@/lib/db/schema/messages';
+import { users } from '@/lib/db/schema/users';
 
 export const selectMessagesForChannel = async (channelId: string) =>
   db

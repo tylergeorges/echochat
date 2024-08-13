@@ -3,7 +3,7 @@
 import { eq } from 'drizzle-orm';
 
 import { db } from '@/lib/db';
-import { channels, InsertChannel } from '@/lib/db/schema';
+import { channels, InsertChannel } from '@/lib/db/schema/channels';
 
 export const insertChannel = async (channel: InsertChannel) =>
   db.insert(channels).values(channel).returning();

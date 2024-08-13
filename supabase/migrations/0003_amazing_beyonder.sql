@@ -1,0 +1,1 @@
+ALTER TABLE "guilds" ADD COLUMN "default_channel_id" uuid NOT NULL;

@@ -1,7 +1,7 @@
 import { QueryKey, UseQueryOptions } from '@tanstack/react-query';
 
 import { selectChannelsForGuild } from '@/lib/db/queries/channel';
-import { Channel } from '@/lib/db/schema';
+import type { Channel } from '@/lib/db/schema/channels';
 
 export const channelsQueryKey = ['channels'];
 
@@ -15,5 +15,5 @@ export const useChannelsQuery = (
     return channels || [];
   };
 
-  return { queryKey: [...channelsQueryKey,guildId], queryFn, ...queryOptions };
+  return { queryKey: [...channelsQueryKey, guildId], queryFn, ...queryOptions };
 };

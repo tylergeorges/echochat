@@ -1,4 +1,4 @@
-import type { Channel } from '@/lib/db/schema';
+import type { Channel } from '@/lib/db/schema/channels';
 
 import { Icons } from '@/components/icons';
 

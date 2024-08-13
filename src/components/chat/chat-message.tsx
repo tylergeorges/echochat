@@ -1,6 +1,6 @@
+import type { Message } from '@/lib/db/queries/message';
 import { cn } from '@/lib/utils';
 
-import type { Message } from '@/lib/db/queries/message';
 import { Column } from '@/components/flex';
 
 interface ChatMessageProps extends Message {}
@@ -20,7 +20,7 @@ export const ChatMessage = ({ author, content, createdAt, state }: ChatMessagePr
           'whitespace-pre-wrap text-wrap break-all text-sm',
           'text-foreground',
           state === 'sending' && 'text-foreground/50',
-          state === 'error' && 'text-red-500'
+          state === 'error' && 'text-destructive'
         )}
       >
         {content}

@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 
-import type { User } from '@/lib/db/schema';
+import type { User } from '@/lib/db/schema/users';
 import { useSupabase } from '@/hooks/use-supabase';
 
 import { Button } from '@/components/ui/button';

@@ -1,0 +1,1 @@
+ALTER TABLE "guild_members" ADD COLUMN "id" uuid DEFAULT gen_random_uuid() NOT NULL;

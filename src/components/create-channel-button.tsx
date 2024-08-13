@@ -1,6 +1,6 @@
 'use client';
 
-import type { PartialGuild } from '@/lib/db/schema';
+import type { PartialGuild } from '@/lib/db/schema/guilds';
 import { modal } from '@/lib/modal/system';
 
 import { CreateChannelModal } from '@/components/modals/create-channel-modal';

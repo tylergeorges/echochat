@@ -2,7 +2,7 @@
 
 import { useQueryClient } from '@tanstack/react-query';
 
-import type { Channel } from '@/lib/db/schema';
+import type { Channel } from '@/lib/db/schema/channels';
 
 import { useAppRouter } from '@/hooks/use-app-router';
 import { channelQueryKey } from '@/hooks/use-channel-query';

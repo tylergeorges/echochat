@@ -3,7 +3,7 @@
 import { useQueryClient } from '@tanstack/react-query';
 
 import { createClient } from '@/lib/supabase/client';
-import type { Channel } from '@/lib/db/schema';
+import type { Channel } from '@/lib/db/schema/channels';
 
 import { useSendMessageMutation } from '@/hooks/use-send-message-mutation';
 import { messagesQueryKey } from '@/hooks/use-messages-query';

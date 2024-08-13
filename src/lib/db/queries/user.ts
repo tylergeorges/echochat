@@ -5,7 +5,8 @@ import { cache } from 'react';
 import { eq } from 'drizzle-orm';
 
 import { db } from '@/lib/db';
-import { InsertUser, users, InsertGuildMember, guildMembers } from '@/lib/db/schema';
+import { InsertUser, users } from '@/lib/db/schema/users';
+import { guildMembers, InsertGuildMember } from '@/lib/db/schema/guilds';
 
 export const userById = cache(async (userId: string) =>
   db.select().from(users).where(eq(users.id, userId))

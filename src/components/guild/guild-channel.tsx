@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 
-import type { Channel } from '@/lib/db/schema';
+import type { Channel } from '@/lib/db/schema/channels';
 import { useAppRouter } from '@/hooks/use-app-router';
 import { cn } from '@/lib/utils';
 

@@ -1,7 +1,7 @@
 import { QueryKey, UseQueryOptions } from '@tanstack/react-query';
 
 import { getChannelInfo } from '@/lib/db/queries/channel';
-import { Channel } from '@/lib/db/schema';
+import type { Channel } from '@/lib/db/schema/channels';
 
 export const channelQueryKey = ['channel'];
 

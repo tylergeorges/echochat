@@ -1,5 +1,5 @@
 import { guildsForMember } from '@/lib/db/queries/guild';
-import type { User } from '@/lib/db/schema';
+import type { User } from '@/lib/db/schema/users';
 
 import { CreateGuildButton } from '@/components/create-guild-button';
 import { GuildButton } from '@/components/guild/guild-button';
@@ -19,14 +19,13 @@ export const Guilds = async ({ user }: GuildsProps) => {
           <CreateGuildButton user={user} />
 
           <div className="flex h-full flex-col items-center space-y-2 text-primary">
-            {guilds.map(guild => (
+            {guilds.map(({ guild }) => (
               <GuildButton key={guild.id} guild={guild} />
             ))}
           </div>
-
         </>
       )}
-      
+
       <UserButton user={user} />
     </aside>
   );

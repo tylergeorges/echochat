@@ -1,6 +1,6 @@
 'use client';
 
-import type { User } from '@/lib/db/schema';
+import type { User } from '@/lib/db/schema/users';
 import { modal } from '@/lib/modal/system';
 
 import { Icons } from '@/components/icons';

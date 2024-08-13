@@ -22,6 +22,34 @@
       "when": 1723231671940,
       "tag": "0002_daily_christian_walker",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1723586472746,
+      "tag": "0003_amazing_beyonder",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1723586557991,
+      "tag": "0004_nosy_proteus",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1723586660575,
+      "tag": "0005_chilly_wallow",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1723590729389,
+      "tag": "0006_productive_wendell_rand",
+      "breakpoints": true
     }
   ]
 }

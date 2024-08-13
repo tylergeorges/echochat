@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { channelsQueryKey } from '@/hooks/use-channels-query';
 import { insertChannel } from '@/lib/db/queries/channel';
-import type { Channel, InsertChannel } from '@/lib/db/schema';
+import type { Channel, InsertChannel } from '@/lib/db/schema/channels';
 
 export const useCreateChannelMutation = (guildId: string) => {
   const queryClient = useQueryClient();

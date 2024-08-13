@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { insertGuild } from '@/lib/db/queries/guild';
-import type { User } from '@/lib/db/schema';
+import type { User } from '@/lib/db/schema/users';
 
 import { useSupabase } from '@/hooks/use-supabase';
 
@@ -49,7 +49,6 @@ export const CreateGuildModal = ({ user, closeModal }: CreateGuildModalProps) =>
     const { data, error } = await supabase.storage
       .from('guild_icons')
       .upload(`${iconSnowflake}.${imageExt}`, guildIconFile);
-
 
     if (!data || error) {
       if (error) {
