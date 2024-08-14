@@ -14,8 +14,7 @@
 
 <p align="center">
 
-**Echo Chat | A Real Time Discord Clone Application Powered by Next.js, Supabase, React Query**
-This project offers a way to create, interact and view posts, emulating the core functionalities of Twitter with a modern tech stack.
+**Echo Chat | A Real Time Discord Clone Application Powered by Next.js, Supabase, React Query** This project reimagines discord, while keeping features such as real-time communication using a modern tech stack.
 
  <br />
  <br />
