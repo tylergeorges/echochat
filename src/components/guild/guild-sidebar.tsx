@@ -1,16 +1,27 @@
 'use client';
 
-import type { Guild } from '@/lib/db/schema/guilds';
+import { useState } from 'react';
 import { useSuspenseQuery } from '@tanstack/react-query';
 
-import { useChannelsQuery } from '@/hooks/use-channels-query';
+import type { Guild } from '@/lib/db/schema/guilds';
 
+import { useChannelsQuery } from '@/hooks/use-channels-query';
+import { modal } from '@/lib/modal/system';
+
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuGroup,
+  DropdownMenuSeparator,
+  DropdownMenuContent
+} from '@/components/ui/dropdown-menu';
 import { GuildChannel } from '@/components/guild/guild-channel';
 import { Column, Row } from '@/components/flex';
 import { Label } from '@/components/ui/label';
 import { CreateChannelButton } from '@/components/create-channel-button';
-import { modal } from '@/lib/modal/system';
 import { InviteModal } from '@/components/modals/invite-modal';
+import { Icons } from '@/components/icons';
+import { Button } from '@/components/ui/button';
 
 interface GuildSidebarProps {
   guild: Guild;
@@ -18,17 +29,58 @@ interface GuildSidebarProps {
 
 export const GuildSidebar = ({ guild }: GuildSidebarProps) => {
   const { data: channels } = useSuspenseQuery(useChannelsQuery(guild.id));
+  const [open, setOpen] = useState(false);
 
-  const guildSettingsClick = (e: React.SyntheticEvent) => {
+  const openInviteModal = (e: React.SyntheticEvent) => {
     e.preventDefault();
+
+    if (!open) return;
+
+    setOpen(false);
 
     modal(closeModal => <InviteModal inviteCode={guild.inviteCode} closeModal={closeModal} />);
   };
+
   return (
     <aside className="z-20 w-[240px] bg-background-secondary vertical">
-      <button type='button' className="p-3 horizontal center-v" onClick={guildSettingsClick}>
-        <h1 className="text-base font-semibold">{guild.name}</h1>
-      </button>
+      <DropdownMenu open={open} onOpenChange={setOpen}>
+        <DropdownMenuTrigger className="justify-between p-3 outline-none transition horizontal center-v hover:bg-interactive-hover/10">
+          <h1 className="text-base font-semibold">{guild.name}</h1>
+
+          <Icons.DownArrow className="size-5" />
+        </DropdownMenuTrigger>
+
+        <DropdownMenuContent className="w-[220px] gap-2 p-1.5 vertical" side="top">
+          <DropdownMenuGroup className="space-y-0.5 p-0">
+            <Button
+              variant="ghost"
+              fill
+              className="group justify-between px-2 text-[#949CF7] transition-none"
+              onClick={openInviteModal}
+            >
+              Invite People
+              <Icons.AddPeople className="group size-4 transition-transform group-hover:-rotate-6" />
+            </Button>
+
+            <Button variant="ghost" fill className="group justify-between px-2 transition-none">
+              Guild Settings
+              <Icons.Settings className="group size-4 transition-transform duration-700 group-hover:rotate-180" />
+            </Button>
+          </DropdownMenuGroup>
+
+          <DropdownMenuSeparator className="my-0" />
+
+          <Button
+            variant="ghost"
+            color="destructive"
+            fill
+            className="justify-between px-2 transition-none"
+          >
+            Delete Guild
+            <Icons.Trash className="size-4" />
+          </Button>
+        </DropdownMenuContent>
+      </DropdownMenu>
 
       <Column className="gap-2 px-3 pt-5 font-medium">
         <Row className="justify-between center-v">
