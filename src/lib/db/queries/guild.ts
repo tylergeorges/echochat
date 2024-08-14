@@ -21,7 +21,8 @@ export const guildsForMember = async (memberId: string) =>
           id: true,
           icon: true,
           ownerId: true,
-          defaultChannelId: true
+          defaultChannelId: true,
+          inviteCode: true
         },
 
         extras: {
@@ -60,6 +61,7 @@ export const getGuildInfo = async (guildId: string, memberId: string) =>
           name: true,
           id: true,
           icon: true,
+          inviteCode: true,
           ownerId: true,
           defaultChannelId: true
         },
@@ -70,3 +72,45 @@ export const getGuildInfo = async (guildId: string, memberId: string) =>
       }
     }
   });
+
+export const getGuildFromInvite = async (inviteCode: string, memberId: string) => {
+  const guild = await db.query.guilds.findFirst({ where: eq(guilds.inviteCode, inviteCode) });
+
+  if (!guild) return undefined;
+
+  return db.query.guildMembers.findFirst({
+    where: and(eq(guildMembers.memberId, memberId), eq(guildMembers.guildId, guild.id)),
+
+    columns: {},
+
+    with: {
+      guild: {
+        columns: {
+          name: true,
+          id: true,
+          icon: true,
+          inviteCode: true,
+          ownerId: true,
+          defaultChannelId: true
+        },
+
+        extras: {
+          isOwner: sql<boolean>`${guild.ownerId}=${memberId}`.as('is_owner')
+        }
+      }
+    }
+  });
+};
+
+export const addMemberToGuild = async (inviteCode: string, memberId: string) => {
+  const guild = await db.query.guilds.findFirst({ where: eq(guilds.inviteCode, inviteCode) });
+
+  if (!guild) return undefined;
+
+  const [guildMember] = await db
+    .insert(guildMembers)
+    .values({ guildId: guild.id, memberId })
+    .returning();
+
+  return getGuildInfo(guildMember.guildId, guildMember.memberId);
+};

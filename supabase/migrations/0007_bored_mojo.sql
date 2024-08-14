@@ -1,0 +1,1 @@
+ALTER TABLE "guilds" ADD COLUMN "invite_code" uuid DEFAULT gen_random_uuid() NOT NULL;

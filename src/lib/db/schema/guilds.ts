@@ -4,6 +4,7 @@ import { users } from '@/lib/db/schema/users';
 
 export const guilds = pgTable('guilds', {
   id: uuid('id').primaryKey().notNull().defaultRandom(),
+  inviteCode: uuid('invite_code').notNull().defaultRandom(),
   ownerId: uuid('owner_id')
     .notNull()
     .references(() => users.id, { onDelete: 'cascade' }),
