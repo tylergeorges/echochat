@@ -30,7 +30,7 @@ interface AvatarProps extends React.ComponentProps<'div'>, AvatarVariants {}
 
 export const Avatar = forwardRef<HTMLDivElement, React.PropsWithChildren<AvatarProps>>(
   ({ className, children, size, ...props }, ref) => (
-    <div {...props} className={cn(avatar({ size }), className)} ref={ref}>
+    <div {...props} className={avatar({ size, className })} ref={ref}>
       {children}
     </div>
   )
@@ -49,7 +49,7 @@ export const AvatarImage = forwardRef<HTMLImageElement, AvatarImageProps>(
       height={height}
       unoptimized
       {...props}
-      className={cn('h-full w-auto rounded-full', className)}
+      className={cn('h-full w-auto ', className)}
       ref={ref}
     />
   )
@@ -63,10 +63,7 @@ export const AvatarFallback = forwardRef<HTMLDivElement, AvatarFallbackProps>(
   ({ className, ...props }, ref) => (
     <div
       {...props}
-      className={cn(
-        'flex h-full w-auto items-center justify-center rounded-full bg-muted',
-        className
-      )}
+      className={cn('flex h-full w-auto items-center justify-center bg-muted', className)}
       ref={ref}
     />
   )

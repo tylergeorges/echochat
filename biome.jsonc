@@ -7,7 +7,7 @@
     "lineEnding": "lf",
     "lineWidth": 100,
     "attributePosition": "auto",
-    "enabled": true
+    "enabled": false
   },
   "organizeImports": { "enabled": true },
   "linter": {
@@ -26,8 +26,8 @@
       },
       "nursery": {
         "useSortedClasses": {
-          "fix": "unsafe",
-          "level": "warn",
+          "fix": "none",
+          "level": "off",
           "options": {
             "attributes": ["classList"],
             "functions": ["clsx", "cva", "tw", "tv", "cn"]
@@ -59,10 +59,11 @@
       "bracketSpacing": true,
       "bracketSameLine": false,
       "quoteStyle": "single",
-      "attributePosition": "auto"
+      "attributePosition": "auto",
+      "enabled": false
     }
   },
-  "css": { "formatter": { "enabled": true }, "linter": { "enabled": true } },
+  "css": { "formatter": { "enabled": false }, "linter": { "enabled": true } },
   "overrides": [
     { "include": ["*.svg"] },
     {

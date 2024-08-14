@@ -1,0 +1,23 @@
+{
+  "trailingComma": "none",
+  "arrowParens": "avoid",
+  "semi": true,
+  "singleQuote": true,
+  "bracketSpacing": true,
+  "printWidth": 100,
+  "useTabs": false,
+  "tabWidth": 2,
+  "quoteProps": "as-needed",
+  "jsxSingleQuote": false,
+  "overrides": [
+    {
+      "files": "*.svg",
+      "options": {
+        "parser": "html"
+      }
+    }
+  ],
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "tailwindFunctions": ["tv", "cn"],
+  "tailwindConfig": "./tailwind.config.ts"
+}

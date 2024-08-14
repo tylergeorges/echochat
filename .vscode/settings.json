@@ -1,20 +1,14 @@
 {
-	"editor.defaultFormatter": "biomejs.biome",
-	"prettier.enable": false,
-	"biome.rename": true,
-	"eslint.enable": false,
-	"editor.codeActionsOnSave": {
-		"quickfix.biome": "explicit",
-		"source.organizeImports.biome": "explicit"
-	},
-	"editor.formatOnSave": true,
-	"[javascript]": {
-		"editor.defaultFormatter": "biomejs.biome"
-	},
-	"[typescript]": {
-		"editor.defaultFormatter": "biomejs.biome"
-	},
-	"[typescriptreact]": {
-		"editor.defaultFormatter": "biomejs.biome"
-	}
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "prettier.enable": true,
+  "biome.rename": true,
+  "eslint.enable": false,
+  "biome.enabled": true,
+  "editor.codeActionsOnSave": {
+    "quickfix.biome": "explicit",
+    "source.organizeImports.biome": "explicit",
+    "source.biome.fixAll": "explicit"
+  },
+  "editor.formatOnSave": true,
+
 }

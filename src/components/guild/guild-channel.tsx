@@ -20,7 +20,7 @@ export const GuildChannel = ({ channel }: GuildChannelProps) => {
   return (
     <Link
       className={cn(
-        'horizontal center-v w-full justify-start gap-2 rounded-md px-2 py-1.5 font-medium transition',
+        'w-full justify-start gap-2 rounded-md px-2 py-1.5 font-medium transition horizontal center-v',
         isActive
           ? 'bg-modifier-selected text-interactive-hover'
           : 'text-channel-icon hover:bg-modifier-hover hover:text-interactive-normal active:bg-modifier-active'

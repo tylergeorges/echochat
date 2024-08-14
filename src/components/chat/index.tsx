@@ -4,10 +4,10 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { useChannelQuery } from '@/hooks/use-channel-query';
 
-import { Column } from '@/components/flex';
-import { ChatMessages } from '@/components/chat/chat-messages';
 import { ChatHeader } from '@/components/chat/chat-header';
 import { ChatInput } from '@/components/chat/chat-input';
+import { ChatMessages } from '@/components/chat/chat-messages';
+import { Column } from '@/components/flex';
 
 interface ChatProps {
   channelId: string;
