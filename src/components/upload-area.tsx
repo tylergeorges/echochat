@@ -16,7 +16,8 @@ export const UploadArea = ({ onUpload, children }: React.PropsWithChildren<Uploa
   };
 
   return (
-    <div onClick={openExplorer} className="center vertical flex-1 gap-6">
+    // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
+    <div onClick={openExplorer} className="flex-1 gap-6 center vertical">
       {children}
 
       <input

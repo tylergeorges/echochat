@@ -1,6 +1,6 @@
 'use client';
 
-import type { Guild } from '@/lib/db/schema/guilds';
+import type { Guild } from '@/lib/db/queries/guild';
 import { modal } from '@/lib/modal/system';
 
 import { Icons } from '@/components/icons';
@@ -18,7 +18,6 @@ export const CreateChannelButton = ({ guild }: CreateChannelButtonProps) => {
   };
 
   return (
-    // eslint-disable-next-line jsx-a11y/control-has-associated-label
     <button
       type="button"
       className="text-channel-icon transition hover:text-interactive-hover"

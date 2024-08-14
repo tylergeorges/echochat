@@ -34,23 +34,6 @@ export const guildsForMember = async (memberId: string) =>
 
 export type Guild = QueryReturnType<typeof guildsForMember>['guild'];
 
-export const insertGuild = async ({ name, ownerId, icon }: InsertGuild) => {
-  const defaultChannelId = randomUUID();
-
-  const [res] = await db
-    .insert(guilds)
-    .values({ name, ownerId, icon, defaultChannelId })
-    .returning();
-
-  await insertChannel({
-    name: 'general',
-    guildId: res.id,
-    id: defaultChannelId
-  });
-
-  await insertGuildMember({ guildId: res.id, memberId: ownerId });
-};
-
 export const getGuildInfo = async (guildId: string, memberId: string) =>
   db.query.guildMembers.findFirst({
     where: and(eq(guildMembers.memberId, memberId), eq(guildMembers.guildId, guildId)),
@@ -74,6 +57,27 @@ export const getGuildInfo = async (guildId: string, memberId: string) =>
       }
     }
   });
+
+export const insertGuild = async ({ name, ownerId, icon }: InsertGuild) => {
+  const defaultChannelId = randomUUID();
+
+  const [res] = await db
+    .insert(guilds)
+    .values({ name, ownerId, icon, defaultChannelId })
+    .returning();
+
+  await insertChannel({
+    name: 'general',
+    guildId: res.id,
+    id: defaultChannelId
+  });
+
+  const [guild] = await insertGuildMember({ guildId: res.id, memberId: ownerId });
+
+return getGuildInfo(guild.guildId, ownerId) 
+
+
+};
 
 export const getGuildFromInvite = async (inviteCode: string, memberId: string) => {
   const guild = await db.query.guilds.findFirst({

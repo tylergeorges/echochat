@@ -36,7 +36,7 @@ export const CardTitle = forwardRef<HTMLParagraphElement, HTMLAttributes<HTMLHea
     <h2
       {...props}
       ref={ref}
-      className={cn('text-center font-bold text-2xl tracking-tight', className)}
+      className={cn('text-center text-2xl font-bold tracking-tight', className)}
     >
       {children}
     </h2>
@@ -49,7 +49,7 @@ export const CardDescription = forwardRef<
   HTMLParagraphElement,
   HTMLAttributes<HTMLParagraphElement>
 >(({ className, children, ...props }, ref) => (
-  <p {...props} ref={ref} className={cn('m-0 text-muted-foreground text-sm', className)}>
+  <p {...props} ref={ref} className={cn('m-0 text-sm text-muted-foreground', className)}>
     {children}
   </p>
 ));

@@ -1,9 +1,8 @@
 import { useQueryClient } from '@tanstack/react-query';
 
-import type { Guild } from '@/lib/db/schema/guilds';
-
 import { channelsQueryKey } from '@/hooks/use-channels-query';
 import { useCreateChannelMutation } from '@/hooks/use-create-channel-mutation';
+import type { Guild } from '@/lib/db/queries/guild';
 import { getAuthUser } from '@/lib/supabase/get-user';
 
 import { Icons } from '@/components/icons';
@@ -77,7 +76,7 @@ export const CreateChannelModal = ({ guild, closeModal }: ChannelFormProps) => {
 
       <form
         onSubmit={createChannel}
-        className="vertical w-full flex-1 space-y-2"
+        className="w-full flex-1 space-y-2 vertical"
         id="create-server-form"
       >
         <DialogBody>
@@ -86,7 +85,7 @@ export const CreateChannelModal = ({ guild, closeModal }: ChannelFormProps) => {
               Channel Name
             </Label>
 
-            <div className="horizontal center-v relative w-full">
+            <div className="relative w-full horizontal center-v">
               <Icons.TextChannelHash className="absolute left-2 z-10 size-5 text-channel-icon" />
               <Input
                 id="channel-name"

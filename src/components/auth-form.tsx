@@ -30,7 +30,7 @@ export const AuthForm = () => {
   };
 
   return (
-    <form className="center-v vertical w-full animate-fade-up gap-4 text-foreground">
+    <form className="animate-fade-up w-full gap-4 text-foreground center-v vertical">
       <Button
         onClick={e => {
           e.preventDefault();

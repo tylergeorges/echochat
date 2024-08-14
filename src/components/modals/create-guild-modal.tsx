@@ -1,9 +1,15 @@
-import { useState } from 'react';
+'use client';
 
-import { insertGuild } from '@/lib/db/queries/guild';
+import { useQueryClient } from '@tanstack/react-query';
+import { useState } from 'react';
+import { toast } from 'sonner';
+
 import type { User } from '@/lib/db/schema/users';
 
+import { useCreateGuildMutation } from '@/hooks/use-create-guild-mutation';
+import { guildsQueryKey } from '@/hooks/use-guilds-query';
 import { useSupabase } from '@/hooks/use-supabase';
+import { generateSnowflake } from '@/lib/snowflake';
 
 import { Icons } from '@/components/icons';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
@@ -19,8 +25,6 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { UploadArea } from '@/components/upload-area';
-import { generateSnowflake } from '@/lib/snowflake';
-import { toast } from 'sonner';
 
 interface CreateGuildModalProps {
   user: User;
@@ -30,6 +34,9 @@ interface CreateGuildModalProps {
 export const CreateGuildModal = ({ user, closeModal }: CreateGuildModalProps) => {
   const [dataURL, setDataURL] = useState<string | null>(null);
   const [guildIconFile, setGuildIconFile] = useState<File | null>(null);
+
+  const queryClient = useQueryClient();
+  const createGuildMutation = useCreateGuildMutation(user.id);
 
   const supabase = useSupabase();
 
@@ -60,13 +67,36 @@ export const CreateGuildModal = ({ user, closeModal }: CreateGuildModalProps) =>
       return;
     }
 
-    await insertGuild({
+    const guild = {
       name: guildName,
       ownerId: user.id,
-      icon: data.fullPath
-    });
+      icon: data.fullPath,
+      id: crypto.randomUUID()
+    };
 
-    closeModal();
+    // await insertGuild({
+    //   name: guildName,
+    //   ownerId: user.id,
+    //   icon: data.fullPath
+    // });
+
+    const queryKey = [...guildsQueryKey, user.id];
+
+    createGuildMutation.mutate(guild, {
+      onSettled: () => {
+        closeModal();
+
+        queryClient.invalidateQueries({
+          queryKey: queryKey
+        });
+      },
+
+      onSuccess: () => {
+        queryClient.invalidateQueries({
+          queryKey: queryKey
+        });
+      }
+    });
   };
 
   const handleImageUpload = (file: File) => {
@@ -96,11 +126,11 @@ export const CreateGuildModal = ({ user, closeModal }: CreateGuildModalProps) =>
 
       <form
         onSubmit={createGuild}
-        className="vertical w-full flex-1 space-y-1.5"
+        className="w-full flex-1 space-y-1.5 vertical"
         id="create-guild-form"
       >
         <DialogBody>
-          <div className="center vertical w-full flex-1">
+          <div className="w-full flex-1 center vertical">
             <UploadArea onUpload={handleImageUpload}>
               {dataURL ? (
                 <Avatar className="size-[80px]">

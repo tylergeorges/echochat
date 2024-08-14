@@ -1,4 +1,8 @@
-import { guildsForMember } from '@/lib/db/queries/guild';
+'use client';
+
+import { useSuspenseQuery } from '@tanstack/react-query';
+
+import { useGuildsQuery } from '@/hooks/use-guilds-query';
 import type { User } from '@/lib/db/schema/users';
 
 import { CreateGuildButton } from '@/components/create-guild-button';
@@ -9,8 +13,8 @@ interface GuildsProps {
   user: User | null;
 }
 
-export const Guilds = async ({ user }: GuildsProps) => {
-  const guilds = !user ? [] : await guildsForMember(user.id);
+export const Guilds = ({ user }: GuildsProps) => {
+  const { data: guilds } = useSuspenseQuery(useGuildsQuery(user?.id ?? ''));
 
   return (
     <aside className="z-30 hidden h-full w-[72px] flex-col space-y-2 bg-background-tertiary py-3 center-h md:flex">

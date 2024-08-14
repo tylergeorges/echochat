@@ -21,7 +21,7 @@ export const DialogOverlay = forwardRef<
   <DialogPrimitive.Overlay
     ref={ref}
     className={cn(
-      'data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 bg-black/80 data-[state=closed]:animate-out data-[state=open]:animate-in',
+      'fixed inset-0 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
       className
     )}
     {...props}
@@ -37,8 +37,8 @@ export const DialogContent = forwardRef<
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        'vertical zoom-in-[200ms] relative max-w-lg rounded-xl border-none bg-card',
-        '] data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:animate-out data-[state=open]:animate-in',
+        'relative max-w-lg rounded-xl border-none bg-card vertical zoom-in-[200ms]',
+        '] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
         className
       )}
       {...props}
@@ -52,7 +52,7 @@ DialogContent.displayName = DialogPrimitive.Content.displayName;
 export const DialogHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
   <CardHeader
     className={cn(
-      'vertical pointer-events-none mb-8 select-none space-y-1.5 p-4 px-6 pt-8 text-center sm:text-left',
+      'pointer-events-none mb-8 select-none space-y-1.5 p-4 px-6 pt-8 text-center vertical sm:text-left',
       className
     )}
     {...props}
@@ -61,7 +61,7 @@ export const DialogHeader = ({ className, ...props }: React.HTMLAttributes<HTMLD
 DialogHeader.displayName = 'DialogHeader';
 
 export const DialogFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
-  <CardFooter className={cn('center w-full px-6 py-4', className)} {...props} />
+  <CardFooter className={cn('w-full px-6 py-4 center', className)} {...props} />
 );
 
 DialogFooter.displayName = 'DialogFooter';
@@ -72,7 +72,7 @@ export const DialogTitle = forwardRef<
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Title
     ref={ref}
-    className={cn('text-center font-bold text-2xl tracking-tight', className)}
+    className={cn('text-center text-2xl font-bold tracking-tight', className)}
     {...props}
   />
 ));
@@ -84,7 +84,7 @@ export const DialogDescription = forwardRef<
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Description
     ref={ref}
-    className={cn('m-0 text-center text-muted-foreground text-sm', className)}
+    className={cn('m-0 text-center text-sm text-muted-foreground', className)}
     {...props}
   />
 ));
@@ -92,7 +92,7 @@ DialogDescription.displayName = DialogPrimitive.Description.displayName;
 
 export const DialogBody = forwardRef<React.ElementRef<'div'>, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
-    <CardContent ref={ref} className={cn('center vertical flex-1 px-6', className)} {...props} />
+    <CardContent ref={ref} className={cn('flex-1 px-6 center vertical', className)} {...props} />
   )
 );
 DialogBody.displayName = 'DialogBody';
