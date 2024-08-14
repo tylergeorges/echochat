@@ -18,7 +18,7 @@ export const GuildButton = ({ guild }: GuildButtonProps) => {
   const onClick = (e: React.SyntheticEvent) => {
     e.preventDefault();
 
-    router.push(`/channels/${guild.id}`);
+    router.push(`/channels/${guild.id}/${guild.defaultChannelId}`);
   };
 
   return (

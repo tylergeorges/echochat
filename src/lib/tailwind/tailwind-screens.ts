@@ -5,6 +5,7 @@ export const generateScreens = (screenSizes: Record<string, number>) => {
 
   const minWidthBreakpoints = screenEntries.reduce(
     (acc, [name, width]) => ({
+      // biome-ignore lint/performance/noAccumulatingSpread: <explanation>
       ...acc,
       [name]: { min: getPx(width) }
     }),
@@ -12,6 +13,7 @@ export const generateScreens = (screenSizes: Record<string, number>) => {
   );
   const maxWidthBreakpoints = screenEntries.reduce(
     (acc, [name, width]) => ({
+      // biome-ignore lint/performance/noAccumulatingSpread: <explanation>
       ...acc,
       [`to-${name}`]: { max: getPx(width) }
     }),
@@ -31,6 +33,7 @@ export const generateScreens = (screenSizes: Record<string, number>) => {
 
     prevBreakpointWidth = width;
 
+    // biome-ignore lint/performance/noAccumulatingSpread: <explanation>
     return { ...acc, [key]: value };
   }, {});
 

@@ -103,7 +103,6 @@ export const Button = forwardRef<HTMLButtonElement, React.PropsWithChildren<Butt
   ({ className, type = 'button', children, variant, color, fill, size, round, ...props }, ref) => (
     <button
       {...props}
-      // eslint-disable-next-line react/button-has-type
       type={type}
       className={buttonVariants({
         variant,
@@ -136,7 +135,6 @@ export const ButtonLink = forwardRef<HTMLAnchorElement, React.PropsWithChildren<
       <Link
         {...props}
         className={buttonVariants({
-          // eslint-disable-next-line no-nested-ternary
           variant: watchActiveState ? (active ? 'default' : 'ghost') : variant,
           fill,
           round,
