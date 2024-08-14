@@ -1,26 +1,20 @@
+import { toast } from 'sonner';
+
 import { getBaseUrl } from '@/lib/utils';
 import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Icons } from '@/components/icons';
-import {
-  DialogBody,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle
-} from '@/components/ui/dialog';
-import { toast } from 'sonner';
+import { DialogBody, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 
 interface InviteModalProps {
   inviteCode: string;
+  // eslint-disable-next-line react/no-unused-prop-types
   closeModal: () => void;
 }
 
-export const InviteModal = ({ inviteCode, closeModal }: InviteModalProps) => {
+export const InviteModal = ({ inviteCode }: InviteModalProps) => {
   const [copiedText, copy] = useCopyToClipboard();
 
   const baseUrl = getBaseUrl();
