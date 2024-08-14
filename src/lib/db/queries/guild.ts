@@ -2,7 +2,6 @@
 
 import { randomUUID } from 'node:crypto';
 import { and, eq, sql } from 'drizzle-orm';
-import { pgEnum } from 'drizzle-orm/pg-core';
 
 import { db } from '@/lib/db';
 import { insertChannel } from '@/lib/db/queries/channel';
@@ -74,9 +73,7 @@ export const insertGuild = async ({ name, ownerId, icon }: InsertGuild) => {
 
   const [guild] = await insertGuildMember({ guildId: res.id, memberId: ownerId });
 
-return getGuildInfo(guild.guildId, ownerId) 
-
-
+  return getGuildInfo(guild.guildId, ownerId);
 };
 
 export const getGuildFromInvite = async (inviteCode: string, memberId: string) => {
