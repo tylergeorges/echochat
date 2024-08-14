@@ -18,7 +18,7 @@ export const Guilds = async ({ user }: GuildsProps) => {
         <>
           <CreateGuildButton user={user} />
 
-          <div className="flex h-full flex-col items-center space-y-2 text-primary">
+          <div className="relative flex h-full w-full flex-col items-center space-y-2 text-primary">
             {guilds.map(({ guild }) => (
               <GuildButton key={guild.id} guild={guild} />
             ))}

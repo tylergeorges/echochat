@@ -3,11 +3,11 @@
 import { useRouter } from 'next/navigation';
 
 import { useAppRouter } from '@/hooks/use-app-router';
-import type { Guild } from '@/lib/db/schema/guilds';
+import type { Guild } from '@/lib/db/queries/guild';
 import { getGuildIcon } from '@/lib/get-bucket-asset';
+import { cn } from '@/lib/utils';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { cn } from '@/lib/utils';
 
 interface GuildButtonProps {
   guild: Guild;
@@ -17,30 +17,42 @@ export const GuildButton = ({ guild }: GuildButtonProps) => {
   const router = useRouter();
   const { guildId } = useAppRouter();
 
+  const isActive = guildId === guild.id;
+
   const onClick = (e: React.SyntheticEvent) => {
     e.preventDefault();
+
+    if (isActive) return;
 
     router.push(`/channels/${guild.id}/${guild.defaultChannelId}`);
   };
 
-  const isActive = guildId === guild.id;
-
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={cn(
-        'group relative mx-3 flex  size-12 overflow-hidden bg-background text-primary transition-all ',
-        isActive ? 'rounded-md' : 'rounded-[50%] group-hover:rounded-[16px]'
-      )}
-    >
-      <Avatar className={'size-full rounded-none'}>
-        {guild.icon ? (
-          <AvatarImage alt={`${guild.name}'s icon.`} src={getGuildIcon(guild.icon)} />
-        ) : (
-          <AvatarFallback />
+    <div className="group relative w-full horizontal center">
+      <div
+        className={cn(
+          'ease group absolute left-0 h-[8px] w-[4px] rounded-r-full bg-foreground transition-all duration-300',
+          isActive ? 'h-[40px]' : 'group-hover:h-[20px]'
         )}
-      </Avatar>
-    </button>
+      />
+      <button
+        type="button"
+        onClick={onClick}
+        className={cn('group flex size-12 bg-background text-primary')}
+      >
+        <Avatar
+          className={cn(
+            'group size-full transition-all duration-300',
+            isActive ? 'rounded-2xl' : 'rounded-[50%] group-hover:rounded-[16px]'
+          )}
+        >
+          {guild.icon ? (
+            <AvatarImage alt={`${guild.name}'s icon.`} src={getGuildIcon(guild.icon)} />
+          ) : (
+            <AvatarFallback />
+          )}
+        </Avatar>
+      </button>
+    </div>
   );
 };

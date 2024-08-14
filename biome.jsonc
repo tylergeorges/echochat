@@ -16,7 +16,8 @@
       "recommended": true,
       "a11y": {
         "noBlankTarget": "error",
-        "useButtonType": "error"
+        "useButtonType": "error",
+        "noSvgWithoutTitle": "off"
       },
       "complexity": { "noUselessFragments": "off" },
       "correctness": {

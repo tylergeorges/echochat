@@ -1,6 +1,9 @@
-import { users } from '@/lib/db/schema/users';
 import { relations } from 'drizzle-orm';
-import { pgTable, primaryKey, text, timestamp, uuid } from 'drizzle-orm/pg-core';
+import { pgEnum, pgTable, primaryKey, text, timestamp, uuid } from 'drizzle-orm/pg-core';
+
+import { users } from '@/lib/db/schema/users';
+
+export const roleEnum = pgEnum('role', ['Owner', 'Admin']);
 
 export const guilds = pgTable('guilds', {
   id: uuid('id').primaryKey().notNull().defaultRandom(),
@@ -52,7 +55,6 @@ export type GuildMember = typeof guildMembers.$inferSelect;
 export type InsertGuildMember = typeof guildMembers.$inferInsert;
 
 export type InsertGuild = typeof guilds.$inferInsert;
-export type Guild = typeof guilds.$inferSelect;
 export type PartialGuild = {
   name: string;
   id: string;

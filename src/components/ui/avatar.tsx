@@ -5,14 +5,14 @@ import { type VariantProps, tv } from 'tailwind-variants';
 import { cn } from '@/lib/utils';
 
 const avatar = tv({
-  base: 'relative rounded-full',
+  base: 'relative aspect-square overflow-hidden rounded-full',
 
   variants: {
     size: {
       xs: 'h-2 w-2',
       sm: 'h-3 w-3',
       md: 'h-4 w-4',
-      lg: 'h-[28px] w-[28px]',
+      lg: 'size-10',
       xl: 'size-12',
       '2xl': 'size-16',
       '3xl': 'size-20'
@@ -49,7 +49,7 @@ export const AvatarImage = forwardRef<HTMLImageElement, AvatarImageProps>(
       height={height}
       unoptimized
       {...props}
-      className={cn('h-full w-auto ', className)}
+      className={cn('aspect-square size-full', className)}
       ref={ref}
     />
   )
@@ -63,7 +63,10 @@ export const AvatarFallback = forwardRef<HTMLDivElement, AvatarFallbackProps>(
   ({ className, ...props }, ref) => (
     <div
       {...props}
-      className={cn('flex h-full w-auto items-center justify-center bg-muted', className)}
+      className={cn(
+        'flex aspect-square h-full w-auto items-center justify-center bg-muted',
+        className
+      )}
       ref={ref}
     />
   )

@@ -3,10 +3,9 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 
-import type { Guild } from '@/lib/db/schema/guilds';
-
 import { useChannelsQuery } from '@/hooks/use-channels-query';
 import { modal } from '@/lib/modal/system';
+import type { Guild } from '@/lib/db/queries/guild';
 
 import { CreateChannelButton } from '@/components/create-channel-button';
 import { Column, Row } from '@/components/flex';

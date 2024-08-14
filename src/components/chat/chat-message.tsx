@@ -2,29 +2,39 @@ import type { Message } from '@/lib/db/queries/message';
 import { cn } from '@/lib/utils';
 
 import { Column } from '@/components/flex';
+import { Icons } from '@/components/icons';
+import { Avatar, AvatarImage } from '@/components/ui/avatar';
 
-interface ChatMessageProps extends Message {}
+interface ChatMessageProps extends Message {
+  isOwner: boolean;
+}
 
-export const ChatMessage = ({ author, content, createdAt, state }: ChatMessageProps) => (
-  <div className="horizontal gap-2 p-4">
-    <img src={author.avatarUrl} className="aspect-square size-10 rounded-full" />
+export const ChatMessage = ({ author, isOwner, content, createdAt, state }: ChatMessageProps) => {
+  return (
+    <div className="gap-2 p-4 horizontal">
+      <Avatar size="lg">
+        <AvatarImage src={author.avatarUrl} alt={`${author.username}'s avatar.`} />
+      </Avatar>
 
-    <Column className="">
-      <div className="horizontal center-v gap-2">
-        <h1 className="font-semibold text-interactive-active">{author.username}</h1>
-        <p className="text-interactive-muted text-sm">{createdAt.toLocaleString()}</p>
-      </div>
+      <Column className="">
+        <div className="gap-2 horizontal center-v">
+          <h1 className="font-semibold text-interactive-active">{author.username}</h1>
+          {isOwner && <Icons.Crown className="size-3.5 text-[#F0B132]" />}
 
-      <div
-        className={cn(
-          'whitespace-pre-wrap text-wrap break-all text-sm',
-          'text-foreground',
-          state === 'sending' && 'text-foreground/50',
-          state === 'error' && 'text-destructive'
-        )}
-      >
-        {content}
-      </div>
-    </Column>
-  </div>
-);
+          <p className="text-sm text-interactive-normal/60">{createdAt.toLocaleString()}</p>
+        </div>
+
+        <div
+          className={cn(
+            'whitespace-pre-wrap text-wrap break-all text-sm',
+            'text-foreground',
+            state === 'sending' && 'text-foreground/50',
+            state === 'error' && 'text-destructive'
+          )}
+        >
+          {content}
+        </div>
+      </Column>
+    </div>
+  );
+};

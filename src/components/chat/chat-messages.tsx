@@ -1,6 +1,6 @@
 'use client';
 
-import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
 
 import { type Message, transformBaseMessage } from '@/lib/db/queries/message';
@@ -9,6 +9,7 @@ import type { SelectMessage } from '@/lib/db/schema/messages';
 
 import { messagesQueryKey, useMessagesQuery } from '@/hooks/use-messages-query';
 import { useSupabase } from '@/hooks/use-supabase';
+import type { Guild } from '@/lib/db/queries/guild';
 
 import { ChatMessage } from '@/components/chat/chat-message';
 import { ChatWelcome } from '@/components/chat/chat-welcome';
@@ -16,10 +17,11 @@ import { Column } from '@/components/flex';
 
 interface ChatMessagesProps {
   channelId: string;
+  guild: Guild;
   channel: Channel;
 }
 
-export const ChatMessages = ({ channelId, channel }: ChatMessagesProps) => {
+export const ChatMessages = ({ channelId, channel, guild }: ChatMessagesProps) => {
   const { data: messages } = useSuspenseQuery(useMessagesQuery(channelId));
   const supabase = useSupabase();
   const queryClient = useQueryClient();
@@ -69,6 +71,7 @@ export const ChatMessages = ({ channelId, channel }: ChatMessagesProps) => {
           {messages?.map(message => (
             <ChatMessage
               key={message.id}
+              isOwner={message.author.id === guild.ownerId}
               author={message.author}
               channelId={message.channelId}
               content={message.content}

@@ -2,12 +2,12 @@
 
 import { randomUUID } from 'node:crypto';
 import { and, eq, sql } from 'drizzle-orm';
+import { pgEnum } from 'drizzle-orm/pg-core';
 
 import { db } from '@/lib/db';
-import { type InsertGuild, guildMembers, guilds } from '@/lib/db/schema/guilds';
-
 import { insertChannel } from '@/lib/db/queries/channel';
 import { insertGuildMember } from '@/lib/db/queries/user';
+import { type InsertGuild, guildMembers, guilds } from '@/lib/db/schema/guilds';
 
 export const guildsForMember = async (memberId: string) =>
   db.query.guildMembers.findMany({
@@ -31,6 +31,8 @@ export const guildsForMember = async (memberId: string) =>
       }
     }
   });
+
+export type Guild = QueryReturnType<typeof guildsForMember>['guild'];
 
 export const insertGuild = async ({ name, ownerId, icon }: InsertGuild) => {
   const defaultChannelId = randomUUID();

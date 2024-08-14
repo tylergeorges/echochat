@@ -1,8 +1,9 @@
 'use server';
 
-import { eq } from 'drizzle-orm';
+import { eq, sql } from 'drizzle-orm';
 
 import { db } from '@/lib/db';
+import { guilds } from '@/lib/db/schema/guilds';
 import { type InsertMessage, type SelectMessage, messages } from '@/lib/db/schema/messages';
 import { users } from '@/lib/db/schema/users';
 
@@ -23,11 +24,14 @@ export const selectMessagesForChannel = async (channelId: string) =>
     .innerJoin(users, eq(users.id, messages.authorId))
     .where(eq(messages.channelId, channelId));
 
-// export type Message = Awaited<ReturnType<typeof selectMessagesForChannel>>[number];
-
-export type Message = Awaited<ReturnType<typeof selectMessagesForChannel>>[number] & {
-  state?: 'sending' | 'error';
-};
+export type Message = Prettify<
+  QueryReturnType<typeof selectMessagesForChannel> & {
+    state?: 'sending' | 'error';
+  }
+>;
+// export type Message = Awaited<ReturnType<typeof selectMessagesForChannel>>[number] & {
+//   state?: 'sending' | 'error';
+// };
 
 export const insertMessage = async (messageToInsert: InsertMessage) => {
   const [message] = await db.insert(messages).values(messageToInsert).returning();
