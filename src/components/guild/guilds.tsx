@@ -13,7 +13,7 @@ export const Guilds = async ({ user }: GuildsProps) => {
 	const guilds = !user ? [] : await guildsForMember(user.id);
 
 	return (
-		<aside className="z-30 hidden h-full w-[72px] flex-col space-y-2 bg-background-tertiary py-3 center-h md:flex">
+		<aside className='center-h z-30 hidden h-full w-[72px] flex-col space-y-2 bg-background-tertiary py-3 md:flex'>
 			{user && (
 				<>
 					<CreateGuildButton user={user} />

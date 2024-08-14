@@ -18,7 +18,7 @@ export default async function ChannelPage({
 
 	return (
 		<HydrationBoundary state={dehydrate(queryClient)}>
-			<main className="relative z-0 flex-1 horizontal">
+			<main className='horizontal relative z-0 flex-1'>
 				<Chat channelId={params.channelId} />
 			</main>
 		</HydrationBoundary>

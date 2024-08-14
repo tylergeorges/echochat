@@ -15,7 +15,7 @@ const buttonVariants = tv({
 		color: {
 			default: "bg-primary text-primary-foreground hover:bg-primary/90",
 			outline:
-				"hover:bg-accent hover:text-accent-foreground border border-input",
+				'border border-input hover:bg-accent hover:text-accent-foreground',
 			secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
 			destructive:
 				"bg-destructive text-destructive-foreground hover:bg-destructive/90",
@@ -27,7 +27,7 @@ const buttonVariants = tv({
 			link: "bg-transparent hover:underline",
 			outline:
 				"border border-border bg-transparent text-primary hover:bg-secondary hover:text-secondary-foreground",
-			ghost: "hover:bg-accent border-none bg-transparent text-primary",
+			ghost: 'border-none bg-transparent text-primary hover:bg-accent',
 			transparent: "bg-transparent hover:bg-transparent",
 		},
 
@@ -66,13 +66,13 @@ const buttonVariants = tv({
 			color: "destructive",
 			variant: "outline",
 			className:
-				"border-destructive text-destructive hover:bg-destructive hover:text-destructive-foreground border bg-transparent",
+				'border border-destructive bg-transparent text-destructive hover:bg-destructive hover:text-destructive-foreground',
 		},
 		{
 			color: "default",
 			variant: "outline",
 			className:
-				"border-accent hover:bg-accent border bg-transparent text-primary",
+				'border border-accent bg-transparent text-primary hover:bg-accent',
 		},
 
 		{
@@ -85,7 +85,7 @@ const buttonVariants = tv({
 			color: "destructive",
 			variant: "ghost",
 			className:
-				"text-destructive hover:bg-destructive active:bg-destructive/90 bg-transparent hover:text-primary-foreground active:text-primary-foreground",
+				'bg-transparent text-destructive hover:bg-destructive hover:text-primary-foreground active:bg-destructive/90 active:text-primary-foreground',
 		},
 		{
 			color: "default",

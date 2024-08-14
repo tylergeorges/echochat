@@ -12,8 +12,8 @@ export const ChatWelcome = ({ channelName }: ChatWelcomeProps) => (
 		</div>
 
 		<Column>
-			<h1 className="text-3xl font-bold">Welcome to {channelName}</h1>
-			<p className="text-sm text-channel-icon">
+			<h1 className='font-bold text-3xl'>Welcome to {channelName}</h1>
+			<p className='text-channel-icon text-sm'>
 				This is the start of the {channelName} channel.
 			</p>
 		</Column>

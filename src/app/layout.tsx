@@ -35,7 +35,7 @@ export default function RootLayout({
 					<ModalRenderer />
 					<Toaster richColors />
 
-					<main className="relative z-0 flex-1 horizontal">{children}</main>
+					<main className='horizontal relative z-0 flex-1'>{children}</main>
 				</ReactQueryProvider>
 			</body>
 		</html>

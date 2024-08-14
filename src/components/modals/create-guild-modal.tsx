@@ -100,11 +100,11 @@ export const CreateGuildModal = ({
 
 			<form
 				onSubmit={createGuild}
-				className="w-full flex-1 space-y-1.5 vertical"
+				className='vertical w-full flex-1 space-y-1.5'
 				id="create-guild-form"
 			>
 				<DialogBody>
-					<div className="w-full flex-1 center vertical">
+					<div className='center vertical w-full flex-1'>
 						<UploadArea onUpload={handleImageUpload}>
 							{dataURL ? (
 								<Avatar className="size-[80px]">

@@ -19,7 +19,7 @@ export const UploadArea = ({
 	};
 
 	return (
-		<div onClick={openExplorer} className="flex-1 gap-6 center vertical">
+		<div onClick={openExplorer} className='center vertical flex-1 gap-6'>
 			{children}
 
 			<input

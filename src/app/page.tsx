@@ -11,7 +11,7 @@ export default async function Home() {
 	}
 
 	return (
-		<main className="relative z-0 flex-1 horizontal">
+		<main className='horizontal relative z-0 flex-1'>
 			<Guilds user={user} />
 		</main>
 	);

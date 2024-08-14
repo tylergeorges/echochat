@@ -11,18 +11,18 @@ export const ChatMessage = ({
 	createdAt,
 	state,
 }: ChatMessageProps) => (
-	<div className="gap-2 p-4 horizontal">
+	<div className='horizontal gap-2 p-4'>
 		<img
 			src={author.avatarUrl}
 			className="aspect-square size-10 rounded-full"
 		/>
 
 		<Column className="">
-			<div className="gap-2 horizontal center-v">
+			<div className='horizontal center-v gap-2'>
 				<h1 className="font-semibold text-interactive-active">
 					{author.username}
 				</h1>
-				<p className="text-sm text-interactive-muted">
+				<p className='text-interactive-muted text-sm'>
 					{createdAt.toLocaleString()}
 				</p>
 			</div>

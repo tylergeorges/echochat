@@ -56,13 +56,13 @@ export const InviteModal = ({ inviteCode }: InviteModalProps) => {
 				<DialogTitle>Invite Friends</DialogTitle>
 			</DialogHeader>
 
-			<DialogBody className="w-full p-10 pt-0 text-left vertical">
+			<DialogBody className='vertical w-full p-10 pt-0 text-left'>
 				<div className="w-full">
 					<Label htmlFor="invite" className="text-left uppercase">
 						guild invite link
 					</Label>
 
-					<div className="w-full horizontal">
+					<div className='horizontal w-full'>
 						<Input
 							readOnly
 							value={inviteLink}

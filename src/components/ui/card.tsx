@@ -39,7 +39,7 @@ export const CardTitle = forwardRef<
 	<h2
 		{...props}
 		ref={ref}
-		className={cn("text-center text-2xl font-bold tracking-tight", className)}
+		className={cn('text-center font-bold text-2xl tracking-tight', className)}
 	>
 		{children}
 	</h2>
@@ -54,7 +54,7 @@ export const CardDescription = forwardRef<
 	<p
 		{...props}
 		ref={ref}
-		className={cn("m-0 text-sm text-muted-foreground", className)}
+		className={cn('m-0 text-muted-foreground text-sm', className)}
 	>
 		{children}
 	</p>

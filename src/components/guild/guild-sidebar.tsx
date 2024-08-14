@@ -44,16 +44,16 @@ export const GuildSidebar = ({ guild }: GuildSidebarProps) => {
 	};
 
 	return (
-		<aside className="z-20 w-[240px] bg-background-secondary vertical">
+		<aside className='vertical z-20 w-[240px] bg-background-secondary'>
 			<DropdownMenu open={open} onOpenChange={setOpen}>
-				<DropdownMenuTrigger className="justify-between p-3 outline-none transition horizontal center-v hover:bg-interactive-hover/10">
-					<h1 className="text-base font-semibold">{guild.name}</h1>
+				<DropdownMenuTrigger className='horizontal center-v justify-between p-3 outline-none transition hover:bg-interactive-hover/10'>
+					<h1 className='font-semibold text-base'>{guild.name}</h1>
 
 					<Icons.DownArrow className="size-5" />
 				</DropdownMenuTrigger>
 
 				<DropdownMenuContent
-					className="w-[220px] gap-2 p-1.5 vertical"
+					className='vertical w-[220px] gap-2 p-1.5'
 					side="top"
 				>
 					<DropdownMenuGroup className="space-y-0.5 p-0">
@@ -64,7 +64,7 @@ export const GuildSidebar = ({ guild }: GuildSidebarProps) => {
 							onClick={openInviteModal}
 						>
 							Invite People
-							<Icons.AddPeople className="group size-4 transition-transform group-hover:-rotate-6" />
+							<Icons.AddPeople className='group group-hover:-rotate-6 size-4 transition-transform' />
 						</Button>
 
 						<Button
@@ -92,7 +92,7 @@ export const GuildSidebar = ({ guild }: GuildSidebarProps) => {
 			</DropdownMenu>
 
 			<Column className="gap-2 px-3 pt-5 font-medium">
-				<Row className="justify-between center-v">
+				<Row className='center-v justify-between'>
 					<Label className="text-channel-icon">Text Channels</Label>
 
 					<CreateChannelButton guild={guild} />

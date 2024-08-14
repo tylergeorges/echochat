@@ -27,5 +27,5 @@ export default async function InviteCodePage({ params }: PageProps<{ inviteCode:
     return redirect(`/channels/${guild.id}/${guild.defaultChannelId}`);
   }
 
-  return <div className="flex size-full flex-1 center" />;
+  return <div className='center flex size-full flex-1' />;
 }

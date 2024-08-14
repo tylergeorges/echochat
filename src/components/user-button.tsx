@@ -72,7 +72,7 @@ export const UserButton = ({ user }: UserButtonProps) => {
 			</DropdownMenuTrigger>
 
 			<DropdownMenuContent
-				className="w-[300px] gap-2 p-0 vertical"
+				className='vertical w-[300px] gap-2 p-0'
 				side="top"
 				align="start"
 				sideOffset={16}
@@ -94,7 +94,7 @@ export const UserButton = ({ user }: UserButtonProps) => {
 									fill
 									className="group justify-start pl-2 transition-none"
 								>
-									<Icons.Pencil className="group size-4 transition-transform group-hover:-rotate-6" />
+									<Icons.Pencil className='group group-hover:-rotate-6 size-4 transition-transform' />
 									Edit Profile
 								</Button>
 

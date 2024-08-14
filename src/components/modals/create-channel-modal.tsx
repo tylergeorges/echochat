@@ -79,7 +79,7 @@ export const CreateChannelModal = ({ guild, closeModal }: ChannelFormProps) => {
 
 			<form
 				onSubmit={createChannel}
-				className="w-full flex-1 space-y-2 vertical"
+				className='vertical w-full flex-1 space-y-2'
 				id="create-server-form"
 			>
 				<DialogBody>
@@ -88,7 +88,7 @@ export const CreateChannelModal = ({ guild, closeModal }: ChannelFormProps) => {
 							Channel Name
 						</Label>
 
-						<div className="relative w-full horizontal center-v">
+						<div className='horizontal center-v relative w-full'>
 							<Icons.TextChannelHash className="absolute left-2 z-10 size-5 text-channel-icon" />
 							<Input
 								id="channel-name"

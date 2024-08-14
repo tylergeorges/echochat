@@ -31,7 +31,7 @@ export default async function GuildLayout({
 
 	return (
 		<HydrationBoundary state={dehydrate(queryClient)}>
-			<main className="relative z-0 flex-1 horizontal">
+			<main className='horizontal relative z-0 flex-1'>
 				<Guilds user={user} />
 				<GuildSidebar guild={data.guild} />
 

@@ -7,7 +7,7 @@ interface ChatHeaderProps {
 }
 
 export const ChatHeader = ({ channel }: ChatHeaderProps) => (
-	<header className="text-md flex h-12 items-center border-b border-foreground/15 px-3 font-semibold">
+	<header className='flex h-12 items-center border-foreground/15 border-b px-3 font-semibold text-md'>
 		<Icons.TextChannelHash className="mr-2 text-channel-icon" />
 
 		{channel.name}

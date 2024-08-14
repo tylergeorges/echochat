@@ -5,20 +5,20 @@ import { VariantProps, tv } from "tailwind-variants";
 import { cn } from "@/lib/utils";
 
 export const inputVariants = tv({
-	base: "focus-visible:ring-ring flex h-10 w-full rounded-md border-0 border-input bg-input px-3 py-2 text-sm text-foreground ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50",
+	base: 'flex h-10 w-full rounded-md border-0 border-input bg-input px-3 py-2 text-foreground text-sm ring-offset-background file:border-0 file:bg-transparent file:font-medium file:text-sm focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50',
 
 	variants: {
 		variant: {
 			default: "focus-visible:ring-2 focus-visible:ring-border",
 
 			ghost:
-				"focus:border-brand bg-transparent focus-visible:ring-2 focus-visible:ring-border",
+				'bg-transparent focus:border-brand focus-visible:ring-2 focus-visible:ring-border',
 		},
 
 		color: {
 			default: "",
 			destructive:
-				"bg-destructive/10 ring-destructive/70 placeholder:text-destructive/70 ring-1",
+				'bg-destructive/10 ring-1 ring-destructive/70 placeholder:text-destructive/70',
 			form: "bg-input-form",
 		},
 	},
