@@ -10,6 +10,7 @@ export default async function InviteCodePage({ params }: PageProps<{ inviteCode:
 
   if (!user) redirect('/login');
 
+  //  check if user is already a member of the guild
   const guildExistsData = await getGuildFromInvite(params.inviteCode, user.id);
 
   if (guildExistsData) {
@@ -18,19 +19,13 @@ export default async function InviteCodePage({ params }: PageProps<{ inviteCode:
     return redirect(`/channels/${exisitingGuild.id}/${exisitingGuild.defaultChannelId}`);
   }
 
+  // add user to guild
   const newGuildData = await addMemberToGuild(params.inviteCode, user.id);
-  console.log('newGuildData ', newGuildData);
 
   if (newGuildData) {
     const { guild } = newGuildData;
     return redirect(`/channels/${guild.id}/${guild.defaultChannelId}`);
   }
 
-  return (
-    <div className="flex size-full flex-1 center">
-      <div className="max-w-lg">
-        <h1 className="font text-xl font-medium">Click a channel on the left </h1>
-      </div>
-    </div>
-  );
+  return <div className="flex size-full flex-1 center" />;
 }

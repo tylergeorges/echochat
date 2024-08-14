@@ -14,9 +14,10 @@ const buttonVariants = tv({
   variants: {
     color: {
       default: 'bg-primary text-primary-foreground hover:bg-primary/90',
-      destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
       outline: 'hover:bg-accent hover:text-accent-foreground border border-input',
-      secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
+      secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+      destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
+      success: 'bg-success text-primary-foreground hover:bg-success/90',
     },
 
     variant: {
@@ -25,20 +26,15 @@ const buttonVariants = tv({
       outline:
         'border border-border bg-transparent text-primary hover:bg-secondary hover:text-secondary-foreground',
       ghost: 'hover:bg-accent border-none bg-transparent text-primary',
-      transparent: 'bg-transparent'
+      transparent: 'bg-transparent hover:bg-transparent'
     },
 
     size: {
       xs: 'w-[52px] min-w-[52px] gap-1 p-1 text-xs',
-
       sm: 'h-9 gap-1 px-3 py-2 text-xs',
-
       md: 'h-10 gap-2 px-6 py-3 text-sm',
-
       lg: 'h-11 gap-3 px-7 py-3.5 text-base',
-
       xl: 'h-14 gap-2 rounded-lg px-6 text-base',
-
       icon: 'size-10 p-0'
     },
 

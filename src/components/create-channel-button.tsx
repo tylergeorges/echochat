@@ -1,13 +1,13 @@
 'use client';
 
-import type { PartialGuild } from '@/lib/db/schema/guilds';
+import type { Guild,  } from '@/lib/db/schema/guilds';
 import { modal } from '@/lib/modal/system';
 
 import { CreateChannelModal } from '@/components/modals/create-channel-modal';
 import { Icons } from '@/components/icons';
 
 interface CreateChannelButtonProps {
-  guild: PartialGuild;
+  guild: Guild;
 }
 
 export const CreateChannelButton = ({ guild }: CreateChannelButtonProps) => {

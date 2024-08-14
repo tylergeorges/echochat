@@ -1,6 +1,6 @@
 import { useQueryClient } from '@tanstack/react-query';
 
-import type { PartialGuild } from '@/lib/db/schema/guilds';
+import type { Guild } from '@/lib/db/schema/guilds';
 
 import { useCreateChannelMutation } from '@/hooks/use-create-channel-mutation';
 import { getAuthUser } from '@/lib/supabase/get-user';
@@ -20,7 +20,7 @@ import {
 } from '@/components/ui/dialog';
 
 interface ChannelFormProps {
-  guild: PartialGuild;
+  guild: Guild;
   closeModal: () => void;
 }
 

@@ -1,7 +1,10 @@
-import { CardContent, CardFooter, CardHeader } from '@/components/ui/card';
-import { cn } from '@/lib/utils';
+'use client';
+
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { forwardRef } from 'react';
+
+import { CardContent, CardFooter, CardHeader } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 
 export const DialogTrigger = DialogPrimitive.Trigger;
 
