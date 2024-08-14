@@ -1,6 +1,6 @@
 'use client';
 
-import { useQuery, useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
+import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
 
 import { type Message, transformBaseMessage } from '@/lib/db/queries/message';
@@ -45,14 +45,23 @@ export const ChatMessages = ({ channelId, channel, guild }: ChatMessagesProps) =
 
           const [transformed] = await transformBaseMessage(newMessage);
 
-          queryClient.setQueriesData<Message[]>({ queryKey }, oldMessages => {
-            const update = (msg: Message) =>
-              msg.id === transformed.id ? { ...msg, ...transformed } : msg;
+          const prevMessages = queryClient.getQueryData<Message[]>(queryKey) ?? [];
 
-            return [...(oldMessages ?? []), transformed].map(update);
-          });
+          if (prevMessages.findIndex(msg => msg.id === transformed.id) > -1) {
+            queryClient.setQueryData(queryKey, (prev: Message[]) => {
+              return prev.map(msg => {
+                if (msg.id === transformed.id) return { ...msg, ...transformed };
 
-          console.log(payload, transformed);
+                return msg;
+              });
+            });
+          } else {
+            queryClient.setQueryData(
+              queryKey,
+
+              (prev: Message[]) => [...prev, transformed]
+            );
+          }
         }
       )
       .subscribe();

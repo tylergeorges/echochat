@@ -11,7 +11,8 @@ export const useSendMessageMutation = (channelId: string) => {
     insertMessage({
       authorId: message.author.id,
       channelId: message.channelId,
-      content: message.content
+      content: message.content,
+      id: message.id
     });
 
   const queryKey = [...messagesQueryKey, channelId];
@@ -24,7 +25,21 @@ export const useSendMessageMutation = (channelId: string) => {
 
       const prevMessages = queryClient.getQueryData<Message[]>(queryKey) ?? [];
 
-      queryClient.setQueryData(queryKey, () => [...prevMessages, { ...msg, state: 'sending' }]);
+      const sendingMessage = { ...msg, state: 'sending' } as Message;
+
+      queryClient.setQueriesData<Message[] | Message>({ queryKey }, oldMessages => {
+        // const update = (msg: Message) =>
+        //   msg.id === sendingMessage.id ? { ...msg, ...sendingMessage } : msg;
+
+        console.log(oldMessages);
+        return Array.isArray(oldMessages)
+          ? [...(oldMessages ?? []), sendingMessage]
+          : { ...oldMessages, ...sendingMessage };
+        // return [...(oldMessages ?? []), transformed].map(update);
+      });
+
+      // queryClient.setQueryData(queryKey, () => [...prevMessages, { ...msg, state: 'sending' }]);
+      // queryClient.setQueryData(queryKey, () => [...prevMessages, { ...msg, state: 'sending' }]);
 
       return { prevMessages };
     },
