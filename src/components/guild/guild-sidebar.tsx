@@ -1,107 +1,98 @@
-"use client";
+'use client';
 
-import { useSuspenseQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useSuspenseQuery } from '@tanstack/react-query';
+import { useState } from 'react';
 
-import type { Guild } from "@/lib/db/schema/guilds";
+import type { Guild } from '@/lib/db/schema/guilds';
 
-import { useChannelsQuery } from "@/hooks/use-channels-query";
-import { modal } from "@/lib/modal/system";
+import { useChannelsQuery } from '@/hooks/use-channels-query';
+import { modal } from '@/lib/modal/system';
 
-import { CreateChannelButton } from "@/components/create-channel-button";
-import { Column, Row } from "@/components/flex";
-import { GuildChannel } from "@/components/guild/guild-channel";
-import { Icons } from "@/components/icons";
-import { InviteModal } from "@/components/modals/invite-modal";
-import { Button } from "@/components/ui/button";
+import { CreateChannelButton } from '@/components/create-channel-button';
+import { Column, Row } from '@/components/flex';
+import { GuildChannel } from '@/components/guild/guild-channel';
+import { Icons } from '@/components/icons';
+import { InviteModal } from '@/components/modals/invite-modal';
+import { Button } from '@/components/ui/button';
 import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuGroup,
-	DropdownMenuSeparator,
-	DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Label } from "@/components/ui/label";
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger
+} from '@/components/ui/dropdown-menu';
+import { Label } from '@/components/ui/label';
 
 interface GuildSidebarProps {
-	guild: Guild;
+  guild: Guild;
 }
 
 export const GuildSidebar = ({ guild }: GuildSidebarProps) => {
-	const { data: channels } = useSuspenseQuery(useChannelsQuery(guild.id));
-	const [open, setOpen] = useState(false);
+  const { data: channels } = useSuspenseQuery(useChannelsQuery(guild.id));
+  const [open, setOpen] = useState(false);
 
-	const openInviteModal = (e: React.SyntheticEvent) => {
-		e.preventDefault();
+  const openInviteModal = (e: React.SyntheticEvent) => {
+    e.preventDefault();
 
-		if (!open) return;
+    if (!open) return;
 
-		setOpen(false);
+    setOpen(false);
 
-		modal((closeModal) => (
-			<InviteModal inviteCode={guild.inviteCode} closeModal={closeModal} />
-		));
-	};
+    modal(closeModal => <InviteModal inviteCode={guild.inviteCode} closeModal={closeModal} />);
+  };
 
-	return (
-		<aside className='vertical z-20 w-[240px] bg-background-secondary'>
-			<DropdownMenu open={open} onOpenChange={setOpen}>
-				<DropdownMenuTrigger className='horizontal center-v justify-between p-3 outline-none transition hover:bg-interactive-hover/10'>
-					<h1 className='font-semibold text-base'>{guild.name}</h1>
+  return (
+    <aside className="vertical z-20 w-[240px] bg-background-secondary">
+      <DropdownMenu open={open} onOpenChange={setOpen}>
+        <DropdownMenuTrigger className="horizontal center-v justify-between p-3 outline-none transition hover:bg-interactive-hover/10">
+          <h1 className="font-semibold text-base">{guild.name}</h1>
 
-					<Icons.DownArrow className="size-5" />
-				</DropdownMenuTrigger>
+          <Icons.DownArrow className="size-5" />
+        </DropdownMenuTrigger>
 
-				<DropdownMenuContent
-					className='vertical w-[220px] gap-2 p-1.5'
-					side="top"
-				>
-					<DropdownMenuGroup className="space-y-0.5 p-0">
-						<Button
-							variant="ghost"
-							fill
-							className="group justify-between px-2 text-[#949CF7] transition-none"
-							onClick={openInviteModal}
-						>
-							Invite People
-							<Icons.AddPeople className='group group-hover:-rotate-6 size-4 transition-transform' />
-						</Button>
+        <DropdownMenuContent className="vertical w-[220px] gap-2 p-1.5" side="top">
+          <DropdownMenuGroup className="space-y-0.5 p-0">
+            <Button
+              variant="ghost"
+              fill
+              className="group justify-between px-2 text-[#949CF7] transition-none"
+              onClick={openInviteModal}
+            >
+              Invite People
+              <Icons.AddPeople className="group group-hover:-rotate-6 size-4 transition-transform" />
+            </Button>
 
-						<Button
-							variant="ghost"
-							fill
-							className="group justify-between px-2 transition-none"
-						>
-							Guild Settings
-							<Icons.Settings className="group size-4 transition-transform duration-700 group-hover:rotate-180" />
-						</Button>
-					</DropdownMenuGroup>
+            <Button variant="ghost" fill className="group justify-between px-2 transition-none">
+              Guild Settings
+              <Icons.Settings className="group size-4 transition-transform duration-700 group-hover:rotate-180" />
+            </Button>
+          </DropdownMenuGroup>
 
-					<DropdownMenuSeparator className="my-0" />
+          <DropdownMenuSeparator className="my-0" />
 
-					<Button
-						variant="ghost"
-						color="destructive"
-						fill
-						className="justify-between px-2 transition-none"
-					>
-						Delete Guild
-						<Icons.Trash className="size-4" />
-					</Button>
-				</DropdownMenuContent>
-			</DropdownMenu>
+          <Button
+            variant="ghost"
+            color="destructive"
+            fill
+            className="justify-between px-2 transition-none"
+          >
+            Delete Guild
+            <Icons.Trash className="size-4" />
+          </Button>
+        </DropdownMenuContent>
+      </DropdownMenu>
 
-			<Column className="gap-2 px-3 pt-5 font-medium">
-				<Row className='center-v justify-between'>
-					<Label className="text-channel-icon">Text Channels</Label>
+      <Column className="gap-2 px-3 pt-5 font-medium">
+        <Row className="center-v justify-between">
+          <Label className="text-channel-icon">Text Channels</Label>
 
-					<CreateChannelButton guild={guild} />
-				</Row>
+          <CreateChannelButton guild={guild} />
+        </Row>
 
-				{channels?.map((ch) => (
-					<GuildChannel channel={ch} key={ch.id} />
-				))}
-			</Column>
-		</aside>
-	);
+        {channels?.map(ch => (
+          <GuildChannel channel={ch} key={ch.id} />
+        ))}
+      </Column>
+    </aside>
+  );
 };

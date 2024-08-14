@@ -3,8 +3,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { useKey } from '@/hooks/use-key';
+import { type ModalContent, type ModalData, ModalSystem } from './system';
+
 import { Dialog, DialogOverlay } from '@/components/ui/dialog';
-import { ModalSystem, type ModalContent, type ModalData } from './system';
 
 interface ModalProps {
   modal: ModalData;

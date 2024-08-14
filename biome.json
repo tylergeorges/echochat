@@ -1,67 +1,76 @@
 {
-	"$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
-	"formatter": {
-		"enabled": true,
-		"formatWithErrors": false,
-		"indentStyle": "space",
-		"indentWidth": 2,
-		"lineEnding": "lf",
-		"lineWidth": 100,
-		"attributePosition": "auto"
-	},
-	"organizeImports": { "enabled": true },
-	"linter": {
-		"enabled": true,
-		"rules": {
-			"recommended": false,
-			"a11y": { "noBlankTarget": "error" },
-			"complexity": { "noUselessFragments": "off" },
-			"correctness": {
-				"noChildrenProp": "error",
-				"noInvalidUseBeforeDeclaration": "off",
-				"useJsxKeyInIterable": "error"
-			},
-			"nursery": {
-				"useSortedClasses": {
-					"fix": "unsafe",
-					"level": "warn",
-					"options": {
-						"attributes": ["classList"],
-						"functions": ["clsx", "cva", "tw", "tv", "cn"]
-					}
-				}
-			},
-			"security": { "noDangerouslySetInnerHtmlWithChildren": "error" },
-			"style": { "noParameterAssign": "off", "useBlockStatements": "off" },
-			"suspicious": {
-				"noArrayIndexKey": "off",
-				"noCommentText": "error",
-				"noConsoleLog": "off",
-				"noDuplicateJsxProps": "error"
-			}
-		}
-	},
-	"javascript": {
-		"formatter": {
-			"jsxQuoteStyle": "double",
-			"quoteProperties": "asNeeded",
-			"trailingCommas": "none",
-			"semicolons": "always",
-			"arrowParentheses": "asNeeded",
-			"bracketSpacing": true,
-			"bracketSameLine": false,
-			"quoteStyle": "single",
-			"attributePosition": "auto"
-		}
-	},
-	"json": {
-		"linter": {
-			"enabled": true
-		},
-		"formatter": {
-			"enabled": true,
-			"trailingCommas": "none"
-		}
-	},
-	"overrides": [{ "include": ["*.svg"] }]
+  "$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
+  "formatter": {
+    "formatWithErrors": false,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineEnding": "lf",
+    "lineWidth": 100,
+    "attributePosition": "auto",
+    "enabled": true
+  },
+  "organizeImports": { "enabled": true },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "a11y": {
+        "noBlankTarget": "error",
+        "useButtonType": "error"
+      },
+      "complexity": { "noUselessFragments": "off" },
+      "correctness": {
+        "noChildrenProp": "error",
+        "noInvalidUseBeforeDeclaration": "off",
+        "useJsxKeyInIterable": "error"
+      },
+      "nursery": {
+        "useSortedClasses": {
+          "fix": "unsafe",
+          "level": "warn",
+          "options": {
+            "attributes": ["classList"],
+            "functions": ["clsx", "cva", "tw", "tv", "cn"]
+          }
+        }
+      },
+      "security": {
+        "noDangerouslySetInnerHtmlWithChildren": "error"
+      },
+      "style": {
+        "noParameterAssign": "off",
+        "useBlockStatements": "off"
+      },
+      "suspicious": {
+        "noArrayIndexKey": "off",
+        "noCommentText": "error",
+        "noConsoleLog": "off",
+        "noDuplicateJsxProps": "error"
+      }
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "jsxQuoteStyle": "double",
+      "quoteProperties": "asNeeded",
+      "trailingCommas": "none",
+      "semicolons": "always",
+      "arrowParentheses": "asNeeded",
+      "bracketSpacing": true,
+      "bracketSameLine": false,
+      "quoteStyle": "single",
+      "attributePosition": "auto"
+    }
+  },
+  "css": { "formatter": { "enabled": true }, "linter": { "enabled": true } },
+  "overrides": [
+    { "include": ["*.svg"] },
+    {
+      "include": ["*.json"]
+    }
+  ],
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git"
+  }
 }
