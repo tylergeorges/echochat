@@ -37,15 +37,15 @@
     "tailwind-variants": "^0.2.1"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.8.3",
     "@tanstack/react-query-devtools": "^5.51.21",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "clsx": "^2.1.1",
-    "eslint": "^8",
+    "eslint": "^9.9.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.1.0",
-    "eslint-config-next": "14.2.5",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-react": "^7.34.3",
     "eslint-plugin-react-hooks": "^4.6.2",
@@ -57,5 +57,8 @@
     "tailwindcss": "^3.4.1",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "^5"
+  },
+  "overrides": {
+    "uri-js": "npm:uri-js-replace"
   }
 }

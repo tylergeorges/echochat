@@ -1,19 +1,19 @@
-'use client';
+"use client";
 
-import { usePathname } from 'next/navigation';
+import { usePathname } from "next/navigation";
 
 interface AppRoutes {
-  guildId?: string;
-  channelId?: string;
+	guildId?: string;
+	channelId?: string;
 }
 
 export const useAppRouter = (): AppRoutes => {
-  const path = usePathname();
+	const path = usePathname();
 
-  const paths = path.split('/');
+	const paths = path.split("/");
 
-  return {
-    channelId: paths[3],
-    guildId: paths[2]
-  };
+	return {
+		channelId: paths[3],
+		guildId: paths[2],
+	};
 };

@@ -6,14 +6,14 @@ export const generateScreens = (screenSizes: Record<string, number>) => {
   const minWidthBreakpoints = screenEntries.reduce(
     (acc, [name, width]) => ({
       ...acc,
-      [name]: { min: getPx(width) },
+      [name]: { min: getPx(width) }
     }),
     {}
   );
   const maxWidthBreakpoints = screenEntries.reduce(
     (acc, [name, width]) => ({
       ...acc,
-      [`to-${name}`]: { max: getPx(width) },
+      [`to-${name}`]: { max: getPx(width) }
     }),
     {}
   );
@@ -21,7 +21,7 @@ export const generateScreens = (screenSizes: Record<string, number>) => {
   let prevBreakpointWidth: number;
 
   const onlyBreakpoints = screenEntries.reduce((acc, [name, width]) => {
-    const isFirst = typeof prevBreakpointWidth === "undefined";
+    const isFirst = typeof prevBreakpointWidth === 'undefined';
 
     const key = `${name}-only`;
 

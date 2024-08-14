@@ -1,14 +1,17 @@
-import { useRef } from 'react';
-import { useEventListener } from '@/hooks/use-event-listener';
+import { useEventListener } from "@/hooks/use-event-listener";
+import { useRef } from "react";
 
-export const useKey = <Fn extends (e: KeyboardEvent) => void>(key: string, fn: Fn) => {
-  const fnRef = useRef(fn);
+export const useKey = <Fn extends (e: KeyboardEvent) => void>(
+	key: string,
+	fn: Fn,
+) => {
+	const fnRef = useRef(fn);
 
-  fnRef.current = fn;
+	fnRef.current = fn;
 
-  useEventListener('keydown', e => {
-    if (e.key === key) {
-      fn(e);
-    }
-  });
+	useEventListener("keydown", (e) => {
+		if (e.key === key) {
+			fn(e);
+		}
+	});
 };

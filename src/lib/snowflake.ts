@@ -1,4 +1,3 @@
-/* eslint-disable no-bitwise */
 export const generateSnowflake = () => {
 	const date = new Date();
 

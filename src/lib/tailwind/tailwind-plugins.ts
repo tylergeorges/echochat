@@ -1,6 +1,5 @@
 import plugin from 'tailwindcss/plugin';
 
-
 export const TailwindChildren = plugin(({ addVariant }) => {
   addVariant('child', '& > *');
   addVariant('child-hover', '& > *:hover');

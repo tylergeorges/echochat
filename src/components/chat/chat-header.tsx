@@ -1,15 +1,15 @@
-import type { Channel } from '@/lib/db/schema/channels';
+import type { Channel } from "@/lib/db/schema/channels";
 
-import { Icons } from '@/components/icons';
+import { Icons } from "@/components/icons";
 
 interface ChatHeaderProps {
-  channel: Channel;
+	channel: Channel;
 }
 
 export const ChatHeader = ({ channel }: ChatHeaderProps) => (
-  <header className="text-md flex h-12 items-center border-b border-foreground/15 px-3 font-semibold">
-    <Icons.TextChannelHash className="mr-2 text-channel-icon" />
+	<header className="text-md flex h-12 items-center border-b border-foreground/15 px-3 font-semibold">
+		<Icons.TextChannelHash className="mr-2 text-channel-icon" />
 
-    {channel.name}
-  </header>
+		{channel.name}
+	</header>
 );

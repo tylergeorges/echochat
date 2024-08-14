@@ -1,39 +1,40 @@
-import { toast } from 'sonner';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "sonner";
 
-import { channelsQueryKey } from '@/hooks/use-channels-query';
-import { insertChannel } from '@/lib/db/queries/channel';
-import type { Channel, InsertChannel } from '@/lib/db/schema/channels';
+import { channelsQueryKey } from "@/hooks/use-channels-query";
+import { insertChannel } from "@/lib/db/queries/channel";
+import type { Channel, InsertChannel } from "@/lib/db/schema/channels";
 
 export const useCreateChannelMutation = (guildId: string) => {
-  const queryClient = useQueryClient();
+	const queryClient = useQueryClient();
 
-  const mutationFn = async (channel: InsertChannel) => insertChannel(channel);
+	const mutationFn = async (channel: InsertChannel) => insertChannel(channel);
 
-  const channelsKey = [...channelsQueryKey, guildId];
+	const channelsKey = [...channelsQueryKey, guildId];
 
-  return useMutation({
-    mutationFn,
+	return useMutation({
+		mutationFn,
 
-    onMutate: async channel => {
-      await queryClient.cancelQueries({ queryKey: channelsKey });
+		onMutate: async (channel) => {
+			await queryClient.cancelQueries({ queryKey: channelsKey });
 
-      const prevChannels = queryClient.getQueryData<Channel[]>(channelsKey) ?? [];
+			const prevChannels =
+				queryClient.getQueryData<Channel[]>(channelsKey) ?? [];
 
-      queryClient.setQueryData(channelsKey, () => [...prevChannels, channel]);
+			queryClient.setQueryData(channelsKey, () => [...prevChannels, channel]);
 
-      return { prevChannels };
-    },
+			return { prevChannels };
+		},
 
-    // If the mutation fails, use the context we returned above
-    onError: (err, _, context) => {
-      queryClient.setQueryData(channelsKey, context?.prevChannels);
+		// If the mutation fails, use the context we returned above
+		onError: (err, _, context) => {
+			queryClient.setQueryData(channelsKey, context?.prevChannels);
 
-      toast.error(err.message);
-    },
+			toast.error(err.message);
+		},
 
-    onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: channelsKey });
-    }
-  });
+		onSettled: () => {
+			queryClient.invalidateQueries({ queryKey: channelsKey });
+		},
+	});
 };
