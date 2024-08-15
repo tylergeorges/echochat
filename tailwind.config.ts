@@ -57,9 +57,9 @@ const config: Config = {
           form: 'rgb(var(--input-form) / <alpha-value>)'
         },
         modifier: {
-          active: 'rgb(var(--modifier-active) / <alpha-value>)',
-          hover: 'rgb(var(--modifier-hover) / <alpha-value>)',
-          selected: 'rgb(var(--modifier-selected) / <alpha-value>)'
+          active: 'rgb(var(--foreground) / 0.09)',
+          hover: 'rgb(var(--foreground) / 0.07)',
+          selected: 'rgb(var(--foreground) / 0.1)'
         },
         'channel-icon': 'rgb(var(--channel-icon) / <alpha-value>)',
         background: {

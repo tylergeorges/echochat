@@ -1,9 +1,10 @@
 'use client';
 
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 
 import { useChannelsQuery } from '@/hooks/use-channels-query';
+import { useGuildQuery } from '@/hooks/use-guild-query';
 import type { Guild } from '@/lib/db/queries/guild';
 import { modal } from '@/lib/modal/system';
 
@@ -23,28 +24,36 @@ import {
 import { Label } from '@/components/ui/label';
 
 interface GuildSidebarProps {
-  guild: Guild;
+  // guild: Guild;
+  guildId: string;
+  userId: string;
 }
 
-export const GuildSidebar = ({ guild }: GuildSidebarProps) => {
-  const { data: channels } = useSuspenseQuery(useChannelsQuery(guild.id));
+export const GuildSidebar = ({ guildId, userId }: GuildSidebarProps) => {
+  const { data: channels } = useQuery(useChannelsQuery(guildId));
+  const { data: guild } = useQuery(useGuildQuery(guildId, userId));
+
   const [open, setOpen] = useState(false);
 
   const openInviteModal = (e: React.SyntheticEvent) => {
     e.preventDefault();
 
-    if (!open) return;
+    if (!open || !guild) return;
 
     setOpen(false);
 
     modal(closeModal => <InviteModal inviteCode={guild.inviteCode} closeModal={closeModal} />);
   };
 
+  if (!guild) return null;
+
   return (
-    <aside className="relative w-full bg-background-secondary vertical md:w-[240px]">
+    <aside className="my-6 w-full rounded-lg bg-background-secondary vertical md:w-[240px]">
       <DropdownMenu open={open} onOpenChange={setOpen}>
-        <DropdownMenuTrigger className="justify-between p-3 outline-none transition horizontal center-v hover:bg-interactive-hover/10">
-          <h1 className="text-base font-semibold">{guild.name}</h1>
+        <DropdownMenuTrigger className="h-12 justify-between overflow-hidden p-3 outline-none transition horizontal center-v hover:bg-interactive-hover/10">
+          <h1 className="overflow-hidden text-ellipsis whitespace-nowrap text-left font-semibold">
+            {guild.name}
+          </h1>
 
           <Icons.DownArrow className="size-5" />
         </DropdownMenuTrigger>

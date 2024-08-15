@@ -1,14 +1,13 @@
 'use client';
 
-import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
-import { useState } from 'react';
-import { Drawer } from 'vaul';
+import { useQuery } from '@tanstack/react-query';
 
 import { useChannelQuery } from '@/hooks/use-channel-query';
 import { useGuildQuery } from '@/hooks/use-guild-query';
+import { useMediaQuery } from '@/hooks/use-media-query';
 import type { User } from '@/lib/db/schema';
-import { useDrawerStore } from '@/stores/drawer-store';
 
+import { ChatDrawer, ChatDrawerTrigger } from '@/components/chat/chat-drawer';
 import { ChatHeader } from '@/components/chat/chat-header';
 import { ChatInput } from '@/components/chat/chat-input';
 import { ChatMessages } from '@/components/chat/chat-messages';
@@ -22,42 +21,46 @@ interface ChatProps {
 }
 
 export const Chat = ({ channelId, guildId, currentUser }: ChatProps) => {
-  const { isOpen, setIsOpen } = useDrawerStore();
-  const { data: channel } = useSuspenseQuery(useChannelQuery(channelId));
+  const isMobile = useMediaQuery('screen and (max-width: 768px)');
+
+  const { data: channel } = useQuery(useChannelQuery(channelId));
   const { data: guild } = useQuery(useGuildQuery(guildId, currentUser.id));
 
-  return (
-    <Drawer.Root
-      noBodyStyles
-      disablePreventScroll
-      closeThreshold={0.5}
-      open={isOpen}
-      onOpenChange={setIsOpen}
-      direction="right"
-    >
-      <Drawer.Portal>
-        <Drawer.Content className="fixed bottom-0 right-0 z-50 size-full flex-1 bg-background vertical">
-          <Column className="relative size-full flex-1">
-            <ChatHeader>
-              <Drawer.Trigger>
-                <Icons.Hamburger className="mr-6 size-5" />
-              </Drawer.Trigger>
+  if (!channel || !guild) return;
 
-              <Icons.TextChannelHash className="mr-2 text-channel-icon" />
-              {channel.name}
-            </ChatHeader>
+  if (isMobile) {
+    return (
+      <ChatDrawer>
+        <Column className="relative size-full flex-1">
+          <ChatHeader>
+            <ChatDrawerTrigger>
+              <Icons.Hamburger className="mr-6 size-5" />
+            </ChatDrawerTrigger>
 
-            <Column className="h-full flex-1 justify-end">
-              {channel && guild && (
-                <>
-                  <ChatMessages guild={guild} channel={channel} channelId={channel.id} />
-                  <ChatInput channel={channel} />
-                </>
-              )}
-            </Column>
+            <Icons.TextChannelHash className="mr-2 text-channel-icon" />
+            {channel.name}
+          </ChatHeader>
+
+          <Column className="h-full flex-1 justify-end">
+            <ChatMessages guild={guild} channel={channel} channelId={channel.id} />
+            <ChatInput channel={channel} />
           </Column>
-        </Drawer.Content>
-      </Drawer.Portal>
-    </Drawer.Root>
+        </Column>
+      </ChatDrawer>
+    );
+  }
+
+  return (
+    <Column className="relative my-6 flex-1">
+      <ChatHeader>
+        <Icons.TextChannelHash className="mr-2 text-channel-icon" />
+        {channel.name}
+      </ChatHeader>
+
+      <Column className="h-full flex-1 justify-end">
+        <ChatMessages guild={guild} channel={channel} channelId={channel.id} />
+        <ChatInput channel={channel} />
+      </Column>
+    </Column>
   );
 };

@@ -19,7 +19,7 @@ export const useGuildsQuery = (
   };
 
   return {
-    queryKey: [...guildsQueryKey, memberId],
+    queryKey: [...guildsQueryKey, ],
     queryFn,
     ...queryOptions
   };

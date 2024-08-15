@@ -4,13 +4,13 @@
 
 @layer base {
   :root {
-    --background: 49 51 56;
-    --background-secondary: 43 45 49;
+    --background: 22 22 22;
+    --background-secondary: 30 31 34;
     --background-tertiary: 30 31 34;
 
-    --modifier-selected: 64 66 73;
+    /* --modifier-selected: var(--foreground);
     --modifier-hover: 53 55 60;
-    --modifier-active: 59 61 68;
+    --modifier-active: 59 61 68; */
 
     --foreground: 219 219 220;
 
@@ -29,7 +29,7 @@
     --muted: 51 51 51;
     --muted-foreground: 164 164 164;
 
-    --input: 63 63 70;
+    --input: var(--background-secondary);
     --input-form: 30 31 34;
 
     --channel-icon: 128 132 142;

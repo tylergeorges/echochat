@@ -28,7 +28,7 @@ export const GuildButton = ({ guild }: GuildButtonProps) => {
   };
 
   return (
-    <div className="group relative w-full horizontal center">
+    <div className="group relative mt-2 w-full horizontal center">
       <div
         className={cn(
           'ease group absolute left-0 h-[8px] w-[4px] rounded-r-full bg-foreground transition-all duration-300',
@@ -42,7 +42,7 @@ export const GuildButton = ({ guild }: GuildButtonProps) => {
       >
         <Avatar
           className={cn(
-            'group size-full transition-all duration-300',
+            'group pointer-events-none size-full select-none transition-all duration-300',
             isActive ? 'rounded-2xl' : 'rounded-[50%] group-hover:rounded-[16px]'
           )}
         >

@@ -1,6 +1,6 @@
 'use client';
 
-import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
 
 import { type Message, transformBaseMessage } from '@/lib/db/queries/message';
@@ -22,7 +22,7 @@ interface ChatMessagesProps {
 }
 
 export const ChatMessages = ({ channelId, channel, guild }: ChatMessagesProps) => {
-  const { data: messages } = useSuspenseQuery(useMessagesQuery(channelId));
+  const { data: messages } = useQuery(useMessagesQuery(channelId));
   const supabase = useSupabase();
   const queryClient = useQueryClient();
 
