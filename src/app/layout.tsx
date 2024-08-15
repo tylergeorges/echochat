@@ -27,7 +27,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          'relative flex size-full flex-1 bg-background font-sans text-foreground antialiased',
+          'relative flex size-full h-full flex-1 bg-background font-sans text-foreground antialiased',
           fontSans.variable
         )}
       >
@@ -35,7 +35,7 @@ export default function RootLayout({
           <ModalRenderer />
           <Toaster richColors />
 
-          <main className="horizontal relative z-0 flex-1">{children}</main>
+          <div className="relative size-full flex-1 horizontal">{children}</div>
         </ReactQueryProvider>
       </body>
     </html>

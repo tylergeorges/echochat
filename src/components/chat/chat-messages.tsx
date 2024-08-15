@@ -72,7 +72,7 @@ export const ChatMessages = ({ channelId, channel, guild }: ChatMessagesProps) =
   }, [supabase, queryClient, channelId]);
 
   return (
-    <Column className="flex-1 overflow-auto">
+    <Column className="relative h-full flex-1 overflow-auto">
       <Column className="mb-4 h-full justify-end p-4">
         <ChatWelcome channelName={channelName} />
 

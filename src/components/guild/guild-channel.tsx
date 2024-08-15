@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useAppRouter } from '@/hooks/use-app-router';
 import type { Channel } from '@/lib/db/schema/channels';
 import { cn } from '@/lib/utils';
+import { useDrawerStore } from '@/stores/drawer-store';
 
 import { Icons } from '@/components/icons';
 
@@ -14,6 +15,8 @@ interface GuildChannelProps {
 
 export const GuildChannel = ({ channel }: GuildChannelProps) => {
   const { channelId } = useAppRouter();
+
+  const { setIsOpen } = useDrawerStore();
 
   const isActive = channelId === channel.id;
 
@@ -25,6 +28,9 @@ export const GuildChannel = ({ channel }: GuildChannelProps) => {
           ? 'bg-modifier-selected text-interactive-hover'
           : 'text-channel-icon hover:bg-modifier-hover hover:text-interactive-normal active:bg-modifier-active'
       )}
+      onClick={() => {
+        setIsOpen(true);
+      }}
       href={`/channels/${channel.guildId}/${channel.id}`}
     >
       <Icons.TextChannelHash className="size-5" />

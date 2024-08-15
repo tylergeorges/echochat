@@ -17,7 +17,7 @@ export const Guilds = ({ user }: GuildsProps) => {
   const { data: guilds } = useSuspenseQuery(useGuildsQuery(user?.id ?? ''));
 
   return (
-    <aside className="z-30 hidden h-full w-[72px] flex-col space-y-2 bg-background-tertiary py-3 center-h md:flex">
+    <aside className="relative z-0 flex h-full w-[72px] flex-col space-y-2 overflow-y-auto bg-background-tertiary py-3 center-h">
       {user && (
         <>
           <CreateGuildButton user={user} />

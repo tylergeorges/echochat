@@ -4,8 +4,8 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 
 import { useChannelsQuery } from '@/hooks/use-channels-query';
-import { modal } from '@/lib/modal/system';
 import type { Guild } from '@/lib/db/queries/guild';
+import { modal } from '@/lib/modal/system';
 
 import { CreateChannelButton } from '@/components/create-channel-button';
 import { Column, Row } from '@/components/flex';
@@ -41,7 +41,7 @@ export const GuildSidebar = ({ guild }: GuildSidebarProps) => {
   };
 
   return (
-    <aside className="z-20 w-[240px] bg-background-secondary vertical">
+    <aside className="relative w-full bg-background-secondary vertical md:w-[240px]">
       <DropdownMenu open={open} onOpenChange={setOpen}>
         <DropdownMenuTrigger className="justify-between p-3 outline-none transition horizontal center-v hover:bg-interactive-hover/10">
           <h1 className="text-base font-semibold">{guild.name}</h1>

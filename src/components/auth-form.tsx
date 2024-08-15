@@ -24,7 +24,6 @@ export const AuthForm = () => {
 
       options: {
         redirectTo: `${getBaseUrl()}/auth/callback`
-        // redirectTo: '/auth/callback'
       }
     });
   };
