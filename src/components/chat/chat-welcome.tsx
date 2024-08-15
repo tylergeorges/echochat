@@ -6,14 +6,12 @@ interface ChatWelcomeProps {
 }
 
 export const ChatWelcome = ({ channelName }: ChatWelcomeProps) => (
-  <>
+  <Column className="select-none p-4">
     <div className="size-min rounded-full bg-interactive-muted/50 p-2">
       <Icons.TextChannelHash className="size-12 text-interactive-active" />
     </div>
 
-    <Column>
-      <h1 className="font-bold text-3xl">Welcome to {channelName}</h1>
-      <p className="text-channel-icon text-sm">This is the start of the {channelName} channel.</p>
-    </Column>
-  </>
+    <h1 className="text-3xl font-bold">Welcome to {channelName}</h1>
+    <p className="text-sm text-channel-icon">This is the start of the {channelName} channel.</p>
+  </Column>
 );

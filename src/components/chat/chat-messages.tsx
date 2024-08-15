@@ -72,11 +72,11 @@ export const ChatMessages = ({ channelId, channel, guild }: ChatMessagesProps) =
   }, [supabase, queryClient, channelId]);
 
   return (
-    <Column className="relative h-full flex-1 overflow-auto">
-      <Column className="mb-4 h-full justify-end p-4">
+    <Column className="relative  h-full overflow-auto ">
+
+      <Column className='flex-1 justify-end'>
         <ChatWelcome channelName={channelName} />
 
-        <div className="flex-1">
           {messages?.map(message => (
             <ChatMessage
               key={message.id}
@@ -89,7 +89,6 @@ export const ChatMessages = ({ channelId, channel, guild }: ChatMessagesProps) =
               state={message.state}
             />
           ))}
-        </div>
       </Column>
     </Column>
   );

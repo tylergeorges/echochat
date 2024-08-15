@@ -11,8 +11,8 @@ interface ChatMessageProps extends Message {
 
 export const ChatMessage = ({ author, isOwner, content, createdAt, state }: ChatMessageProps) => {
   return (
-    <div className="gap-2 p-4 horizontal">
-      <Avatar size="lg">
+    <div className="gap-2 p-4  horizontal">
+      <Avatar size="lg" className="shrink-0">
         <AvatarImage src={author.avatarUrl} alt={`${author.username}'s avatar.`} />
       </Avatar>
 
@@ -26,7 +26,7 @@ export const ChatMessage = ({ author, isOwner, content, createdAt, state }: Chat
 
         <div
           className={cn(
-            'whitespace-pre-wrap text-wrap break-all text-sm',
+            'whitespace-pre-wrap text-wrap break-words text-sm',
             'text-foreground',
             state === 'sending' && 'text-foreground/50',
             state === 'error' && 'text-destructive'

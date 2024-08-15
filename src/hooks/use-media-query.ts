@@ -13,7 +13,7 @@ const IS_SERVER = typeof window === 'undefined';
 
 export function useMediaQuery(
   query: string,
-  { defaultValue = false, initializeWithValue = true }: UseMediaQueryOptions = {}
+  { defaultValue = false,  }: UseMediaQueryOptions = {}
 ): boolean {
   const getMatches = (query: string): boolean => {
     if (IS_SERVER) {
@@ -23,13 +23,7 @@ export function useMediaQuery(
     return window.matchMedia(query).matches;
   };
 
-  const [matches, setMatches] = useState<boolean>(() => {
-    if (initializeWithValue) {
-      return getMatches(query);
-    }
-
-    return defaultValue;
-  });
+  const [matches, setMatches] = useState<boolean>(window.matchMedia(query).matches);
 
   // Handles the change event of the media query.
   const handleChange = () => {

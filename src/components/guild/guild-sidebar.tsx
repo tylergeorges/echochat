@@ -48,7 +48,7 @@ export const GuildSidebar = ({ guildId, userId }: GuildSidebarProps) => {
   if (!guild) return null;
 
   return (
-    <aside className="my-6 w-full rounded-lg bg-background-secondary vertical md:w-[240px]">
+    <aside className="my-6 mb-0 w-full md:rounded-xl  rounded-tl-xl  bg-background-secondary rounded-b-none  vertical md:mb-6 md:w-[240px]">
       <DropdownMenu open={open} onOpenChange={setOpen}>
         <DropdownMenuTrigger className="h-12 justify-between overflow-hidden p-3 outline-none transition horizontal center-v hover:bg-interactive-hover/10">
           <h1 className="overflow-hidden text-ellipsis whitespace-nowrap text-left font-semibold">

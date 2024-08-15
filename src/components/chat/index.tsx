@@ -1,6 +1,6 @@
 'use client';
 
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 
 import { useChannelQuery } from '@/hooks/use-channel-query';
 import { useGuildQuery } from '@/hooks/use-guild-query';
@@ -21,46 +21,40 @@ interface ChatProps {
 }
 
 export const Chat = ({ channelId, guildId, currentUser }: ChatProps) => {
-  const isMobile = useMediaQuery('screen and (max-width: 768px)');
+  const isMobile = useMediaQuery('(max-width: 768px)');
 
-  const { data: channel } = useQuery(useChannelQuery(channelId));
-  const { data: guild } = useQuery(useGuildQuery(guildId, currentUser.id));
-
-  if (!channel || !guild) return;
+  const { data: channel } = useSuspenseQuery(useChannelQuery(channelId));
+  const { data: guild } = useSuspenseQuery(useGuildQuery(guildId, currentUser.id));
 
   if (isMobile) {
     return (
-      <ChatDrawer>
-        <Column className="relative size-full flex-1">
+      <Column className="relative size-full flex-1">
+        <ChatDrawer>
           <ChatHeader>
             <ChatDrawerTrigger>
-              <Icons.Hamburger className="mr-6 size-5" />
+              <Icons.Hamburger className="size-5" />
             </ChatDrawerTrigger>
 
             <Icons.TextChannelHash className="mr-2 text-channel-icon" />
-            {channel.name}
+            {channel?.name}
           </ChatHeader>
 
-          <Column className="h-full flex-1 justify-end">
-            <ChatMessages guild={guild} channel={channel} channelId={channel.id} />
-            <ChatInput channel={channel} />
-          </Column>
-        </Column>
-      </ChatDrawer>
+          <ChatMessages guild={guild} channel={channel} channelId={channel.id} />
+          <ChatInput channel={channel} />
+        </ChatDrawer>
+      </Column>
     );
   }
 
   return (
-    <Column className="relative my-6 flex-1">
+    <Column className="relative size-full flex-1 p-4 py-6">
       <ChatHeader>
         <Icons.TextChannelHash className="mr-2 text-channel-icon" />
         {channel.name}
       </ChatHeader>
 
-      <Column className="h-full flex-1 justify-end">
-        <ChatMessages guild={guild} channel={channel} channelId={channel.id} />
-        <ChatInput channel={channel} />
-      </Column>
+      <ChatMessages guild={guild} channel={channel} channelId={channel.id} />
+      <ChatInput channel={channel} />
     </Column>
   );
 };

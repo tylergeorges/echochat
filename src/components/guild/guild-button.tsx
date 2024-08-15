@@ -28,7 +28,7 @@ export const GuildButton = ({ guild }: GuildButtonProps) => {
   };
 
   return (
-    <div className="group relative mt-2 w-full horizontal center">
+    <div className="group relative mb-2 w-full horizontal center">
       <div
         className={cn(
           'ease group absolute left-0 h-[8px] w-[4px] rounded-r-full bg-foreground transition-all duration-300',
