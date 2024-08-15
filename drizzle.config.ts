@@ -8,7 +8,6 @@ export default defineConfig({
   schemaFilter: ['public'],
   driver: 'pg',
   dbCredentials: {
-    connectionString: process.env.POSTGRES_URL!,
-    database: process.env.POSTGRES_URL!
+    connectionString: process.env.POSTGRES_URL!
   }
 });

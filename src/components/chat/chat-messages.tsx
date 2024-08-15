@@ -2,6 +2,7 @@
 
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
+import { Virtuoso } from 'react-virtuoso';
 
 import { type Message, transformBaseMessage } from '@/lib/db/queries/message';
 import type { Channel } from '@/lib/db/schema/channels';
@@ -71,23 +72,28 @@ export const ChatMessages = ({ channelId, channel, guild }: ChatMessagesProps) =
     };
   }, [supabase, queryClient, channelId]);
 
+  const renderItem = (_: number, message: Message) => (
+    <ChatMessage
+      isOwner={message.author.id === guild.ownerId}
+      author={message.author}
+      channelId={message.channelId}
+      content={message.content}
+      createdAt={message.createdAt}
+      id={message.id}
+      state={message.state}
+    />
+  );
+
   return (
     <Column className="relative h-full overflow-auto">
       <Column className="flex-1 justify-end">
-        <ChatWelcome channelName={channelName} />
-
-        {messages?.map(message => (
-          <ChatMessage
-            key={message.id}
-            isOwner={message.author.id === guild.ownerId}
-            author={message.author}
-            channelId={message.channelId}
-            content={message.content}
-            createdAt={message.createdAt}
-            id={message.id}
-            state={message.state}
-          />
-        ))}
+        <Virtuoso
+          alignToBottom
+          components={{ Header: () => <ChatWelcome channelName={channelName} /> }}
+          data={messages}
+          itemContent={renderItem}
+          className="flex-1"
+        />
       </Column>
     </Column>
   );

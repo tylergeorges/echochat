@@ -8,7 +8,6 @@ import { createClient } from '@/lib/supabase/server';
 export async function GET(req: NextRequest) {
   const { searchParams, origin } = new URL(req.url);
 
-  console.log(origin);
   const code = searchParams.get('code');
 
   if (code) {
@@ -19,6 +18,7 @@ export async function GET(req: NextRequest) {
       data: { user }
     } = await supabase.auth.exchangeCodeForSession(code);
 
+    console.log(!error && user);
     if (!error && user) {
       const [userExists] = await db.select().from(users).where(eq(users.id, user.id));
 
