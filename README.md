@@ -44,7 +44,6 @@
 - 🔒 **Authentication + Google Auth** With **Supabase**
 - 📱 **Real-time** messaging using Supabase
 - 🎉 **Create Guilds** and invite your friends
-- 📱 **Reply to Posts** and share your thoughts
 
 ---
 
