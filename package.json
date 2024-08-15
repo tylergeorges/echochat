@@ -31,6 +31,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-textarea-autosize": "^8.5.3",
+    "react-virtuoso": "^4.10.1",
     "server-only": "^0.0.1",
     "sonner": "^1.5.0",
     "tailwind-variants": "^0.2.1",

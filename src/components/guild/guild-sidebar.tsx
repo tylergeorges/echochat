@@ -1,11 +1,10 @@
 'use client';
 
-import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 
 import { useChannelsQuery } from '@/hooks/use-channels-query';
 import { useGuildQuery } from '@/hooks/use-guild-query';
-import type { Guild } from '@/lib/db/queries/guild';
 import { modal } from '@/lib/modal/system';
 
 import { CreateChannelButton } from '@/components/create-channel-button';
@@ -48,7 +47,7 @@ export const GuildSidebar = ({ guildId, userId }: GuildSidebarProps) => {
   if (!guild) return null;
 
   return (
-    <aside className="my-6 mb-0 w-full md:rounded-xl  rounded-tl-xl  bg-background-secondary rounded-b-none  vertical md:mb-6 md:w-[240px]">
+    <aside className="my-6 mb-0 w-full rounded-b-none rounded-tl-xl bg-background-secondary vertical md:mb-6 md:w-[240px] md:rounded-xl">
       <DropdownMenu open={open} onOpenChange={setOpen}>
         <DropdownMenuTrigger className="h-12 justify-between overflow-hidden p-3 outline-none transition horizontal center-v hover:bg-interactive-hover/10">
           <h1 className="overflow-hidden text-ellipsis whitespace-nowrap text-left font-semibold">

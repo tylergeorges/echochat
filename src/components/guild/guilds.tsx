@@ -1,6 +1,6 @@
 'use client';
 
-import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 import { useGuildsQuery } from '@/hooks/use-guilds-query';
 import type { User } from '@/lib/db/schema/users';
@@ -19,7 +19,7 @@ export const Guilds = ({ user }: GuildsProps) => {
   const guilds = data ?? [];
 
   return (
-    <aside className="z-0 mt-6  flex w-[72px] flex-col space-y-2 overflow-y-auto pb-3 pt-3 center-h">
+    <aside className="z-0 mt-6 flex w-[72px] flex-col space-y-2 overflow-y-auto pb-3 pt-3 center-h">
       {user && (
         <>
           <div className="relative flex h-full w-full flex-col items-center text-primary">

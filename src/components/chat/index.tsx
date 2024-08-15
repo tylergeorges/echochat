@@ -1,6 +1,6 @@
 'use client';
 
-import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { useChannelQuery } from '@/hooks/use-channel-query';
 import { useGuildQuery } from '@/hooks/use-guild-query';
