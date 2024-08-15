@@ -6,9 +6,9 @@ import { users } from '@/lib/db/schema';
 import { createClient } from '@/lib/supabase/server';
 
 export async function GET(req: NextRequest) {
-  const { searchParams, origin ,} = new URL(req.url);
+  const { searchParams, origin } = new URL(req.url);
 
-  console.log(origin)
+  console.log(origin);
   const code = searchParams.get('code');
 
   if (code) {

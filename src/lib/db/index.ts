@@ -6,14 +6,14 @@ import * as schema from './schema';
 let connection: Sql<{}>;
 
 if (process.env.NODE_ENV === 'production') {
-  connection = postgres(process.env.DATABASE_URL!);
+  connection = postgres(process.env.POSTGRES_URL!);
 } else {
   const globalConnection = global as typeof globalThis & {
     connection: Sql<{}>;
   };
 
   if (!globalConnection.connection)
-    globalConnection.connection = postgres(process.env.DATABASE_URL!, {
+    globalConnection.connection = postgres(process.env.POSTGRES_URL!, {
       prepare: false
     });
 
