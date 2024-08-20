@@ -27,7 +27,7 @@ interface ChatMessagesProps {
 export const ChatMessages = ({ channelId, channel, guild }: ChatMessagesProps) => {
   const { data: messages } = useSuspenseQuery(useMessagesQuery(channelId));
 
-  const [firstItemIndex, setFirstItemIndex] = useState(START_INDEX - messages.length);
+  const [firstItemIndex, _] = useState(START_INDEX - messages.length);
 
   const supabase = useSupabase();
   const queryClient = useQueryClient();
