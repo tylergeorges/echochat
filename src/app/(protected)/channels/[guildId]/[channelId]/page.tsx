@@ -4,15 +4,15 @@ import { HydrationBoundary, QueryClient, dehydrate } from '@tanstack/react-query
 import { redirect } from 'next/navigation';
 
 import { useChannelQuery } from '@/hooks/use-channel-query';
+import { useChannelsQuery } from '@/hooks/use-channels-query';
+import { useGuildQuery } from '@/hooks/use-guild-query';
+import { useGuildsQuery } from '@/hooks/use-guilds-query';
 import { useMessagesQuery } from '@/hooks/use-messages-query';
 import { getUser } from '@/lib/supabase/get-user';
 
 import { Chat } from '@/components/chat';
 import { GuildSidebar } from '@/components/guild/guild-sidebar';
 import { Guilds } from '@/components/guild/guilds';
-import { useChannelsQuery } from '@/hooks/use-channels-query';
-import { useGuildQuery } from '@/hooks/use-guild-query';
-import { useGuildsQuery } from '@/hooks/use-guilds-query';
 
 export default async function ChannelPage({
   params

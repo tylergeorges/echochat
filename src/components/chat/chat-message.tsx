@@ -1,10 +1,10 @@
 import type { Message } from '@/lib/db/queries/message';
+import { formatTimestamp } from '@/lib/format-timestamp';
 import { cn } from '@/lib/utils';
 
 import { Column } from '@/components/flex';
 import { Icons } from '@/components/icons';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
-import { formatTimestamp } from '@/lib/format-timestamp';
 
 interface ChatMessageProps extends Message {
   isOwner: boolean;

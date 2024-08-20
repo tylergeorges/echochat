@@ -14,7 +14,7 @@ export const ChatDrawer = ({ children }: React.PropsWithChildren) => {
       noBodyStyles
     >
       <Drawer.Portal>
-        <Drawer.Content  className="fixed z-50 size-full flex-1 overflow-hidden bg-background vertical">
+        <Drawer.Content className="fixed z-50 size-full flex-1 overflow-hidden bg-background vertical">
           {children}
         </Drawer.Content>
       </Drawer.Portal>
