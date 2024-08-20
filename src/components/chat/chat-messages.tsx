@@ -1,7 +1,7 @@
 'use client';
 
-import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { useEffect } from 'react';
+import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
 import { Virtuoso } from 'react-virtuoso';
 
 import { type Message, transformBaseMessage } from '@/lib/db/queries/message';
@@ -16,6 +16,8 @@ import { ChatMessage } from '@/components/chat/chat-message';
 import { ChatWelcome } from '@/components/chat/chat-welcome';
 import { Column } from '@/components/flex';
 
+const START_INDEX = 999_999;
+
 interface ChatMessagesProps {
   channelId: string;
   guild: Guild;
@@ -23,7 +25,10 @@ interface ChatMessagesProps {
 }
 
 export const ChatMessages = ({ channelId, channel, guild }: ChatMessagesProps) => {
-  const { data: messages } = useQuery(useMessagesQuery(channelId));
+  const { data: messages } = useSuspenseQuery(useMessagesQuery(channelId));
+
+  const [firstItemIndex, setFirstItemIndex] = useState(START_INDEX - messages.length);
+
   const supabase = useSupabase();
   const queryClient = useQueryClient();
 
@@ -85,13 +90,16 @@ export const ChatMessages = ({ channelId, channel, guild }: ChatMessagesProps) =
   );
 
   return (
-    <Column className="relative h-full overflow-auto">
+    <Column className="relative h-full">
       <Column className="flex-1 justify-end">
         <Virtuoso
           alignToBottom
           components={{ Header: () => <ChatWelcome channelName={channelName} /> }}
           data={messages}
           itemContent={renderItem}
+          initialTopMostItemIndex={messages.length - 1}
+          followOutput={isAtBottom => (isAtBottom ? 'auto' : false)}
+          firstItemIndex={Math.max(0, firstItemIndex)}
           className="flex-1"
         />
       </Column>
