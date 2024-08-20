@@ -4,14 +4,17 @@ import { cn } from '@/lib/utils';
 import { Column } from '@/components/flex';
 import { Icons } from '@/components/icons';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
+import { formatTimestamp } from '@/lib/format-timestamp';
 
 interface ChatMessageProps extends Message {
   isOwner: boolean;
 }
 
 export const ChatMessage = ({ author, isOwner, content, createdAt, state }: ChatMessageProps) => {
+  const formattedTimestamp = formatTimestamp(createdAt);
+
   return (
-    <div className="gap-2 p-4  horizontal">
+    <div className="gap-2 p-4 horizontal">
       <Avatar size="lg" className="shrink-0">
         <AvatarImage src={author.avatarUrl} alt={`${author.username}'s avatar.`} />
       </Avatar>
@@ -21,7 +24,7 @@ export const ChatMessage = ({ author, isOwner, content, createdAt, state }: Chat
           <h1 className="font-semibold text-interactive-active">{author.username}</h1>
           {isOwner && <Icons.Crown className="size-3.5 text-[#F0B132]" />}
 
-          <p className="text-sm text-interactive-normal/60">{createdAt.toLocaleString()}</p>
+          <p className="text-sm text-interactive-normal/60">{formattedTimestamp}</p>
         </div>
 
         <div
