@@ -1,6 +1,6 @@
 'use client';
 
-import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { Virtuoso } from 'react-virtuoso';
 
