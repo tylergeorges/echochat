@@ -7,13 +7,13 @@ import { Virtuoso } from 'react-virtuoso';
 import type { Message } from '@/lib/db/queries/message';
 import type { Channel } from '@/lib/db/schema/channels';
 
+import { useMessageSubscription } from '@/hooks/use-message-subscription';
 import { useMessagesQuery } from '@/hooks/use-messages-query';
 import type { Guild } from '@/lib/db/queries/guild';
 
 import { ChatMessage } from '@/components/chat/chat-message';
 import { ChatWelcome } from '@/components/chat/chat-welcome';
 import { Column } from '@/components/flex';
-import { useMessageSubscription } from '@/hooks/use-message-subscription';
 
 const START_INDEX = 999_999;
 
