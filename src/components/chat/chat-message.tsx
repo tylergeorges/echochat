@@ -19,7 +19,7 @@ export const ChatMessage = ({ author, isOwner, content, createdAt, state }: Chat
         <AvatarImage src={author.avatarUrl} alt={`${author.username}'s avatar.`} />
       </Avatar>
 
-      <Column className="">
+      <Column>
         <div className="gap-2 horizontal center-v">
           <h1 className="font-semibold text-interactive-active">{author.username}</h1>
           {isOwner && <Icons.Crown className="size-3.5 text-[#F0B132]" />}
