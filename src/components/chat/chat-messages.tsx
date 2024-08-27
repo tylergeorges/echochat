@@ -2,17 +2,17 @@
 
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { useState } from 'react';
-import { Virtuoso } from 'react-virtuoso';
+import { ItemContent, Virtuoso } from 'react-virtuoso';
 
 import type { Message } from '@/lib/db/queries/message';
 import type { Channel } from '@/lib/db/schema/channels';
 
 import { useMessageSubscription } from '@/hooks/use-message-subscription';
 import { useMessagesQuery } from '@/hooks/use-messages-query';
+import { components, MessageListContext } from '@/components/chat/chat-messages-list-components';
 import type { Guild } from '@/lib/db/queries/guild';
 
 import { ChatMessage } from '@/components/chat/chat-message';
-import { ChatWelcome } from '@/components/chat/chat-welcome';
 import { Column } from '@/components/flex';
 
 const START_INDEX = 999_999;
@@ -32,7 +32,7 @@ export const ChatMessages = ({ channelId, channel, guild }: ChatMessagesProps) =
 
   useMessageSubscription(channelId);
 
-  const renderItem = (_: number, message: Message) => (
+  const renderItem: ItemContent<Message, MessageListContext> = (_, message) => (
     <ChatMessage
       isOwner={message.author.id === guild.ownerId}
       author={message.author}
@@ -45,11 +45,12 @@ export const ChatMessages = ({ channelId, channel, guild }: ChatMessagesProps) =
   );
 
   return (
-    <Column className="relative h-full">
-      <Column className="flex-1 justify-end">
+    <Column className="relative flex-1">
+      <Column className="flex-1">
         <Virtuoso
           alignToBottom
-          components={{ Header: () => <ChatWelcome channelName={channelName} /> }}
+          context={{ channelName }}
+          components={components}
           data={messages}
           itemContent={renderItem}
           initialTopMostItemIndex={messages.length - 1}

@@ -6,7 +6,7 @@ interface ChatWelcomeProps {
 }
 
 export const ChatWelcome = ({ channelName }: ChatWelcomeProps) => (
-  <Column className="select-none p-4">
+  <Column className="mt-auto flex-1 justify-end select-none p-4">
     <div className="size-min rounded-full bg-interactive-muted/50 p-2">
       <Icons.TextChannelHash className="size-12 text-interactive-active" />
     </div>

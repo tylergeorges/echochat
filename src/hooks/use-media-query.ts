@@ -13,7 +13,7 @@ const IS_SERVER = typeof window === 'undefined';
 
 export function useMediaQuery(
   query: string,
-  { defaultValue = false,  }: UseMediaQueryOptions = {}
+  { defaultValue = false }: UseMediaQueryOptions = {}
 ): boolean {
   const getMatches = (query: string): boolean => {
     if (IS_SERVER) {
@@ -23,7 +23,11 @@ export function useMediaQuery(
     return window.matchMedia(query).matches;
   };
 
-  const [matches, setMatches] = useState<boolean>(window.matchMedia(query).matches);
+  const [matches, setMatches] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return false;
+
+    return window.matchMedia(query).matches;
+  });
 
   // Handles the change event of the media query.
   const handleChange = () => {
@@ -41,18 +45,11 @@ export function useMediaQuery(
     handleChange();
 
     // Use deprecated `addListener` and `removeListener` to support Safari < 14 (#135)
-    if (matchMedia.addListener) {
-      matchMedia.addListener(handleChange);
-    } else {
-      matchMedia.addEventListener('change', handleChange);
-    }
+
+    matchMedia.addEventListener('change', handleChange);
 
     return () => {
-      if (matchMedia.removeListener) {
-        matchMedia.removeListener(handleChange);
-      } else {
-        matchMedia.removeEventListener('change', handleChange);
-      }
+      matchMedia.removeEventListener('change', handleChange);
     };
   }, [query]);
 

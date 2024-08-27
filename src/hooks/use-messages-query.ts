@@ -11,7 +11,11 @@ export const useMessagesQuery = (
   const queryFn = async (): Promise<Message[]> => {
     const messages = await selectMessagesForChannel(channelId);
 
-    return messages || [];
+    // if (messages) {
+    //   return messages.length ? messages : [{ type: '' }];
+    // }
+
+    return messages ?? [];
   };
 
   return {

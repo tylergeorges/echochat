@@ -16,6 +16,7 @@
     "incremental": true,
     "noUnusedLocals": true,
     "strictNullChecks": true,
+    "noErrorTruncation": true,
     "noUnusedParameters": true,
     "plugins": [
       {
