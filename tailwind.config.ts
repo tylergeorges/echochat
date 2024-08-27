@@ -37,11 +37,17 @@ const config: Config = {
         'accordion-up': {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' }
+        },
+        ellipsis: {
+          '0%': { transform: 'scale(1)', opacity: '1' },
+          '50%': { transform: 'scale(0.8)', opacity: '0.3' },
+          to: { transform: 'scale(1)', opacity: '1' }
         }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out'
+        'accordion-up': 'accordion-up 0.2s ease-out',
+        ellipsis: 'ellipsis 1.4s infinite ease-in-out'
       },
       colors: {
         foreground: 'rgb(var(--foreground) / <alpha-value>)',
@@ -75,7 +81,7 @@ const config: Config = {
         },
         primary: {
           DEFAULT: 'rgb(var(--primary) / <alpha-value>)',
-          foreground: 'rgb(var(--primary-foreground) / <alpha-value>)',
+          foreground: 'rgb(var(--primary-foreground) / <alpha-value>)'
         },
         secondary: {
           DEFAULT: 'rgb(var(--secondary) / <alpha-value>)',

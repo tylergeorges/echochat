@@ -33,6 +33,7 @@ interface CreateGuildModalProps {
 
 export const CreateGuildModal = ({ user, closeModal }: CreateGuildModalProps) => {
   const [dataURL, setDataURL] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [guildIconFile, setGuildIconFile] = useState<File | null>(null);
 
   const queryClient = useQueryClient();
@@ -42,6 +43,10 @@ export const CreateGuildModal = ({ user, closeModal }: CreateGuildModalProps) =>
 
   const createGuild = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
 
     const target = e.target as HTMLFormElement;
     const inputElement = target[1] as HTMLInputElement;
@@ -74,21 +79,17 @@ export const CreateGuildModal = ({ user, closeModal }: CreateGuildModalProps) =>
       id: crypto.randomUUID()
     };
 
-    // await insertGuild({
-    //   name: guildName,
-    //   ownerId: user.id,
-    //   icon: data.fullPath
-    // });
-
     const queryKey = [...guildsQueryKey];
 
     createGuildMutation.mutate(guild, {
       onSettled: () => {
-        closeModal();
-
         queryClient.invalidateQueries({
           queryKey: queryKey
         });
+
+        closeModal();
+
+        setIsSubmitting(false);
       },
 
       onSuccess: () => {
@@ -151,6 +152,7 @@ export const CreateGuildModal = ({ user, closeModal }: CreateGuildModalProps) =>
               guild name
             </Label>
             <Input
+              disabled={isSubmitting}
               id="guild-name"
               autoFocus
               color="form"
@@ -161,8 +163,8 @@ export const CreateGuildModal = ({ user, closeModal }: CreateGuildModalProps) =>
         </DialogBody>
 
         <DialogFooter>
-          <Button className="w-full" type="submit">
-            Create
+          <Button className="w-full" type="submit" loading={isSubmitting}>
+            Create Guild
           </Button>
         </DialogFooter>
       </form>

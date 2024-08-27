@@ -97,10 +97,41 @@ export type ButtonVariants = VariantProps<typeof buttonVariants>;
 
 interface ButtonProps
   extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'color'>,
-    ButtonVariants {}
+    ButtonVariants {
+  loading?: boolean;
+}
+
+const ButtonLoadingDot = () => (
+  <div className="relative size-1.5 rounded-full bg-white opacity-30"></div>
+);
+
+const LoadingEllipsis = () => {
+  return (
+    <div className="child:animate-ellipsis absolute flex h-full w-full gap-1 center [&>*:nth-child(2)]:delay-200 [&>*:nth-child(3)]:delay-100">
+      <ButtonLoadingDot />
+      <ButtonLoadingDot />
+      <ButtonLoadingDot />
+    </div>
+  );
+};
 
 export const Button = forwardRef<HTMLButtonElement, React.PropsWithChildren<ButtonProps>>(
-  ({ className, type = 'button', children, variant, color, fill, size, round, ...props }, ref) => (
+  (
+    {
+      className,
+      type = 'button',
+      disabled,
+      children,
+      variant,
+      color,
+      loading,
+      fill,
+      size,
+      round,
+      ...props
+    },
+    ref
+  ) => (
     <button
       {...props}
       type={type}
@@ -112,9 +143,12 @@ export const Button = forwardRef<HTMLButtonElement, React.PropsWithChildren<Butt
         size,
         className
       })}
+      disabled={loading || disabled}
       ref={ref}
     >
-      {children}
+      <span className={cn(loading && 'opacity-0')}>{children}</span>
+
+      {loading && <LoadingEllipsis />}
     </button>
   )
 );

@@ -9,7 +9,7 @@ import { type Guild, insertGuild } from '@/lib/db/queries/guild';
 export const useCreateGuildMutation = () => {
   const queryClient = useQueryClient();
 
-  const queryKey = [...guildsQueryKey];
+  const queryKey = guildsQueryKey;
 
   return useMutation({
     mutationFn: async ({
@@ -36,9 +36,13 @@ export const useCreateGuildMutation = () => {
 
       const prevGuilds = queryClient.getQueryData<{ guild: Guild }[]>(queryKey) ?? [];
 
-      queryClient.setQueriesData<{ guild: Guild }[]>({ queryKey }, guilds => {
-        return [...(guilds || []), { guild }] as { guild: Guild }[];
+      queryClient.setQueryData<{ guild: Guild }[]>(queryKey, guilds => {
+        return [...(guilds ?? []), { guild }] as { guild: Guild }[];
       });
+      
+      // queryClient.setQueriesData<{ guild: Guild }[]>({ queryKey }, guilds => {
+      //   return [...(guilds || []), { guild }] as { guild: Guild }[];
+      // });
 
       return { prevGuilds };
     },
