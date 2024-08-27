@@ -47,7 +47,7 @@ export const Chat = ({ channelId, guildId, currentUser }: ChatProps) => {
   }
 
   return (
-    <Column className="relative size-full flex-1 p-4 py-6">
+    <Column className="relative size-full flex-1 p-4 py-6 pr-0">
       <ChatHeader>
         <Icons.TextChannelHash className="mr-2 text-channel-icon" />
         {channel.name}

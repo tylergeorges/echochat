@@ -21,7 +21,8 @@
     --popover-foreground: var(--foreground);
 
     --primary: 88 101 242;
-    --primary-foreground: 255 255 255;
+    --primary-foreground: 148 156 247;
+    /* --primary-foreground: 255 255 255; */
 
     --secondary: 51 51 51;
     --secondary-foreground: 255 255 255;
@@ -42,6 +43,18 @@
     --interactive-hover: 219 222 225;
     --interactive-active: 255 255 255;
   }
+}
+
+.scrolltheme {
+  background-color: yellow
+}
+
+.os-scrollbar-handle {
+  background-color: rgb(var(--foreground) / 20%);
+}
+
+.os-scrollbar-handle:hover {
+  background-color: rgb(var(--foreground) / 30%);
 }
 
 @layer base {

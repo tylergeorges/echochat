@@ -75,7 +75,7 @@ const config: Config = {
         },
         primary: {
           DEFAULT: 'rgb(var(--primary) / <alpha-value>)',
-          foreground: 'rgb(var(--primary-foreground) / <alpha-value>)'
+          foreground: 'rgb(var(--primary-foreground) / <alpha-value>)',
         },
         secondary: {
           DEFAULT: 'rgb(var(--secondary) / <alpha-value>)',

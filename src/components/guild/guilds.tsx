@@ -19,7 +19,7 @@ export const Guilds = ({ user }: GuildsProps) => {
   const guilds = data ?? [];
 
   return (
-    <aside className="z-0 mt-6 flex w-[72px] flex-col space-y-2 overflow-y-auto pb-3 pt-3 center-h">
+    <aside className="z-0 mb-0 mt-6 flex w-[72px] flex-col space-y-2 overflow-y-auto center-h md:mb-6">
       {user && (
         <>
           <div className="relative flex h-full w-full flex-col items-center text-primary">

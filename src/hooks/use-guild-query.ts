@@ -7,12 +7,16 @@ export const guildQueryKey = ['guild'];
 export const useGuildQuery = (
   guildId: string,
   memberId: string,
-  queryOptions?: UseQueryOptions<Guild, Error, Guild, QueryKey>
+  queryOptions?: UseQueryOptions<Guild | undefined, Error, Guild | undefined, QueryKey>
 ) => {
-  const queryFn = async (): Promise<Guild> => {
-    const data = await getGuildInfo(guildId, memberId);
+  const queryFn = async (): Promise<Guild | undefined> => {
+    try {
+      const data = await getGuildInfo(guildId, memberId);
 
-    return data?.guild as Guild;
+      return data?.guild as Guild;
+    } catch (err) {
+      return;
+    }
   };
 
   return {

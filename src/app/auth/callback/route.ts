@@ -18,7 +18,6 @@ export async function GET(req: NextRequest) {
       data: { user }
     } = await supabase.auth.exchangeCodeForSession(code);
 
-    console.log(!error && user);
     if (!error && user) {
       const [userExists] = await db.select().from(users).where(eq(users.id, user.id));
 

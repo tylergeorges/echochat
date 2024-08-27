@@ -1,6 +1,5 @@
 'use client';
 
-import { forwardRef } from 'react';
 import { Components } from 'react-virtuoso';
 
 import type { Message } from '@/lib/db/queries/message';
@@ -18,15 +17,6 @@ type MessageListComponents = Components<
   }
 >;
 
-export const Scroller: MessageListComponents['Scroller'] = forwardRef(
-  ({ style, children, ...props }, ref) => {
-    return (
-      <div style={style} ref={ref} {...props}>
-        {children}
-      </div>
-    );
-  }
-);
 export const Item: MessageListComponents['Item'] = ({ style, children, ...props }) => {
   return (
     <div style={style} {...props}>
@@ -41,8 +31,7 @@ export const EmptyPlaceholder: MessageListComponents['EmptyPlaceholder'] = ({ co
   <ChatWelcome channelName={context?.channelName ?? ''} />
 );
 
-export const components = {
-  //   Scroller
+export const components: MessageListComponents = {
   EmptyPlaceholder: EmptyPlaceholder,
   Item
 };

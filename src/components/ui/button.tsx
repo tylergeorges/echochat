@@ -13,11 +13,11 @@ const buttonVariants = tv({
 
   variants: {
     color: {
-      default: 'bg-primary text-primary-foreground hover:bg-primary/90',
+      default: 'bg-primary text-white hover:bg-primary/90',
       outline: 'hover:bg-accent hover:text-accent-foreground border border-input',
       secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
       destructive: 'text-destructive-foreground bg-destructive hover:bg-destructive/90',
-      success: 'bg-success text-primary-foreground hover:bg-success/90'
+      success: 'bg-success text-white hover:bg-success/90'
     },
 
     variant: {
@@ -58,7 +58,7 @@ const buttonVariants = tv({
       color: 'default',
       variant: 'outline',
       className:
-        'border border-primary bg-transparent text-primary hover:bg-primary hover:text-primary-foreground'
+        'border border-primary bg-transparent text-primary hover:bg-primary hover:text-white'
     },
     {
       color: 'destructive',
@@ -82,13 +82,13 @@ const buttonVariants = tv({
       color: 'destructive',
       variant: 'ghost',
       className:
-        'bg-transparent text-destructive hover:bg-destructive hover:text-primary-foreground active:bg-destructive/90 active:text-primary-foreground'
+        'bg-transparent text-destructive hover:bg-destructive hover:text-white active:bg-destructive/90 active:text-white'
     },
     {
       color: 'default',
       variant: 'ghost',
       className:
-        'bg-transparent text-interactive-normal hover:bg-primary hover:text-primary-foreground active:bg-primary/90 active:text-primary-foreground'
+        'bg-transparent text-interactive-normal hover:bg-primary hover:text-white active:bg-primary/90 active:text-white'
     }
   ]
 });

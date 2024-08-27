@@ -67,7 +67,7 @@ export const ChatInput = ({ channel }: ChatInputProps) => {
 
   return (
     <form onSubmit={onSubmit} className="w-full px-4 md:pb-0">
-      <div className="mb-6">
+      <div className="">
         <input
           type="text"
           className="h-10 w-full rounded-md bg-input px-2.5 outline-none ring-0"

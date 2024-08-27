@@ -46,19 +46,18 @@ export const ChatMessages = ({ channelId, channel, guild }: ChatMessagesProps) =
 
   return (
     <Column className="relative flex-1">
-      <Column className="flex-1">
-        <Virtuoso
-          alignToBottom
-          context={{ channelName }}
-          components={components}
-          data={messages}
-          itemContent={renderItem}
-          initialTopMostItemIndex={messages.length - 1}
-          followOutput={isAtBottom => (isAtBottom ? 'auto' : false)}
-          firstItemIndex={Math.max(0, firstItemIndex)}
-          className="flex-1"
-        />
-      </Column>
+      <Virtuoso
+        alignToBottom
+        context={{ channelName }}
+        components={components}
+        data={messages}
+        itemContent={renderItem}
+        initialTopMostItemIndex={messages.length - 1}
+        followOutput={isAtBottom => (isAtBottom ? 'auto' : false)}
+        firstItemIndex={Math.max(0, firstItemIndex)}
+        className="flex-1 "
+        style={{   height: '100%' }}
+      />
     </Column>
   );
 };
