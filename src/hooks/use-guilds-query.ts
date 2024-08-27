@@ -4,7 +4,7 @@ import { type Guild, guildsForMember } from '@/lib/db/queries/guild';
 
 export const guildsQueryKey = ['guilds'];
 
-interface GuildsData {
+export interface GuildsData {
   guild: Guild;
 }
 

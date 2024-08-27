@@ -31,7 +31,7 @@ export const GuildSidebar = ({ guildId, userId }: GuildSidebarProps) => {
         <Row className="justify-between center-v">
           <Label className="text-channel-icon">Text Channels</Label>
 
-          <CreateChannelButton guild={guild} />
+          {guild.ownerId === userId ? <CreateChannelButton guild={guild} /> : null}
         </Row>
 
         {channels?.map(ch => <GuildChannel channel={ch} key={ch.id} />)}

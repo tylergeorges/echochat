@@ -127,3 +127,7 @@ export const leaveGuild = async (guildId: string, memberId: string) => {
     .delete(guildMembers)
     .where(and(eq(guildMembers.memberId, memberId), eq(guildMembers.guildId, guildId)));
 };
+
+export const deleteGuild = async (guildId: string, ownerId: string) => {
+  await db.delete(guilds).where(and(eq(guilds.id, guildId), eq(guilds.ownerId, ownerId)));
+};

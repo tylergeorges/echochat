@@ -3,6 +3,7 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { useGuildsQuery } from '@/hooks/use-guilds-query';
+import { useGuildMemberSubscription } from '@/hooks/use-guild-member-subscription';
 import type { User } from '@/lib/db/schema/users';
 
 import { CreateGuildButton } from '@/components/create-guild-button';
@@ -15,6 +16,8 @@ interface GuildsProps {
 
 export const Guilds = ({ user }: GuildsProps) => {
   const { data: guilds } = useSuspenseQuery(useGuildsQuery(user.id));
+
+  useGuildMemberSubscription(user.id);
 
   return (
     <aside className="z-0 mb-0 mt-6 flex w-[72px] flex-col space-y-2 overflow-y-auto center-h md:mb-6">

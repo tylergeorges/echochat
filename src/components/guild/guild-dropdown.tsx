@@ -20,6 +20,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Icons } from '@/components/icons';
 import { InviteModal } from '@/components/modals/invite-modal';
+import { useDeleteGuildMutation } from '@/hooks/use-delete-guild-mutation';
 
 interface GuildDropdownProps {
   guild: Guild;
@@ -28,8 +29,10 @@ interface GuildDropdownProps {
 export const GuildDropdown = ({ guild }: GuildDropdownProps) => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
-  const leaveGuildMutation = useLeaveGuildMutation(guild.id);
   const queryClient = useQueryClient();
+
+  const leaveGuildMutation = useLeaveGuildMutation(guild.id);
+  const deleteGuildMutation = useDeleteGuildMutation(guild.id);
 
   const openInviteModal = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -48,8 +51,6 @@ export const GuildDropdown = ({ guild }: GuildDropdownProps) => {
 
     leaveGuildMutation.mutate(user.id, {
       onSettled: () => {
-        console.log('settled');
-
         queryClient.invalidateQueries({
           queryKey: guildsQueryKey
         });
@@ -60,20 +61,22 @@ export const GuildDropdown = ({ guild }: GuildDropdownProps) => {
   };
 
   const deleteGuild = async () => {
-    // const user = await getUser();
-    // if (!user) return;
-    // leaveGuildMutation.mutate(user.id, {
-    //   onSettled: () => {
-    //     queryClient.invalidateQueries({
-    //       queryKey: guildsQueryKey
-    //     });
-    //   },
-    //   onSuccess: () => {
-    //     queryClient.invalidateQueries({
-    //       queryKey: guildsQueryKey
-    //     });
-    //   }
-    // });
+    const user = await getUser();
+
+    if (!user || user.id !== guild.ownerId) return;
+
+    deleteGuildMutation.mutate(user.id, {
+      onSettled: () => {
+        queryClient.invalidateQueries({
+          queryKey: guildsQueryKey
+        });
+      },
+      onSuccess: () => {
+        queryClient.invalidateQueries({
+          queryKey: guildsQueryKey
+        });
+      }
+    });
   };
 
   return (

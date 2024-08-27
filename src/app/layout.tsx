@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { Toaster } from 'sonner';
-import "overlayscrollbars/overlayscrollbars.css";
 import './globals.css';
 
 import { siteConfig } from '@/config/site';
