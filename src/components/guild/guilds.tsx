@@ -1,6 +1,6 @@
 'use client';
 
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { useGuildsQuery } from '@/hooks/use-guilds-query';
 import type { User } from '@/lib/db/schema/users';
@@ -14,9 +14,7 @@ interface GuildsProps {
 }
 
 export const Guilds = ({ user }: GuildsProps) => {
-  const { data } = useQuery(useGuildsQuery(user.id));
-
-  const guilds = data ?? [];
+  const { data: guilds } = useSuspenseQuery(useGuildsQuery(user.id));
 
   return (
     <aside className="z-0 mb-0 mt-6 flex w-[72px] flex-col space-y-2 overflow-y-auto center-h md:mb-6">

@@ -1,44 +1,33 @@
 'use client';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
 import { guildsQueryKey } from '@/hooks/use-guilds-query';
-import { type Guild, insertGuild } from '@/lib/db/queries/guild';
+import { type Guild, leaveGuild } from '@/lib/db/queries/guild';
 
-export const useCreateGuildMutation = () => {
+export const useLeaveGuildMutation = (guildId: string) => {
   const queryClient = useQueryClient();
+  const router = useRouter();
 
-  const queryKey = [...guildsQueryKey];
+  const queryKey = guildsQueryKey;
 
   return useMutation({
-    mutationFn: async ({
-      icon,
-      name,
-      ownerId,
-      id
-    }: {
-      name: string;
-      ownerId: string;
-      icon: string;
-      id: string;
-    }) => {
-      return insertGuild({
-        name: name,
-        ownerId: ownerId,
-        icon: icon,
-        id
-      });
+    mutationFn: async (memberId: string) => {
+      return leaveGuild(guildId, memberId);
     },
 
-    onMutate: async guild => {
+    onMutate: async () => {
       await queryClient.cancelQueries({ queryKey });
 
       const prevGuilds = queryClient.getQueryData<{ guild: Guild }[]>(queryKey) ?? [];
 
-      queryClient.setQueriesData<{ guild: Guild }[]>({ queryKey }, guilds => {
-        return [...(guilds || []), { guild }] as { guild: Guild }[];
+      queryClient.setQueryData<{ guild: Guild }[]>(queryKey, guilds => {
+        return (guilds ?? []).filter(data => data.guild.id !== guildId);
       });
+
+      router.push('/');
 
       return { prevGuilds };
     },

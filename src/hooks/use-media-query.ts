@@ -33,9 +33,11 @@ export function useMediaQuery(
   const handleChange = () => {
     const newMatches = getMatches(query);
 
-    if (matches === newMatches) return;
+    setMatches(prevMatches => {
+      if (newMatches === prevMatches) return prevMatches;
 
-    setMatches(newMatches);
+      return newMatches;
+    });
   };
 
   useIsomorphicLayoutEffect(() => {

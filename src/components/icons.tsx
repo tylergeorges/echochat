@@ -1,3 +1,5 @@
+import { forwardRef } from 'react';
+
 interface IconProps extends React.SVGAttributes<SVGElement> {}
 
 export const Icons = {
@@ -38,7 +40,7 @@ export const Icons = {
       <line x1="4" x2="20" y1="18" y2="18" />
     </svg>
   ),
-  Crown: ({ ...props }: IconProps) => (
+  Crown: forwardRef<SVGSVGElement, IconProps>(({ ...props }, ref) => (
     <svg
       aria-hidden="false"
       role="img"
@@ -46,13 +48,14 @@ export const Icons = {
       fill="none"
       viewBox="1.46 1.99 20.73 20.01"
       {...props}
+      ref={ref}
     >
       <path
         fill="currentColor"
         d="M5 18a1 1 0 0 0-1 1 3 3 0 0 0 3 3h10a3 3 0 0 0 3-3 1 1 0 0 0-1-1H5ZM3.04 7.76a1 1 0 0 0-1.52 1.15l2.25 6.42a1 1 0 0 0 .94.67h14.55a1 1 0 0 0 .95-.71l1.94-6.45a1 1 0 0 0-1.55-1.1l-4.11 3-3.55-5.33.82-.82a.83.83 0 0 0 0-1.18l-1.17-1.17a.83.83 0 0 0-1.18 0l-1.17 1.17a.83.83 0 0 0 0 1.18l.82.82-3.61 5.42-4.41-3.07Z"
       />
     </svg>
-  ),
+  )),
   DownArrow: ({ ...props }: IconProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"

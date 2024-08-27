@@ -1,20 +1,26 @@
 import { Drawer } from 'vaul';
 
 import { useDrawerStore } from '@/stores/drawer-store';
+import { cn } from '@/lib/utils';
 
-export const ChatDrawer = ({ children }: React.PropsWithChildren) => {
+export const ChatDrawer = ({ children }: React.PropsWithChildren<{ disabled?: boolean }>) => {
   const { isOpen, setIsOpen } = useDrawerStore();
 
   return (
     <Drawer.Root
-      // closeThreshold={0.1}
+      modal={false}
       open={isOpen}
       onOpenChange={setIsOpen}
       direction="right"
       noBodyStyles
+      disablePreventScroll
     >
       <Drawer.Portal>
-        <Drawer.Content className="fixed z-50 size-full flex-1 overflow-hidden bg-background vertical">
+        <Drawer.Content
+          className={cn(
+            'fixed z-50 size-full flex-1 overflow-hidden bg-background outline-none vertical'
+          )}
+        >
           {children}
         </Drawer.Content>
       </Drawer.Portal>

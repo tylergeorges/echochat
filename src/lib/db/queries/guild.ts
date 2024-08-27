@@ -121,3 +121,9 @@ export const addMemberToGuild = async (inviteCode: string, memberId: string) => 
 
   return getGuildInfo(guildMember.guildId, guildMember.memberId);
 };
+
+export const leaveGuild = async (guildId: string, memberId: string) => {
+  await db
+    .delete(guildMembers)
+    .where(and(eq(guildMembers.memberId, memberId), eq(guildMembers.guildId, guildId)));
+};

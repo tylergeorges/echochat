@@ -1,9 +1,14 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 
 import type { Guild } from '@/lib/db/queries/guild';
 import { modal } from '@/lib/modal/system';
+import { useLeaveGuildMutation } from '@/hooks/use-leave-guild-mutation';
+import { getUser } from '@/lib/supabase/get-user';
+import { guildsQueryKey } from '@/hooks/use-guilds-query';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -21,7 +26,10 @@ interface GuildDropdownProps {
 }
 
 export const GuildDropdown = ({ guild }: GuildDropdownProps) => {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
+  const leaveGuildMutation = useLeaveGuildMutation(guild.id);
+  const queryClient = useQueryClient();
 
   const openInviteModal = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -31,6 +39,41 @@ export const GuildDropdown = ({ guild }: GuildDropdownProps) => {
     setOpen(false);
 
     modal(closeModal => <InviteModal inviteCode={guild.inviteCode} closeModal={closeModal} />);
+  };
+
+  const leaveGuild = async () => {
+    const user = await getUser();
+
+    if (!user) return;
+
+    leaveGuildMutation.mutate(user.id, {
+      onSettled: () => {
+        console.log('settled');
+
+        queryClient.invalidateQueries({
+          queryKey: guildsQueryKey
+        });
+
+        router.push('/');
+      }
+    });
+  };
+
+  const deleteGuild = async () => {
+    // const user = await getUser();
+    // if (!user) return;
+    // leaveGuildMutation.mutate(user.id, {
+    //   onSettled: () => {
+    //     queryClient.invalidateQueries({
+    //       queryKey: guildsQueryKey
+    //     });
+    //   },
+    //   onSuccess: () => {
+    //     queryClient.invalidateQueries({
+    //       queryKey: guildsQueryKey
+    //     });
+    //   }
+    // });
   };
 
   return (
@@ -68,6 +111,7 @@ export const GuildDropdown = ({ guild }: GuildDropdownProps) => {
           color="destructive"
           fill
           className="justify-between px-2 transition-none"
+          onClick={guild.isOwner ? deleteGuild : leaveGuild}
         >
           {guild.isOwner ? 'Delete Guild' : 'Leave Guild'}
 

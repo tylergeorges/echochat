@@ -36,7 +36,7 @@ export const CreateGuildModal = ({ user, closeModal }: CreateGuildModalProps) =>
   const [guildIconFile, setGuildIconFile] = useState<File | null>(null);
 
   const queryClient = useQueryClient();
-  const createGuildMutation = useCreateGuildMutation(user.id);
+  const createGuildMutation = useCreateGuildMutation();
 
   const supabase = useSupabase();
 
@@ -80,7 +80,7 @@ export const CreateGuildModal = ({ user, closeModal }: CreateGuildModalProps) =>
     //   icon: data.fullPath
     // });
 
-    const queryKey = [...guildsQueryKey, user.id];
+    const queryKey = [...guildsQueryKey];
 
     createGuildMutation.mutate(guild, {
       onSettled: () => {

@@ -1,10 +1,12 @@
 'use client';
 
+import { Drawer } from 'vaul';
 import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { useChannelQuery } from '@/hooks/use-channel-query';
 import { useGuildQuery } from '@/hooks/use-guild-query';
 import { useMediaQuery } from '@/hooks/use-media-query';
+import type { Guild } from '@/lib/db/queries/guild';
 import type { User } from '@/lib/db/schema';
 
 import { ChatDrawer, ChatDrawerTrigger } from '@/components/chat/chat-drawer';
@@ -21,10 +23,12 @@ interface ChatProps {
 }
 
 export const Chat = ({ channelId, guildId, currentUser }: ChatProps) => {
-  const isMobile = useMediaQuery('(max-width: 768px)');
+  const isMobile = useMediaQuery('screen and (max-width: 768px)');
 
   const { data: channel } = useSuspenseQuery(useChannelQuery(channelId));
-  const { data: guild } = useSuspenseQuery(useGuildQuery(guildId, currentUser.id));
+  const { data } = useSuspenseQuery(useGuildQuery(guildId, currentUser.id));
+
+  const guild = data as Guild;
 
   if (isMobile) {
     return (
@@ -36,10 +40,12 @@ export const Chat = ({ channelId, guildId, currentUser }: ChatProps) => {
             </ChatDrawerTrigger>
 
             <Icons.TextChannelHash className="mr-2 text-channel-icon" />
-            {channel?.name}
+
+            <Drawer.Title>{channel?.name}</Drawer.Title>
           </ChatHeader>
 
           <ChatMessages guild={guild} channel={channel} channelId={channel.id} />
+
           <ChatInput channel={channel} />
         </ChatDrawer>
       </Column>
@@ -50,10 +56,12 @@ export const Chat = ({ channelId, guildId, currentUser }: ChatProps) => {
     <Column className="relative size-full flex-1 p-4 py-6 pr-0">
       <ChatHeader>
         <Icons.TextChannelHash className="mr-2 text-channel-icon" />
+
         {channel.name}
       </ChatHeader>
 
       <ChatMessages guild={guild} channel={channel} channelId={channel.id} />
+
       <ChatInput channel={channel} />
     </Column>
   );
