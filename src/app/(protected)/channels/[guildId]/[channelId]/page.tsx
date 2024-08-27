@@ -17,7 +17,9 @@ import { Guilds } from '@/components/guild/guilds';
 export default async function ChannelPage({
   params
 }: PageProps<{ channelId: string; guildId: string }>) {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: { queries: { refetchOnWindowFocus: false } }
+  });
   const user = await getUser();
 
   if (!user) redirect('/login');

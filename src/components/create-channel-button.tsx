@@ -5,6 +5,7 @@ import { modal } from '@/lib/modal/system';
 
 import { Icons } from '@/components/icons';
 import { CreateChannelModal } from '@/components/modals/create-channel-modal';
+import { ActionTooltip } from '@/components/ui/action-tooltip';
 
 interface CreateChannelButtonProps {
   guild: Guild;
@@ -18,12 +19,14 @@ export const CreateChannelButton = ({ guild }: CreateChannelButtonProps) => {
   };
 
   return (
-    <button
-      type="button"
-      className="text-channel-icon transition hover:text-interactive-hover"
-      onClick={openChannelModal}
-    >
-      <Icons.Plus className="size-4" />
-    </button>
+    <ActionTooltip label="Create Channel" align="center">
+      <button
+        type="button"
+        className="text-channel-icon transition hover:text-interactive-hover"
+        onClick={openChannelModal}
+      >
+        <Icons.Plus className="size-4" />
+      </button>
+    </ActionTooltip>
   );
 };

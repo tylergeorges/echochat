@@ -49,7 +49,7 @@ export const AvatarImage = forwardRef<HTMLImageElement, AvatarImageProps>(
       height={height}
       unoptimized
       {...props}
-      className={cn('aspect-square size-full', className)}
+      className={cn('aspect-square size-full select-none pointer-events-none', className)}
       ref={ref}
     />
   )

@@ -53,7 +53,7 @@ export const UserButton = ({ user }: UserButtonProps) => {
   };
 
   return (
-    <DropdownMenu>
+    <DropdownMenu modal={false}>
       <DropdownMenuTrigger>
         {user ? (
           <UserAvatar user={user} size="xl" />

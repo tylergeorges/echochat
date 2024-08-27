@@ -34,7 +34,7 @@ export const GuildDropdown = ({ guild }: GuildDropdownProps) => {
   };
 
   return (
-    <DropdownMenu open={open} onOpenChange={setOpen}>
+    <DropdownMenu open={open} onOpenChange={setOpen} modal={false}>
       <DropdownMenuTrigger className="h-12 justify-between overflow-hidden p-3 outline-none transition horizontal center-v hover:bg-interactive-hover/10">
         <h1 className="overflow-hidden text-ellipsis whitespace-nowrap text-left font-semibold">
           {guild.name}

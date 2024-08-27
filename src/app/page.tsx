@@ -7,7 +7,10 @@ import { getUser } from '@/lib/supabase/get-user';
 import { Guilds } from '@/components/guild/guilds';
 
 export default async function Home() {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: { queries: { refetchOnWindowFocus: false } }
+  });
+  
   const user = await getUser();
 
   if (!user) {

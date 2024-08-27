@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 
 const buttonVariants = tv({
   base: cn(
-    'relative inline-flex items-center whitespace-nowrap rounded-md px-4 py-2 text-center text-sm transition duration-300 ease-out',
+    'relative inline-flex items-center whitespace-nowrap rounded px-4 py-2 text-center text-sm transition duration-300 ease-out',
     'outline-none ring-border focus-visible:ring-2',
     'items-center justify-center overflow-hidden align-middle font-medium disabled:cursor-not-allowed disabled:opacity-50'
   ),
