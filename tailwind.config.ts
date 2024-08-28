@@ -3,7 +3,10 @@ import type { Config } from 'tailwindcss';
 import { fontFamily } from 'tailwindcss/defaultTheme';
 
 import TailwindAnimate from 'tailwindcss-animate';
+import TailwindTypography from '@tailwindcss/typography';
+import TailwindAnimated from 'tailwindcss-animated';
 import { TailwindChildren, TailwindFlexible } from './src/lib/tailwind/tailwind-plugins';
+
 import { generateScreens } from './src/lib/tailwind/tailwind-screens';
 
 const config: Config = {
@@ -22,6 +25,44 @@ const config: Config = {
     },
 
     extend: {
+      typography: () => ({
+        DEFAULT: {
+          css: {
+            '--tw-prose-body': 'rgb(var(--foreground) / 80%)',
+            '--tw-prose-headings': 'rgb(var(--foreground))',
+            '--tw-prose-lead': 'rgb(var(--foreground))',
+            '--tw-prose-links': 'rgb(var(--foreground))',
+            '--tw-prose-bold': 'rgb(var(--foreground))',
+            '--tw-prose-counters': 'rgb(var(--muted-foreground))',
+            '--tw-prose-bullets': 'rgb(var(--muted-foreground))',
+            '--tw-prose-hr': 'rgb(var(--border))',
+            '--tw-prose-quotes': 'rgb(var(--foreground))',
+            '--tw-prose-quote-borders': 'rgb(var(--border))',
+            '--tw-prose-captions': 'rgb(var(--foreground))',
+            '--tw-prose-code': 'rgb(var(--foreground))',
+            '--tw-prose-pre-code': 'rgb(var(--foreground))',
+            '--tw-prose-pre-bg': 'rgb(var(--foreground))',
+            '--tw-prose-th-borders': 'rgb(var(--foreground))',
+            '--tw-prose-td-borders': 'rgb(var(--foreground))',
+            '--tw-prose-invert-body': 'rgb(var(--foreground))',
+            '--tw-prose-invert-headings': 'rgb(var(--foreground))',
+            '--tw-prose-invert-lead': 'rgb(var(--foreground))',
+            '--tw-prose-invert-links': 'rgb(var(--foreground))',
+            '--tw-prose-invert-bold': 'rgb(var(--foreground))',
+            '--tw-prose-invert-counters': 'rgb(var(--foreground))',
+            '--tw-prose-invert-bullets': 'rgb(var(--foreground))',
+            '--tw-prose-invert-hr': 'rgb(var(--foreground))',
+            '--tw-prose-invert-quotes': 'rgb(var(--foreground))',
+            '--tw-prose-invert-quote-borders': 'rgb(var(--foreground))',
+            '--tw-prose-invert-captions': 'rgb(var(--foreground))',
+            '--tw-prose-invert-code': 'rgb(var(--foreground))',
+            '--tw-prose-invert-pre-code': 'rgb(var(--foreground))',
+            '--tw-prose-invert-pre-bg': 'rgb(0 0 0 / 50%)',
+            '--tw-prose-invert-th-borders': 'rgb(var(--foreground))',
+            '--tw-prose-invert-td-borders': 'rgb(var(--foreground))'
+          }
+        }
+      }),
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
@@ -109,7 +150,13 @@ const config: Config = {
     }
   },
 
-  plugins: [TailwindFlexible, TailwindChildren, TailwindAnimate]
+  plugins: [
+    TailwindFlexible,
+    TailwindAnimated,
+    TailwindTypography,
+    TailwindChildren,
+    TailwindAnimate
+  ]
 };
 
 export default withTV(config);

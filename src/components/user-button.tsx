@@ -42,8 +42,9 @@ export const UserButton = ({ user }: UserButtonProps) => {
 
     await supabase.auth.signOut();
 
-    router.push('/');
     router.refresh();
+
+    router.push('/login');
   };
 
   const login = (e: React.SyntheticEvent) => {
