@@ -25,7 +25,6 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { UploadArea } from '@/components/upload-area';
-import { cn } from '@/lib/utils';
 
 interface CreateGuildModalProps {
   user: User;
@@ -71,6 +70,8 @@ export const CreateGuildModal = ({ user, closeModal }: CreateGuildModalProps) =>
         toast.error('Error uploading guild icon. Try again');
       }
 
+      setIsSubmitting(false);
+
       return;
     }
 
@@ -103,6 +104,8 @@ export const CreateGuildModal = ({ user, closeModal }: CreateGuildModalProps) =>
   };
 
   const handleImageUpload = (file: File) => {
+    if (isSubmitting) return;
+
     const reader = new FileReader();
 
     if (!file.type.includes('image')) return;
