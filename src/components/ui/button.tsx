@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 
 const buttonVariants = tv({
   base: cn(
-    'relative inline-flex items-center whitespace-nowrap rounded px-4 py-2 text-center text-sm transition duration-300 ease-out',
+    'relative inline-flex cursor-pointer items-center whitespace-nowrap rounded px-4 py-2 text-center text-sm transition duration-300 ease-out',
     'outline-none ring-border focus-visible:ring-2',
     'items-center justify-center overflow-hidden align-middle font-medium disabled:cursor-not-allowed disabled:opacity-50'
   ),
@@ -115,6 +115,19 @@ const LoadingEllipsis = () => {
   );
 };
 
+interface ButtonStatusLabelProps {
+  loading: boolean;
+  className?: string;
+}
+
+export const ButtonStatusLabel = ({
+  loading,
+  children,
+  className
+}: React.PropsWithChildren<ButtonStatusLabelProps>) => {
+  return <span className={cn(className, loading && 'invisible')}>{children}</span>;
+};
+
 export const Button = forwardRef<HTMLButtonElement, React.PropsWithChildren<ButtonProps>>(
   (
     {
@@ -146,7 +159,7 @@ export const Button = forwardRef<HTMLButtonElement, React.PropsWithChildren<Butt
       disabled={loading || disabled}
       ref={ref}
     >
-      <span className={cn(loading && 'opacity-0')}>{children}</span>
+      {children}
 
       {loading && <LoadingEllipsis />}
     </button>
@@ -174,7 +187,7 @@ export const ButtonLink = forwardRef<HTMLAnchorElement, React.PropsWithChildren<
           round,
           color,
           size,
-          className: `cursor-pointer ${className}`
+          className: ` ${className}`
         })}
         ref={ref}
       >

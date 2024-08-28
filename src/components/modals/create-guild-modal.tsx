@@ -13,7 +13,7 @@ import { generateSnowflake } from '@/lib/snowflake';
 
 import { Icons } from '@/components/icons';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
+import { Button, ButtonStatusLabel } from '@/components/ui/button';
 import {
   DialogBody,
   DialogContent,
@@ -25,6 +25,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { UploadArea } from '@/components/upload-area';
+import { cn } from '@/lib/utils';
 
 interface CreateGuildModalProps {
   user: User;
@@ -34,6 +35,7 @@ interface CreateGuildModalProps {
 export const CreateGuildModal = ({ user, closeModal }: CreateGuildModalProps) => {
   const [dataURL, setDataURL] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
   const [guildIconFile, setGuildIconFile] = useState<File | null>(null);
 
   const queryClient = useQueryClient();
@@ -111,6 +113,10 @@ export const CreateGuildModal = ({ user, closeModal }: CreateGuildModalProps) =>
     reader.onloadend = () => {
       if (typeof reader.result !== 'string') return;
 
+      if (isDisabled) {
+        setIsDisabled(false);
+      }
+
       setDataURL(reader.result);
     };
   };
@@ -141,7 +147,7 @@ export const CreateGuildModal = ({ user, closeModal }: CreateGuildModalProps) =>
                 <>
                   <Icons.Attachment />
 
-                  <Button>Choose File</Button>
+                  <Button loading={isSubmitting}>Choose File</Button>
                 </>
               )}
             </UploadArea>
@@ -163,8 +169,8 @@ export const CreateGuildModal = ({ user, closeModal }: CreateGuildModalProps) =>
         </DialogBody>
 
         <DialogFooter>
-          <Button className="w-full" type="submit" loading={isSubmitting}>
-            Create Guild
+          <Button disabled={isDisabled} className="w-full" type="submit" loading={isSubmitting}>
+            <ButtonStatusLabel loading={isSubmitting}>Create Guild</ButtonStatusLabel>
           </Button>
         </DialogFooter>
       </form>

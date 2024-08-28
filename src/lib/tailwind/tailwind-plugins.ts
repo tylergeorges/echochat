@@ -4,6 +4,7 @@ export const TailwindChildren = plugin(({ addVariant }) => {
   addVariant('child', '& > *');
   addVariant('child-hover', '& > *:hover');
   addVariant('child-group-hover', '& > *:group-hover');
+  addVariant('not-last', '&:not(:last-child)');
 });
 
 export const TailwindFlexible = plugin(({ addUtilities }) => {
