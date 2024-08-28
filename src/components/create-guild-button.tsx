@@ -1,7 +1,7 @@
 'use client';
 
 import type { User } from '@/lib/db/schema/users';
-import { modal } from '@/lib/modal/system';
+import { Modal, modal } from '@/lib/modal/system';
 
 import { Icons } from '@/components/icons';
 import { CreateGuildModal } from '@/components/modals/create-guild-modal';
@@ -13,7 +13,10 @@ interface CreateGuildButtonProps {
 
 export const CreateGuildButton = ({ user }: CreateGuildButtonProps) => {
   const openGuildForm = () => {
-    modal(closeModal => <CreateGuildModal user={user} closeModal={closeModal} />, 10);
+    modal(
+      closeModal => <CreateGuildModal user={user} closeModal={closeModal} />,
+      Modal.CreateGuildModal
+    );
   };
 
   return (

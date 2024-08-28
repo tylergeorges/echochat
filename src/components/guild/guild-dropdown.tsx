@@ -5,7 +5,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 
 import type { Guild } from '@/lib/db/queries/guild';
-import { modal } from '@/lib/modal/system';
+import { Modal, modal } from '@/lib/modal/system';
 import { useLeaveGuildMutation } from '@/hooks/use-leave-guild-mutation';
 import { getUser } from '@/lib/supabase/get-user';
 import { guildsQueryKey } from '@/hooks/use-guilds-query';
@@ -20,7 +20,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Icons } from '@/components/icons';
 import { InviteModal } from '@/components/modals/invite-modal';
-import { useDeleteGuildMutation } from '@/hooks/use-delete-guild-mutation';
+import { DeleteGuildModal } from '@/components/modals/delete-guild-modal';
 
 interface GuildDropdownProps {
   guild: Guild;
@@ -32,7 +32,6 @@ export const GuildDropdown = ({ guild }: GuildDropdownProps) => {
   const queryClient = useQueryClient();
 
   const leaveGuildMutation = useLeaveGuildMutation(guild.id);
-  const deleteGuildMutation = useDeleteGuildMutation(guild.id);
 
   const openInviteModal = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -41,10 +40,13 @@ export const GuildDropdown = ({ guild }: GuildDropdownProps) => {
 
     setOpen(false);
 
-    modal(closeModal => <InviteModal inviteCode={guild.inviteCode} closeModal={closeModal} />);
+    modal(
+      closeModal => <InviteModal inviteCode={guild.inviteCode} closeModal={closeModal} />,
+      Modal.InviteModal
+    );
   };
 
-  const leaveGuild = async () => {
+  const openLeaveGuildModal = async () => {
     const user = await getUser();
 
     if (!user) return;
@@ -60,28 +62,16 @@ export const GuildDropdown = ({ guild }: GuildDropdownProps) => {
     });
   };
 
-  const deleteGuild = async () => {
-    const user = await getUser();
-
-    if (!user || user.id !== guild.ownerId) return;
-
-    deleteGuildMutation.mutate(user.id, {
-      onSettled: () => {
-        queryClient.invalidateQueries({
-          queryKey: guildsQueryKey
-        });
-      },
-      onSuccess: () => {
-        queryClient.invalidateQueries({
-          queryKey: guildsQueryKey
-        });
-      }
-    });
+  const openDeleteGuildModal = async () => {
+    modal(
+      closeModal => <DeleteGuildModal closeModal={closeModal} guild={guild} />,
+      Modal.DeleteGuildModal
+    );
   };
 
   return (
     <DropdownMenu open={open} onOpenChange={setOpen} modal={false}>
-      <DropdownMenuTrigger className="h-12 justify-between overflow-hidden p-3 outline-none transition horizontal center-v hover:bg-interactive-hover/10">
+      <DropdownMenuTrigger className="h-12 justify-between overflow-hidden p-3 px-4 outline-none transition horizontal center-v hover:bg-interactive-hover/10">
         <h1 className="overflow-hidden text-ellipsis whitespace-nowrap text-left font-semibold">
           {guild.name}
         </h1>
@@ -114,7 +104,7 @@ export const GuildDropdown = ({ guild }: GuildDropdownProps) => {
           color="destructive"
           fill
           className="justify-between px-2 transition-none"
-          onClick={guild.isOwner ? deleteGuild : leaveGuild}
+          onClick={guild.isOwner ? openDeleteGuildModal : openLeaveGuildModal}
         >
           {guild.isOwner ? 'Delete Guild' : 'Leave Guild'}
 

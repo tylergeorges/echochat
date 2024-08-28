@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 
 const buttonVariants = tv({
   base: cn(
-    'relative inline-flex cursor-pointer items-center whitespace-nowrap rounded px-4 py-2 text-center text-sm transition duration-300 ease-out',
+    'relative inline-flex cursor-pointer items-center whitespace-nowrap rounded text-center text-sm transition duration-300 ease-out',
     'outline-none ring-border focus-visible:ring-2',
     'items-center justify-center overflow-hidden align-middle font-medium disabled:cursor-not-allowed disabled:opacity-50'
   ),
@@ -16,13 +16,13 @@ const buttonVariants = tv({
       default: 'bg-primary text-white hover:bg-primary/90',
       outline: 'hover:bg-accent hover:text-accent-foreground border border-input',
       secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
-      destructive: 'text-destructive-foreground bg-destructive hover:bg-destructive/90',
+      destructive: 'bg-destructive text-white hover:bg-destructive/60 active:bg-destructive/40',
       success: 'bg-success text-white hover:bg-success/90'
     },
 
     variant: {
       default: '',
-      link: 'bg-transparent hover:underline',
+      link: 'bg-transparent hover:bg-transparent hover:underline',
       outline:
         'border border-border bg-transparent text-primary hover:bg-secondary hover:text-secondary-foreground',
       ghost: 'hover:bg-accent border-none bg-transparent text-primary',
@@ -32,7 +32,7 @@ const buttonVariants = tv({
     size: {
       xs: 'w-[52px] min-w-[52px] gap-1 p-1 text-xs',
       sm: 'h-9 gap-1 px-3 py-2 text-xs',
-      md: 'h-10 gap-2 px-6 py-3 text-sm',
+      md: 'h-10 gap-2 px-4 py-0.5 text-sm',
       lg: 'h-11 gap-3 px-7 py-3.5 text-base',
       xl: 'h-14 gap-2 rounded-lg px-6 text-base',
       icon: 'size-10 p-0'
@@ -107,7 +107,7 @@ const ButtonLoadingDot = () => (
 
 const LoadingEllipsis = () => {
   return (
-    <div className="child:animate-ellipsis absolute flex h-full w-full gap-1 center [&>*:nth-child(2)]:delay-200 [&>*:nth-child(3)]:delay-100">
+    <div className="absolute flex h-full w-full gap-1 center child:animate-ellipsis [&>*:nth-child(2)]:delay-200 [&>*:nth-child(3)]:delay-100">
       <ButtonLoadingDot />
       <ButtonLoadingDot />
       <ButtonLoadingDot />

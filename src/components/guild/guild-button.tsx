@@ -25,7 +25,10 @@ export const GuildButton = ({ guild }: GuildButtonProps) => {
 
     if (isActive) return;
 
-    router.push(`/channels/${guild.id}/${guild.defaultChannelId}`);
+    const guildUrl = `/channels/${guild.id}/${guild.defaultChannelId}`;
+
+    router.prefetch(guildUrl);
+    router.push(guildUrl);
   };
 
   return (

@@ -37,7 +37,7 @@ export const DialogContent = forwardRef<
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        'relative max-w-lg rounded-xl border-none bg-card vertical zoom-in-[200ms]',
+        'relative max-w-md rounded-xl border-none bg-card vertical zoom-in-[200ms]',
         '] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
         className
       )}
@@ -61,7 +61,7 @@ export const DialogHeader = ({ className, ...props }: React.HTMLAttributes<HTMLD
 DialogHeader.displayName = 'DialogHeader';
 
 export const DialogFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
-  <CardFooter className={cn('w-full px-6 py-4 center', className)} {...props} />
+  <CardFooter className={cn('w-full px-6 py-4', className)} {...props} />
 );
 
 DialogFooter.displayName = 'DialogFooter';
@@ -72,7 +72,7 @@ export const DialogTitle = forwardRef<
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Title
     ref={ref}
-    className={cn('text-center text-2xl font-bold tracking-tight', className)}
+    className={cn('text-2xl font-semibold tracking-tight', className)}
     {...props}
   />
 ));
@@ -84,7 +84,7 @@ export const DialogDescription = forwardRef<
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Description
     ref={ref}
-    className={cn('m-0 text-center text-sm text-muted-foreground', className)}
+    className={cn('m-0 text-sm text-muted-foreground', className)}
     {...props}
   />
 ));

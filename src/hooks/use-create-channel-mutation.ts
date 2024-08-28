@@ -20,7 +20,9 @@ export const useCreateChannelMutation = (guildId: string) => {
 
       const prevChannels = queryClient.getQueryData<Channel[]>(channelsKey) ?? [];
 
-      queryClient.setQueryData(channelsKey, () => [...prevChannels, channel]);
+      queryClient.setQueryData<
+      Channel[]
+      >(channelsKey, channels => [...(channels || prevChannels), channel as Channel]);
 
       return { prevChannels };
     },

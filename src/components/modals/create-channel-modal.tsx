@@ -4,6 +4,7 @@ import { channelsQueryKey } from '@/hooks/use-channels-query';
 import { useCreateChannelMutation } from '@/hooks/use-create-channel-mutation';
 import type { Guild } from '@/lib/db/queries/guild';
 import { getAuthUser } from '@/lib/supabase/get-user';
+import { generateUuid } from '@/lib/utils';
 
 import { Icons } from '@/components/icons';
 import { Button } from '@/components/ui/button';
@@ -43,18 +44,23 @@ export const CreateChannelModal = ({ guild, closeModal }: ChannelFormProps) => {
 
     if (!userData || !userData.user) return;
 
-    closeModal();
-
+    
+    closeModal()
+    
     createChannelMutation.mutate(
       {
         guildId: guild.id,
-        name: channelName
+        name: channelName,
+        id: generateUuid()
       },
+      
       {
         onSettled: () => {
           queryClient.invalidateQueries({
             queryKey: channelsKey
           });
+
+          
         },
 
         onSuccess: () => {

@@ -93,12 +93,6 @@ export const CreateGuildModal = ({ user, closeModal }: CreateGuildModalProps) =>
         closeModal();
 
         setIsSubmitting(false);
-      },
-
-      onSuccess: () => {
-        queryClient.invalidateQueries({
-          queryKey: queryKey
-        });
       }
     });
   };

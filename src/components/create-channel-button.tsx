@@ -1,7 +1,7 @@
 'use client';
 
 import type { Guild } from '@/lib/db/queries/guild';
-import { modal } from '@/lib/modal/system';
+import { Modal, modal } from '@/lib/modal/system';
 
 import { Icons } from '@/components/icons';
 import { CreateChannelModal } from '@/components/modals/create-channel-modal';
@@ -15,7 +15,10 @@ export const CreateChannelButton = ({ guild }: CreateChannelButtonProps) => {
   const openChannelModal = (e: React.SyntheticEvent) => {
     e.preventDefault();
 
-    modal(closeModal => <CreateChannelModal closeModal={closeModal} guild={guild} />, 20);
+    modal(
+      closeModal => <CreateChannelModal closeModal={closeModal} guild={guild} />,
+      Modal.CreateChannelModal
+    );
   };
 
   return (

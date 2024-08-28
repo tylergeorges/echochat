@@ -55,7 +55,7 @@ export const ChatMessages = ({ channelId, channel, guild }: ChatMessagesProps) =
         initialTopMostItemIndex={messages.length - 1}
         followOutput={isAtBottom => (isAtBottom ? 'auto' : false)}
         firstItemIndex={Math.max(0, firstItemIndex)}
-        className="flex-1"
+        className="flex-1 thin-scrollbar"
       />
     </Column>
   );

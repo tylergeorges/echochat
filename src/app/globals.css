@@ -4,9 +4,13 @@
 
 @layer base {
   :root {
-    --background: 22 22 22;
-    --background-secondary: 30 31 34;
+    --background: 49 51 56;
+    --background-secondary: 43 45 49;
     --background-tertiary: 30 31 34;
+
+    /* --background: 22 22 22;
+    --background-secondary: 30 31 34;
+    --background-tertiary: 30 31 34; */
 
     /* --modifier-selected: var(--foreground);
     --modifier-hover: 53 55 60;
@@ -30,7 +34,7 @@
     --muted: 51 51 51;
     --muted-foreground: 164 164 164;
 
-    --input: var(--background-secondary);
+    --input: 56 58 64;
     --input-form: 30 31 34;
 
     --channel-icon: 128 132 142;
@@ -46,7 +50,7 @@
 }
 
 .scrolltheme {
-  background-color: yellow
+  background-color: yellow;
 }
 
 .os-scrollbar-handle {
@@ -75,5 +79,26 @@
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .thin-scrollbar::-webkit-scrollbar {
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: rgb(var(--background-tertiary)) rgb(var(--background-tertiary) / 10%);
+  }
+
+  .thin-scrollbar {
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: rgb(var(--background-tertiary)) rgb(var(--background-tertiary) / 10%);
   }
 }

@@ -24,12 +24,12 @@ export const GuildSidebar = ({ guildId, userId }: GuildSidebarProps) => {
   if (!guild) return null;
 
   return (
-    <aside className="my-6 mb-0 w-full rounded-b-none rounded-tl-xl bg-background-secondary vertical md:mb-6 md:w-[240px] md:rounded-xl">
+    <aside className="w-full rounded-b-none rounded-tl-xl bg-background-secondary vertical md:w-[240px] md:rounded-none">
       <GuildDropdown guild={guild} />
 
-      <Column className="gap-2 px-3 pt-5 font-medium">
+      <Column className="gap-2 overflow-y-scroll no-scrollbar pb-4 pt-5 font-medium">
         <Row className="justify-between center-v">
-          <Label className="text-channel-icon">Text Channels</Label>
+          <Label className=" px-2 pl-4 text-channel-icon">Text Channels</Label>
 
           {guild.ownerId === userId ? <CreateChannelButton guild={guild} /> : null}
         </Row>
