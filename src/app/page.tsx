@@ -1,3 +1,5 @@
+'use server';
+
 import { HydrationBoundary, QueryClient, dehydrate } from '@tanstack/react-query';
 import { redirect } from 'next/navigation';
 
@@ -10,7 +12,7 @@ export default async function Home() {
   const queryClient = new QueryClient({
     defaultOptions: { queries: { refetchOnWindowFocus: false } }
   });
-  
+
   const user = await getUser();
 
   if (!user) {
