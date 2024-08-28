@@ -37,7 +37,7 @@ export const DialogContent = forwardRef<
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        'relative max-w-md rounded-xl border-none bg-card vertical zoom-in-[200ms]',
+        'relative max-w-md rounded-md border-none bg-card vertical zoom-in-[200ms]',
         '] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
         className
       )}
@@ -52,7 +52,7 @@ DialogContent.displayName = DialogPrimitive.Content.displayName;
 export const DialogHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
   <CardHeader
     className={cn(
-      'pointer-events-none mb-8 select-none space-y-1.5 p-4 px-6 pt-8 text-center vertical sm:text-left',
+      'pointer-events-none mb-8 select-none space-y-1.5 p-4 px-6 pt-5 text-center vertical sm:text-left',
       className
     )}
     {...props}
@@ -61,7 +61,7 @@ export const DialogHeader = ({ className, ...props }: React.HTMLAttributes<HTMLD
 DialogHeader.displayName = 'DialogHeader';
 
 export const DialogFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
-  <CardFooter className={cn('w-full px-6 py-4', className)} {...props} />
+  <CardFooter className={cn('w-full bg-background-secondary p-4 rounded-b-md', className)} {...props} />
 );
 
 DialogFooter.displayName = 'DialogFooter';
@@ -72,7 +72,7 @@ export const DialogTitle = forwardRef<
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Title
     ref={ref}
-    className={cn('text-2xl font-semibold tracking-tight', className)}
+    className={cn('text-xl font-semibold tracking-tight', className)}
     {...props}
   />
 ));
@@ -92,7 +92,7 @@ DialogDescription.displayName = DialogPrimitive.Description.displayName;
 
 export const DialogBody = forwardRef<React.ElementRef<'div'>, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
-    <CardContent ref={ref} className={cn('flex-1 px-6 center vertical', className)} {...props} />
+    <CardContent ref={ref} className={cn('flex-1 px-6 pb-8', className)} {...props} />
   )
 );
 DialogBody.displayName = 'DialogBody';

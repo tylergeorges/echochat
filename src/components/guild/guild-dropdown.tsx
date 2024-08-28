@@ -1,14 +1,9 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 
 import type { Guild } from '@/lib/db/queries/guild';
 import { Modal, modal } from '@/lib/modal/system';
-import { useLeaveGuildMutation } from '@/hooks/use-leave-guild-mutation';
-import { getUser } from '@/lib/supabase/get-user';
-import { guildsQueryKey } from '@/hooks/use-guilds-query';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -21,17 +16,14 @@ import {
 import { Icons } from '@/components/icons';
 import { InviteModal } from '@/components/modals/invite-modal';
 import { DeleteGuildModal } from '@/components/modals/delete-guild-modal';
+import { LeaveGuildModal } from '@/components/modals/leave-guild-modal';
 
 interface GuildDropdownProps {
   guild: Guild;
 }
 
 export const GuildDropdown = ({ guild }: GuildDropdownProps) => {
-  const router = useRouter();
   const [open, setOpen] = useState(false);
-  const queryClient = useQueryClient();
-
-  const leaveGuildMutation = useLeaveGuildMutation(guild.id);
 
   const openInviteModal = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -46,23 +38,14 @@ export const GuildDropdown = ({ guild }: GuildDropdownProps) => {
     );
   };
 
-  const openLeaveGuildModal = async () => {
-    const user = await getUser();
-
-    if (!user) return;
-
-    leaveGuildMutation.mutate(user.id, {
-      onSettled: () => {
-        queryClient.invalidateQueries({
-          queryKey: guildsQueryKey
-        });
-
-        router.push('/');
-      }
-    });
+  const openLeaveGuildModal = () => {
+    modal(
+      closeModal => <LeaveGuildModal closeModal={closeModal} guild={guild} />,
+      Modal.LeaveGuildModal
+    );
   };
 
-  const openDeleteGuildModal = async () => {
+  const openDeleteGuildModal = () => {
     modal(
       closeModal => <DeleteGuildModal closeModal={closeModal} guild={guild} />,
       Modal.DeleteGuildModal

@@ -44,23 +44,20 @@ export const CreateChannelModal = ({ guild, closeModal }: ChannelFormProps) => {
 
     if (!userData || !userData.user) return;
 
-    
-    closeModal()
-    
+    closeModal();
+
     createChannelMutation.mutate(
       {
         guildId: guild.id,
         name: channelName,
         id: generateUuid()
       },
-      
+
       {
         onSettled: () => {
           queryClient.invalidateQueries({
             queryKey: channelsKey
           });
-
-          
         },
 
         onSuccess: () => {
@@ -74,7 +71,7 @@ export const CreateChannelModal = ({ guild, closeModal }: ChannelFormProps) => {
 
   return (
     <DialogContent>
-      <DialogHeader>
+      <DialogHeader className="pb-0">
         <DialogTitle>Create Channel</DialogTitle>
 
         <DialogDescription>Channels are where your members communicate.</DialogDescription>

@@ -28,7 +28,7 @@ export const CreateChannelButton = ({ guild }: CreateChannelButtonProps) => {
         className="text-channel-icon transition hover:text-interactive-hover"
         onClick={openChannelModal}
       >
-        <Icons.Plus className="size-4" />
+        <Icons.Plus className="size-5" />
       </button>
     </ActionTooltip>
   );

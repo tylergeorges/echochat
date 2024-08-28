@@ -8,6 +8,7 @@ export enum Modal {
   DeleteGuildModal,
   CreateGuildModal,
   CreateChannelModal,
+  LeaveGuildModal,
   InviteModal
 }
 

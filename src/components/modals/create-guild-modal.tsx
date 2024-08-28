@@ -121,9 +121,9 @@ export const CreateGuildModal = ({ user, closeModal }: CreateGuildModalProps) =>
   return (
     <DialogContent>
       <DialogHeader>
-        <DialogTitle>Customize Your Guild</DialogTitle>
+        <DialogTitle className="text-center">Customize Your Guild</DialogTitle>
 
-        <DialogDescription>
+        <DialogDescription className="text-center">
           Give your new guild a personality with a name and an icon. You can always change it later.
         </DialogDescription>
       </DialogHeader>

@@ -27,6 +27,7 @@ export const useDeleteGuildMutation = (guildId: string) => {
         return (guilds ?? []).filter(data => data.guild.id !== guildId);
       });
 
+      router.prefetch('/');
       router.push('/');
 
       return { prevGuilds };
