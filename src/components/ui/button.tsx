@@ -89,7 +89,7 @@ const buttonVariants = tv({
 
 export type ButtonVariants = VariantProps<typeof buttonVariants>;
 
-interface ButtonProps
+export interface ButtonProps
   extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'color'>,
     ButtonVariants {
   loading?: boolean;

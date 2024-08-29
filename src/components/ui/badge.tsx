@@ -10,13 +10,13 @@ const badgeVariants = tv({
 
   variants: {
     variant: {
-      default: 'border border-primary  bg-primary/50',
+      default: 'border border-primary bg-primary/50 text-primary-foreground',
       secondary: 'bg-secondary text-muted-foreground',
       white: 'bg-white text-black',
       destructive: 'text-destructive-foreground bg-destructive',
       outline: 'border border-secondary bg-transparent text-primary',
       ghost: 'bg-transparent text-primary',
-      transparent: 'bg-transparent text-muted'
+      transparent: 'bg-transparent text-muted-foreground'
     },
 
     position: {

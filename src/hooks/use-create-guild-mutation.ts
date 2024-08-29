@@ -39,10 +39,6 @@ export const useCreateGuildMutation = () => {
       queryClient.setQueryData<{ guild: Guild }[]>(queryKey, guilds => {
         return [...(guilds ?? []), { guild }] as { guild: Guild }[];
       });
-      
-      // queryClient.setQueriesData<{ guild: Guild }[]>({ queryKey }, guilds => {
-      //   return [...(guilds || []), { guild }] as { guild: Guild }[];
-      // });
 
       return { prevGuilds };
     },

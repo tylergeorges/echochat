@@ -4,7 +4,6 @@ import './globals.css';
 
 import { siteConfig } from '@/config/site';
 import { fontSans } from '@/lib/fonts';
-import { cn } from '@/lib/utils';
 
 import { ModalRenderer } from '@/lib/modal';
 import { ReactQueryProvider } from '@/providers/react-query-client-provider';
@@ -26,10 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={cn(
-          'relative flex size-full h-full flex-1 bg-background font-sans text-foreground antialiased',
-          fontSans.variable
-        )}
+        className={`relative flex size-full h-full flex-1 bg-background font-sans text-foreground antialiased ${fontSans.variable}`}
       >
         <ReactQueryProvider>
           <ModalRenderer />
