@@ -7,15 +7,14 @@ import { cn } from '@/lib/utils';
 const buttonVariants = tv({
   base: cn(
     'relative inline-flex w-fit cursor-pointer items-center whitespace-nowrap rounded-lg text-center text-sm text-white transition duration-300 ease-out',
-    'outline-none ring-border focus-visible:ring-2',
+    'outline-none ring-primary focus-visible:ring-2',
     'items-center justify-center overflow-hidden align-middle font-medium disabled:cursor-not-allowed disabled:opacity-50'
   ),
 
   variants: {
     color: {
-      default: 'bg-primary text-white hover:bg-primary/90',
+      default: 'bg-primary text-white ring-white hover:bg-primary/90',
       white: 'bg-white text-black',
-      // outline: 'hover:bg-accent hover:text-accent-foreground border border-input',
       secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
       destructive: 'bg-destructive text-white hover:bg-destructive/60 active:bg-destructive/40',
       success: 'bg-success text-white hover:bg-success/90'
@@ -96,7 +95,7 @@ export interface ButtonProps
 }
 
 const ButtonLoadingDot = () => (
-  <div className="relative size-1.5 rounded-full bg-white opacity-30"></div>
+  <div className="relative size-1.5 rounded-full bg-white opacity-30" />
 );
 
 const LoadingEllipsis = () => {

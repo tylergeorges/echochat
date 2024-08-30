@@ -2,14 +2,17 @@
 
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { useState } from 'react';
-import { ItemContent, Virtuoso } from 'react-virtuoso';
+import { type ItemContent, Virtuoso } from 'react-virtuoso';
 
 import type { Message } from '@/lib/db/queries/message';
 import type { Channel } from '@/lib/db/schema/channels';
 
+import {
+  type MessageListContext,
+  components
+} from '@/components/chat/chat-messages-list-components';
 import { useMessageSubscription } from '@/hooks/use-message-subscription';
 import { useMessagesQuery } from '@/hooks/use-messages-query';
-import { components, MessageListContext } from '@/components/chat/chat-messages-list-components';
 import type { Guild } from '@/lib/db/queries/guild';
 
 import { ChatMessage } from '@/components/chat/chat-message';
@@ -55,7 +58,7 @@ export const ChatMessages = ({ channelId, channel, guild }: ChatMessagesProps) =
         initialTopMostItemIndex={messages.length - 1}
         followOutput={isAtBottom => (isAtBottom ? 'auto' : false)}
         firstItemIndex={Math.max(0, firstItemIndex)}
-        className="flex-1 thin-scrollbar"
+        className="thin-scrollbar flex-1"
       />
     </Column>
   );

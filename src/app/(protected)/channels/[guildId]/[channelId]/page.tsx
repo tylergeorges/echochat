@@ -41,7 +41,7 @@ export default async function ChannelPage({
     <main className="relative size-full flex-1 horizontal">
       <HydrationBoundary state={dehydrate(queryClient)}>
         <Guilds user={user} />
-        <GuildSidebar guildId={params.guildId} userId={user.id} />
+        <GuildSidebar guildId={params.guildId} user={user} />
         <Chat currentUser={user} guildId={params.guildId} channelId={params.channelId} />
       </HydrationBoundary>
     </main>

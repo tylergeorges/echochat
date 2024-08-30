@@ -12,7 +12,7 @@ const HeroBadgeButton = () => {
 
   return (
     <button
-      className="group relative cursor-pointer overflow-hidden rounded-full border border-secondary px-3 py-0.5 pr-1 text-xs font-medium text-muted-foreground transition horizontal center hover:bg-secondary/70"
+      className="group relative cursor-pointer overflow-hidden rounded-full bg-indigo-500/20 px-3 py-0.5 pr-1 text-xs font-medium text-indigo-400 outline-none ring-indigo-900 transition horizontal center focus-visible:ring-2"
       onClick={() => {
         signIn();
       }}
@@ -40,9 +40,7 @@ export const Hero = () => {
           <Column className="mt-6 text-balance text-center center-h">
             <h1 className="m-0 animate-fade-up text-[52px] animate-delay-75 lg:text-[80px] lg:leading-[76px]">
               Make your
-              <div className="bg-gradient-to-r from-indigo-500 to-indigo-400 bg-clip-text text-transparent">
-                words echo
-              </div>
+              <div className="text-indigo-400">words echo</div>
             </h1>
 
             <p className="mb-0 mt-4 animate-fade-up text-balance text-center animate-delay-100">

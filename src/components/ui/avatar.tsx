@@ -11,7 +11,7 @@ const avatar = tv({
     size: {
       xs: 'h-2 w-2',
       sm: 'h-3 w-3',
-      md: 'h-4 w-4',
+      md: 'size-8',
       lg: 'size-10',
       xl: 'size-12',
       '2xl': 'size-16',
@@ -49,7 +49,7 @@ export const AvatarImage = forwardRef<HTMLImageElement, AvatarImageProps>(
       height={height}
       unoptimized
       {...props}
-      className={cn('aspect-square size-full select-none pointer-events-none', className)}
+      className={cn('pointer-events-none aspect-square size-full select-none', className)}
       ref={ref}
     />
   )

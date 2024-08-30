@@ -15,9 +15,15 @@ export default async function LoginPage() {
   return (
     <Column className="h-full w-full bg-background-tertiary py-8 horizontal center-h">
       <header className="mx-auto w-full animate-fade-down justify-between px-8 horizontal center-v animate-delay-150">
-        <Icons.EchoBot className="size-10 text-white" />
+        <span className="items-center space-x-2 select-none horizontal">
+          <Icons.EchoBot className="size-6 text-white" />
 
-        <LoginButton className="justify-self-end">Get Started</LoginButton>
+          <h1 className="font-bold text-white">Echo Chat</h1>
+        </span>
+
+        <LoginButton className="justify-self-end rounded-full ">
+          Get Started
+        </LoginButton>
       </header>
 
       <Hero />

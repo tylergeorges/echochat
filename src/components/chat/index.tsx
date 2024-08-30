@@ -1,11 +1,11 @@
 'use client';
 
-import { Drawer } from 'vaul';
 import { useSuspenseQuery } from '@tanstack/react-query';
+import { Drawer } from 'vaul';
 
 import { useChannelQuery } from '@/hooks/use-channel-query';
 import { useGuildQuery } from '@/hooks/use-guild-query';
-import { useMediaQuery } from '@/hooks/use-media-query';
+import { useIsMobile } from '@/hooks/use-is-mobile';
 import type { Guild } from '@/lib/db/queries/guild';
 import type { User } from '@/lib/db/schema';
 
@@ -23,7 +23,7 @@ interface ChatProps {
 }
 
 export const Chat = ({ channelId, guildId, currentUser }: ChatProps) => {
-  const isMobile = useMediaQuery('screen and (max-width: 768px)');
+  const isMobile = useIsMobile();
 
   const { data: channel } = useSuspenseQuery(useChannelQuery(channelId));
   const { data } = useSuspenseQuery(useGuildQuery(guildId, currentUser.id));

@@ -20,6 +20,8 @@ export const useSignIn = () => {
 
     const redirectUrl = `${baseUrl}/auth/callback`;
 
+    console.log(redirectUrl)
+
     await supabase.auth.signInWithOAuth({
       provider,
 

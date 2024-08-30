@@ -2,13 +2,12 @@
 
 import { useSuspenseQuery } from '@tanstack/react-query';
 
-import { useGuildsQuery } from '@/hooks/use-guilds-query';
 import { useGuildMemberSubscription } from '@/hooks/use-guild-member-subscription';
+import { useGuildsQuery } from '@/hooks/use-guilds-query';
 import type { User } from '@/lib/db/schema/users';
 
 import { CreateGuildButton } from '@/components/create-guild-button';
 import { GuildButton } from '@/components/guild/guild-button';
-import { UserButton } from '@/components/user-button';
 
 interface GuildsProps {
   user: User;
@@ -34,8 +33,6 @@ export const Guilds = ({ user }: GuildsProps) => {
           </div>
         </>
       )}
-
-      <UserButton user={user} />
     </aside>
   );
 };
