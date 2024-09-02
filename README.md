@@ -31,6 +31,9 @@
 
 <br>
 
+![alt text](desktop-mockup.png)
+![alt text](mobile-mockup.png)
+
 ### Built With
 
 - ![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
@@ -38,6 +41,7 @@
 - ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 - ![React Query](https://img.shields.io/badge/-React%20Query-FF4154?style=for-the-badge&logo=react%20query&logoColor=white)
 - ![Supabase](https://shields.io/badge/supabase-black?logo=supabase&style=for-the-badge)
+-  ![Drizzle](https://img.shields.io/badge/Drizzle-C5F74F?logo=drizzle&logoColor=000&style=for-the-badge)
 
 ## Features
 
