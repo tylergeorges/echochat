@@ -5,6 +5,10 @@ import { useState } from 'react';
 import type { Guild } from '@/lib/db/queries/guild';
 import { Modal, modal } from '@/lib/modal/system';
 
+import { Icons } from '@/components/icons';
+import { DeleteGuildModal } from '@/components/modals/delete-guild-modal';
+import { InviteModal } from '@/components/modals/invite-modal';
+import { LeaveGuildModal } from '@/components/modals/leave-guild-modal';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -13,10 +17,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
-import { Icons } from '@/components/icons';
-import { InviteModal } from '@/components/modals/invite-modal';
-import { DeleteGuildModal } from '@/components/modals/delete-guild-modal';
-import { LeaveGuildModal } from '@/components/modals/leave-guild-modal';
 
 interface GuildDropdownProps {
   guild: Guild;
@@ -72,11 +72,6 @@ export const GuildDropdown = ({ guild }: GuildDropdownProps) => {
           >
             Invite People
             <Icons.AddPeople className="group size-4 transition-transform group-hover:-rotate-6" />
-          </Button>
-
-          <Button variant="ghost" fill className="group justify-between px-2 transition-none">
-            Guild Settings
-            <Icons.Settings className="size-4" />
           </Button>
         </DropdownMenuGroup>
 

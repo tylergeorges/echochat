@@ -11,9 +11,7 @@ import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
 
@@ -52,7 +50,7 @@ export const ProfileDropdown = ({ user }: ProfileDropdownProps) => {
       <DropdownMenuTrigger asChild>
         <button
           type="button"
-          className="rounded-sm transition horizontal center-v hover:bg-interactive-hover/15"
+          className="h-9 rounded-md pl-0.5 transition horizontal center-v hover:bg-interactive-hover/15"
         >
           <UserAvatar user={user} size="md" />
 
@@ -64,7 +62,7 @@ export const ProfileDropdown = ({ user }: ProfileDropdownProps) => {
         className="w-[300px] gap-2 p-0 vertical"
         side="top"
         align="start"
-        sideOffset={16}
+        alignOffset={-32}
       >
         <div className="px-4 pt-8">
           <UserAvatar user={user} size="3xl" className="mx-2" />
@@ -72,20 +70,6 @@ export const ProfileDropdown = ({ user }: ProfileDropdownProps) => {
 
         <div className="px-4 pb-4">
           <DropdownMenuLabel className="text-xl">{user.username}</DropdownMenuLabel>
-
-          <DropdownMenuGroup className="space-y-0.5 p-0">
-            <Button variant="ghost" fill className="group justify-start pl-2 transition-none">
-              <Icons.Pencil className="group size-4 transition-transform group-hover:-rotate-6" />
-              Edit Profile
-            </Button>
-
-            <Button variant="ghost" fill className="group justify-start px-2 transition-none">
-              <Icons.Settings className="group size-4 transition-transform duration-700 group-hover:rotate-180" />
-              Settings
-            </Button>
-          </DropdownMenuGroup>
-
-          <DropdownMenuSeparator />
 
           <Button
             variant="ghost"
