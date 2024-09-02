@@ -1,6 +1,6 @@
 'use server';
 
-import { eq } from 'drizzle-orm';
+import { asc, eq } from 'drizzle-orm';
 
 import { db } from '@/lib/db';
 import { type InsertMessage, type SelectMessage, messages } from '@/lib/db/schema/messages';
@@ -21,7 +21,8 @@ export const selectMessagesForChannel = async (channelId: string) =>
     })
     .from(messages)
     .innerJoin(users, eq(users.id, messages.authorId))
-    .where(eq(messages.channelId, channelId));
+    .where(eq(messages.channelId, channelId))
+    .orderBy(asc(messages.createdAt));
 
 export type Message = Prettify<
   QueryReturnType<typeof selectMessagesForChannel> & {

@@ -27,10 +27,8 @@ export const useSendMessageMutation = (channelId: string) => {
 
       const sendingMessage = { ...msg, state: 'sending' } as Message;
 
-      queryClient.setQueriesData<Message[] | Message>({ queryKey }, oldMessages => {
-        return Array.isArray(oldMessages)
-          ? [...(oldMessages ?? []), sendingMessage]
-          : { ...oldMessages, ...sendingMessage };
+      queryClient.setQueriesData<Message[] | Message>({ queryKey }, () => {
+        return [...prevMessages, sendingMessage];
       });
 
       return { prevMessages };

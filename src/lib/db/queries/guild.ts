@@ -1,7 +1,7 @@
 'use server';
 
 import { randomUUID } from 'node:crypto';
-import { and, eq, sql } from 'drizzle-orm';
+import { and, asc, eq, sql } from 'drizzle-orm';
 
 import { db } from '@/lib/db';
 import { insertChannel } from '@/lib/db/queries/channel';
@@ -12,7 +12,7 @@ export const guildsForMember = async (memberId: string) =>
   db.query.guildMembers.findMany({
     where: eq(guildMembers.memberId, memberId),
     columns: {},
-
+    orderBy: asc(guildMembers.joinedAt),
     with: {
       guild: {
         columns: {
