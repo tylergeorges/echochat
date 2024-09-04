@@ -2,13 +2,11 @@ import type { Message } from '@/lib/db/queries/message';
 import { formatTimestamp } from '@/lib/format-timestamp';
 import { cn } from '@/lib/utils';
 
-import { Column, Row } from '@/components/flex';
+import { ChatAuthorPopover } from '@/components/chat/chat-author-popover';
+import { Row } from '@/components/flex';
 import { Icons } from '@/components/icons';
 import { ActionTooltip } from '@/components/ui/action-tooltip';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
-import { Popover, PopoverContent } from '@/components/ui/popover';
-import { UserAvatar } from '@/components/user-avatar';
-import { PopoverTrigger } from '@radix-ui/react-popover';
 
 interface ChatMessageProps extends Message {
   isOwner: boolean;
@@ -18,50 +16,40 @@ export const ChatMessage = ({ author, isOwner, content, createdAt, state }: Chat
   const formattedTimestamp = formatTimestamp(createdAt);
 
   return (
-    <div className={cn('w-full flex-1 gap-2 p-4 pl-[72px] pr-[48px]')}>
-      <Avatar size="lg" className="absolute left-4 shrink-0">
-        <AvatarImage src={author.avatarUrl} alt={`${author.username}'s avatar.`} />
-      </Avatar>
+    <div className={'w-full flex-1 gap-2 p-4 pl-[72px] pr-[48px]'}>
+      <ChatAuthorPopover asChild author={author} isOwner={isOwner}>
+        <Avatar size="lg" className="absolute left-4 shrink-0 cursor-pointer">
+          <AvatarImage src={author.avatarUrl} alt={`${author.username}'s avatar.`} />
+        </Avatar>
+      </ChatAuthorPopover>
 
-      <div className="gap-2 horizontal center-v">
-        <Popover>
-          <PopoverTrigger>
-            <h1 className="font-semibold text-interactive-active hover:underline">
+      <Row className="gap-2">
+        <ChatAuthorPopover author={author} isOwner={isOwner}>
+          <Row className="inline gap-2 center">
+            <span className="inline font-semibold leading-5 text-interactive-active hover:underline">
               {author.username}
-            </h1>
-          </PopoverTrigger>
+            </span>
 
-          <PopoverContent
-            align="center"
-            side="right"
-            className="w-[300px] gap-2 px-4 pb-3 vertical"
+            {isOwner && (
+              <ActionTooltip label="Guild Owner" align="center">
+                <span>
+                  <Icons.Crown className="size-3.5 text-[#F0B132]" />
+                </span>
+              </ActionTooltip>
+            )}
+          </Row>
+        </ChatAuthorPopover>
+
+        <span className="inline-block h-5 leading-5 text-interactive-normal/60">
+          <time
+            className="h-5 text-xs leading-5"
+            aria-label={formattedTimestamp}
+            dateTime={createdAt.toISOString()}
           >
-            <div className="pt-8">
-              <UserAvatar user={author} size="3xl" className="m-0" />
-            </div>
-
-            <Column className="">
-              <Row className="gap-2 center-v">
-                <h1 className="text-[20px] font-bold leading-5">{author.username}</h1>
-
-                {isOwner && (
-                  <ActionTooltip label="Guild Owner" align="center">
-                    <Icons.Crown className="size-4 text-[#F0B132]" />
-                  </ActionTooltip>
-                )}
-              </Row>
-            </Column>
-          </PopoverContent>
-        </Popover>
-
-        {isOwner && (
-          <ActionTooltip label="Guild Owner" align="center">
-            <Icons.Crown className="size-3.5 text-[#F0B132]" />
-          </ActionTooltip>
-        )}
-
-        <p className="text-sm text-interactive-normal/60 hover:underline">{formattedTimestamp}</p>
-      </div>
+            {formattedTimestamp}
+          </time>
+        </span>
+      </Row>
 
       <div
         className={cn(

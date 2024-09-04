@@ -1,6 +1,6 @@
 'use client';
 
-import { Components } from 'react-virtuoso';
+import type { Components } from 'react-virtuoso';
 
 import type { Message } from '@/lib/db/queries/message';
 
