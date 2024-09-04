@@ -2,9 +2,13 @@ import type { Message } from '@/lib/db/queries/message';
 import { formatTimestamp } from '@/lib/format-timestamp';
 import { cn } from '@/lib/utils';
 
+import { Column, Row } from '@/components/flex';
 import { Icons } from '@/components/icons';
-import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import { ActionTooltip } from '@/components/ui/action-tooltip';
+import { Avatar, AvatarImage } from '@/components/ui/avatar';
+import { Popover, PopoverContent } from '@/components/ui/popover';
+import { UserAvatar } from '@/components/user-avatar';
+import { PopoverTrigger } from '@radix-ui/react-popover';
 
 interface ChatMessageProps extends Message {
   isOwner: boolean;
@@ -20,14 +24,43 @@ export const ChatMessage = ({ author, isOwner, content, createdAt, state }: Chat
       </Avatar>
 
       <div className="gap-2 horizontal center-v">
-        <h1 className="font-semibold text-interactive-active">{author.username}</h1>
+        <Popover>
+          <PopoverTrigger>
+            <h1 className="font-semibold text-interactive-active hover:underline">
+              {author.username}
+            </h1>
+          </PopoverTrigger>
+
+          <PopoverContent
+            align="center"
+            side="right"
+            className="w-[300px] gap-2 px-4 pb-3 vertical"
+          >
+            <div className="pt-8">
+              <UserAvatar user={author} size="3xl" className="m-0" />
+            </div>
+
+            <Column className="">
+              <Row className="gap-2 center-v">
+                <h1 className="text-[20px] font-bold leading-5">{author.username}</h1>
+
+                {isOwner && (
+                  <ActionTooltip label="Guild Owner" align="center">
+                    <Icons.Crown className="size-4 text-[#F0B132]" />
+                  </ActionTooltip>
+                )}
+              </Row>
+            </Column>
+          </PopoverContent>
+        </Popover>
+
         {isOwner && (
           <ActionTooltip label="Guild Owner" align="center">
             <Icons.Crown className="size-3.5 text-[#F0B132]" />
           </ActionTooltip>
         )}
 
-        <p className="text-sm text-interactive-normal/60">{formattedTimestamp}</p>
+        <p className="text-sm text-interactive-normal/60 hover:underline">{formattedTimestamp}</p>
       </div>
 
       <div

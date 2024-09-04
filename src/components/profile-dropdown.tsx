@@ -6,7 +6,6 @@ import { useSupabase } from '@/hooks/use-supabase';
 import type { User } from '@/lib/db/schema/users';
 
 import { Icons } from '@/components/icons';
-import { Avatar, AvatarImage, type AvatarVariants } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -14,18 +13,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
-
-interface UserAvatarProps {
-  user: User;
-  size: AvatarVariants['size'];
-  className?: string;
-}
-
-const UserAvatar = ({ user, className, size }: UserAvatarProps) => (
-  <Avatar size={size} className={className}>
-    <AvatarImage src={user.avatarUrl} alt={`${user.username}'s avatar`} />
-  </Avatar>
-);
+import { UserAvatar } from '@/components/user-avatar';
 
 interface ProfileDropdownProps {
   user: User;
