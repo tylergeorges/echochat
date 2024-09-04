@@ -6,13 +6,18 @@ import { Column, Row } from '@/components/flex';
 import { Icons } from '@/components/icons';
 import { LoginButton } from '@/components/login-button';
 import { ButtonLink } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 const HeroBadgeButton = () => {
   const [signIn] = useSignIn();
 
   return (
     <button
-      className="group relative cursor-pointer overflow-hidden rounded-full bg-indigo-500/20 px-3 py-0.5 pr-1 text-xs font-medium text-indigo-400 outline-none ring-indigo-900 transition horizontal center focus-visible:ring-2"
+      type="button"
+      className={cn(
+        'border-tra focus-visible:riz-10 group relative z-10 cursor-pointer overflow-hidden rounded-full border-indigo-400/40  bg-indigo-500/20 px-3 py-0.5 pr-1 text-xs font-medium text-indigo-400 outline-none border ring-indigo-900 transition horizontal center',
+        ' '
+      )}
       onClick={() => {
         signIn();
       }}

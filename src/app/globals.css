@@ -76,6 +76,21 @@
   }
 }
 
+.grad {
+  --bg: rgb(99 102 241);
+  --bg-light: rgb(165 180 252);
+  background:
+    linear-gradient(var(--bg), var(--bg)) padding-box,
+    linear-gradient(var(--bg), var(--bg-light) 75%, transparent 100%) border-box;
+  @apply before:absolute before:left-0 before:top-0 before:size-full before:rounded-full before:bg-[rgb(30,41,59)] before:blur-[12px] before:content-[""];
+}
+/* 
+.grad::before {
+  background:
+    linear-gradient(#a855f7, #a855f7) padding-box,
+    linear-gradient(#a855f7, #e9d5ff 75%, transparent 100%) border-box;
+} */
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -101,4 +116,65 @@
     scrollbar-width: thin; /* Firefox */
     scrollbar-color: rgb(var(--background-tertiary)) rgb(var(--background-tertiary) / 10%);
   }
+}
+
+@keyframes nothern-lights {
+  from {
+    background-position:
+      50% 50%,
+      50% 50%;
+  }
+  to {
+    background-position:
+      350% 50%,
+      350% 50%;
+  }
+}
+
+.nothern-lights {
+  --stripes: repeating-linear-gradient(
+    100deg,
+    rgb(var(--background-tertiary)) 0%,
+    rgb(var(--background-tertiary)) 7%,
+    transparent 10%,
+    transparent 12%,
+    rgb(var(--background-tertiary)) 16%
+  );
+  /* --rainbow: repeating-linear-gradient(
+    100deg,
+    #60a5fa 10%,
+    #e879f9 15%,
+    #60a5fa 20%,
+    #5eead4 25%,
+    #60a5fa 30%
+  ); */
+  --rainbow: repeating-linear-gradient(
+    100deg,
+    #818cf8 10%,
+    #e879f9 15%,
+    #818cf8 20%,
+    #5eead4 25%,
+    #818cf8 30%
+  );
+  filter: blur(10px) opacity(50%) saturate(200%);
+  background-image: var(--stripes), var(--rainbow);
+  background-size: 300%, 200%;
+  background-position:
+    50% 50%,
+    50% 50%;
+
+  mask-image: radial-gradient(ellipse at 100% 0%, black 40%, transparent 70%);
+
+  pointer-events: none;
+}
+
+.nothern-lights::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--stripes), var(--rainbow);
+  background-size: 200%, 100%;
+  animation: nothern-lights 60s linear infinite;
+  background-attachment: fixed;
+  mix-blend-mode: difference;
 }
