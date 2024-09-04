@@ -22,7 +22,7 @@ export const Guilds = ({ user }: GuildsProps) => {
     <aside className="z-0 mb-0 mt-6 flex w-[72px] flex-col space-y-2 overflow-y-auto bg-background-tertiary center-h md:mb-0">
       {user && (
         <>
-          <div className="relative flex h-full w-full flex-col items-center text-primary">
+          <div className="flex h-full w-full flex-col items-center text-primary">
             {guilds.map(({ guild }) => (
               <GuildButton key={guild.id} guild={guild} />
             ))}

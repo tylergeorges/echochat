@@ -2,6 +2,7 @@ import {
   Tooltip,
   TooltipArrow,
   TooltipContent,
+  TooltipPortal,
   TooltipProvider,
   TooltipTrigger
 } from '@/components/ui/tooltip';
@@ -24,11 +25,13 @@ export const ActionTooltip = ({
       <Tooltip delayDuration={50}>
         <TooltipTrigger asChild>{children}</TooltipTrigger>
 
-        <TooltipContent side={side} align={align}>
-          <p className="text-sm font-semibold capitalize">{label}</p>
+        <TooltipPortal>
+          <TooltipContent side={side} align={align}>
+            <p className="text-sm font-semibold capitalize">{label}</p>
 
-          <TooltipArrow className="fill-popover" />
-        </TooltipContent>
+            <TooltipArrow className="fill-popover" />
+          </TooltipContent>
+        </TooltipPortal>
       </Tooltip>
     </TooltipProvider>
   );

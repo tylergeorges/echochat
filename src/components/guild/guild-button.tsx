@@ -7,8 +7,8 @@ import type { Guild } from '@/lib/db/queries/guild';
 import { getGuildIcon } from '@/lib/get-bucket-asset';
 import { cn } from '@/lib/utils';
 
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { ActionTooltip } from '@/components/ui/action-tooltip';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 interface GuildButtonProps {
   guild: Guild;
