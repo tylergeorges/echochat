@@ -1,13 +1,22 @@
 'use server';
 
-import { asc, eq } from 'drizzle-orm';
+import { and, asc, eq } from 'drizzle-orm';
 
 import { db } from '@/lib/db';
 import { type InsertMessage, type SelectMessage, messages } from '@/lib/db/schema/messages';
 import { users } from '@/lib/db/schema/users';
 
-export const selectMessagesForChannel = async (channelId: string) =>
-  db
+export const selectMessagesForChannel = async (channelId: string, page = 0, pageSize = 30) => {
+  const sq = db
+    .select({ id: messages.id })
+    .from(messages)
+    .innerJoin(users, eq(users.id, messages.authorId))
+    .where(and(eq(messages.channelId, channelId)))
+    .limit(pageSize)
+    .offset(page === 0 ? pageSize : (page - 1) * pageSize)
+    .as('sq');
+
+  return db
     .select({
       content: messages.content,
       id: messages.id,
@@ -20,9 +29,11 @@ export const selectMessagesForChannel = async (channelId: string) =>
       }
     })
     .from(messages)
+    .where(and(eq(messages.channelId, channelId)))
     .innerJoin(users, eq(users.id, messages.authorId))
-    .where(eq(messages.channelId, channelId))
+    .innerJoin(sq, eq(messages.id, sq.id))
     .orderBy(asc(messages.createdAt));
+};
 
 export type Message = Prettify<
   QueryReturnType<typeof selectMessagesForChannel> & {

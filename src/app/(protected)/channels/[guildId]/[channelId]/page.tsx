@@ -34,7 +34,7 @@ export default async function ChannelPage({
     queryClient.prefetchQuery(useChannelsQuery(params.guildId)),
     queryClient.prefetchQuery(useGuildsQuery(user.id)),
     queryClient.prefetchQuery(useChannelQuery(params.channelId)),
-    queryClient.prefetchQuery(useMessagesQuery(params.channelId))
+    queryClient.prefetchQuery(useMessagesQuery(params.channelId, 0))
   ]);
 
   return (
