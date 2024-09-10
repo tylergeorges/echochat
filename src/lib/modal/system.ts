@@ -5,15 +5,14 @@ export type ModalId = number;
 let modalId: ModalId = 0;
 
 export enum Modal {
-  DeleteGuildModal,
-  CreateGuildModal,
-  CreateChannelModal,
-  LeaveGuildModal,
-  InviteModal
+  DeleteGuildModal = 0,
+  CreateGuildModal = 1,
+  CreateChannelModal = 2,
+  LeaveGuildModal = 3,
+  InviteModal = 4
 }
 
 export type ModalContent = (closeModal: () => void) => React.ReactElement;
-// export type ModalContent = (id: ModalId) => React.ReactElement;
 
 export interface ModalData {
   id: ModalId;

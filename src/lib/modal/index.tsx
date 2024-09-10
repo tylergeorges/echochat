@@ -38,7 +38,6 @@ const Modal = ({ modal, removeModal, children }: ModalProps) => {
 
     setIsVisible(false);
 
-    // visible = false;
     deleteModalTimeoutRef.current = setTimeout(() => {
       removeModal(modal);
     }, MODAL_DURATION);

@@ -45,11 +45,9 @@ export const useSendMessageMutation = (channelId: string) => {
       toast.error(err.message);
     },
 
-    onSuccess: ([newMessage], variables, context) => {
+    onSuccess: ([newMessage], _, context) => {
       console.log(newMessage, context);
       queryClient.setQueryData(queryKey, [...(context?.prevMessages ?? []), { ...newMessage }]);
-
-      // toast.error(err.message);
     },
 
     onSettled: () => {

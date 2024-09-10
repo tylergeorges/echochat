@@ -1,6 +1,6 @@
 'use server';
 
-import { and, asc, desc, eq, gt, lt, lte, or } from 'drizzle-orm';
+import { asc, eq } from 'drizzle-orm';
 
 import { db } from '@/lib/db';
 import { type InsertMessage, type SelectMessage, messages } from '@/lib/db/schema/messages';
@@ -12,26 +12,22 @@ export interface PageCursor {
 }
 
 export const selectMessagesForChannel = async (channelId: string) => {
-  return (
-    db
-      .select({
-        content: messages.content,
-        id: messages.id,
-        createdAt: messages.createdAt,
-        channelId: messages.channelId,
-        author: {
-          username: users.username,
-          id: users.id,
-          avatarUrl: users.avatarUrl
-        }
-      })
-      .from(messages)
-      .innerJoin(users, eq(users.id, messages.authorId))
-      .where(eq(messages.channelId, channelId))
-      // .limit(pageSize)
-      // .offset((page - 1) * pageSize)
-      .orderBy(asc(messages.createdAt))
-  );
+  return db
+    .select({
+      content: messages.content,
+      id: messages.id,
+      createdAt: messages.createdAt,
+      channelId: messages.channelId,
+      author: {
+        username: users.username,
+        id: users.id,
+        avatarUrl: users.avatarUrl
+      }
+    })
+    .from(messages)
+    .innerJoin(users, eq(users.id, messages.authorId))
+    .where(eq(messages.channelId, channelId))
+    .orderBy(asc(messages.createdAt));
 };
 
 export type Message = Prettify<
