@@ -12,7 +12,8 @@ export const useSendMessageMutation = (channelId: string) => {
       authorId: message.author.id,
       channelId: message.channelId,
       content: message.content,
-      id: message.id
+      id: message.id,
+      createdAt: new Date()
     });
 
   const queryKey = [...messagesQueryKey, channelId];
@@ -42,6 +43,13 @@ export const useSendMessageMutation = (channelId: string) => {
       ]);
 
       toast.error(err.message);
+    },
+
+    onSuccess: ([newMessage], variables, context) => {
+      console.log(newMessage, context);
+      queryClient.setQueryData(queryKey, [...(context?.prevMessages ?? []), { ...newMessage }]);
+
+      // toast.error(err.message);
     },
 
     onSettled: () => {

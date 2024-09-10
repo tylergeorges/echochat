@@ -8,7 +8,7 @@ export const messages = pgTable('messages', {
     .notNull()
     .references(() => users.id, { onDelete: 'cascade' }),
   content: text('content').notNull(),
-  createdAt: timestamp('created_at').notNull().defaultNow(),
+  createdAt: timestamp('created_at', { mode: 'date' }).notNull().defaultNow(),
   channelId: uuid('channel_id')
     .notNull()
     .references(() => channels.id, { onDelete: 'cascade' })

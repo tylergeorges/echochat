@@ -25,7 +25,7 @@ export const guildMembers = pgTable(
     guildId: uuid('guild_id')
       .notNull()
       .references(() => guilds.id, { onDelete: 'cascade' }),
-    joinedAt: timestamp('joined_at').notNull().defaultNow()
+    joinedAt: timestamp('joined_at', { mode: 'date' }).notNull().defaultNow()
   },
   t => ({
     pk: primaryKey({ columns: [t.guildId, t.memberId] })

@@ -27,7 +27,7 @@ export const GuildChannel = ({ channel }: GuildChannelProps) => {
       className={cn(
         'w-full justify-start gap-2 rounded-md  py-1.5 px-2 font-medium transition horizontal center-v',
         isActive
-          ? 'bg-modifier-selected text-interactive-hover'
+          ? 'bg-modifier-selected text-interactive-active'
           : 'text-channel-icon hover:bg-modifier-hover hover:text-interactive-normal active:bg-modifier-active'
       )}
       onClick={() => {

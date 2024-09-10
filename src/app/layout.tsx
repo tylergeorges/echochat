@@ -3,10 +3,12 @@ import { Toaster } from 'sonner';
 import './globals.css';
 
 import { siteConfig } from '@/config/site';
-import { fontSans } from '@/lib/fonts';
+import { fontMono, fontSans } from '@/lib/fonts';
 
 import { ModalRenderer } from '@/lib/modal';
+import { cn } from '@/lib/utils';
 import { ReactQueryProvider } from '@/providers/react-query-client-provider';
+import { ThemeProvider } from '@/providers/theme-provider';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -23,16 +25,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`relative flex size-full h-full flex-1 bg-background font-sans text-foreground antialiased ${fontSans.variable}`}
-      >
-        <ReactQueryProvider>
-          <ModalRenderer />
-          <Toaster richColors />
+    <html lang="en" suppressHydrationWarning className={cn(fontSans.variable, fontMono.variable)}>
+      <body className="relative flex size-full h-full flex-1 bg-background font-sans text-foreground antialiased">
+        <ThemeProvider>
+          <ReactQueryProvider>
+            <ModalRenderer />
+            <Toaster richColors />
 
-          <div className="relative size-full flex-1 horizontal">{children}</div>
-        </ReactQueryProvider>
+            <div className="relative size-full flex-1 horizontal">{children}</div>
+          </ReactQueryProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

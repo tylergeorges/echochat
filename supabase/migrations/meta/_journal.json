@@ -57,6 +57,13 @@
       "when": 1723593009284,
       "tag": "0007_bored_mojo",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "5",
+      "when": 1725556037414,
+      "tag": "0008_cuddly_spot",
+      "breakpoints": true
     }
   ]
 }

@@ -11,9 +11,15 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuLabel,
+  DropdownMenuPortal,
+  DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
 import { UserAvatar } from '@/components/user-avatar';
+import { useTheme } from '@/providers/theme-provider';
 
 interface ProfileDropdownProps {
   user: User;
@@ -22,6 +28,8 @@ interface ProfileDropdownProps {
 export const ProfileDropdown = ({ user }: ProfileDropdownProps) => {
   const router = useRouter();
   const supabase = useSupabase();
+
+  const { setTheme } = useTheme();
 
   const logout = async (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -58,6 +66,51 @@ export const ProfileDropdown = ({ user }: ProfileDropdownProps) => {
 
         <div className="px-4 pb-4">
           <DropdownMenuLabel className="text-xl">{user.username}</DropdownMenuLabel>
+
+          <DropdownMenuSub>
+            <DropdownMenuSubTrigger asChild>
+              <Button
+                variant="ghost"
+                fill
+                className="group justify-start rounded-lg px-2 transition-none"
+              >
+                <Icons.Pencil className="size-4" />
+                Theme
+                <Icons.ChevronRight className="absolute right-0 size-4" />
+              </Button>
+            </DropdownMenuSubTrigger>
+
+            <DropdownMenuPortal>
+              <DropdownMenuSubContent>
+                <Button
+                  variant="ghost"
+                  fill
+                  onClick={e => {
+                    e.preventDefault();
+
+                    setTheme('default');
+                  }}
+                  className="group justify-start px-2 transition-none"
+                >
+                  Default
+                </Button>
+                <Button
+                  variant="ghost"
+                  fill
+                  onClick={e => {
+                    e.preventDefault();
+
+                    setTheme('terminal');
+                  }}
+                  className="group justify-start px-2 transition-none"
+                >
+                  Terminal
+                </Button>
+              </DropdownMenuSubContent>
+            </DropdownMenuPortal>
+          </DropdownMenuSub>
+
+          <DropdownMenuSeparator />
 
           <Button
             variant="ghost"

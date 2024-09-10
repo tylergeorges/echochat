@@ -2,8 +2,8 @@ import { withTV } from 'tailwind-variants/transformer';
 import type { Config } from 'tailwindcss';
 import { fontFamily } from 'tailwindcss/defaultTheme';
 
-import TailwindAnimate from 'tailwindcss-animate';
 import TailwindTypography from '@tailwindcss/typography';
+import TailwindAnimate from 'tailwindcss-animate';
 import TailwindAnimated from 'tailwindcss-animated';
 import { TailwindChildren, TailwindFlexible } from './src/lib/tailwind/tailwind-plugins';
 
@@ -11,7 +11,6 @@ import { generateScreens } from './src/lib/tailwind/tailwind-screens';
 
 const config: Config = {
   darkMode: ['class'],
-
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -98,7 +97,7 @@ const config: Config = {
           DEFAULT: 'rgb(var(--popover) / <alpha-value>)',
           foreground: 'rgb(var(--popover-foreground) / <alpha-value>)'
         },
-        border: 'rgb(var(--muted-foreground) / <alpha-value>)',
+        border: 'rgb(var(--border) / <alpha-value>)',
         input: {
           DEFAULT: 'rgb(var(--input) / <alpha-value>)',
           form: 'rgb(var(--input-form) / <alpha-value>)'
@@ -145,7 +144,8 @@ const config: Config = {
       },
 
       fontFamily: {
-        sans: ['var(--font-geist-sans)', ...fontFamily.sans]
+        sans: ['var(--font-default)', ...fontFamily.sans],
+        mono: ['var(--font-default)', ...fontFamily.mono]
       }
     }
   },

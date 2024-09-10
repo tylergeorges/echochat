@@ -21,3 +21,19 @@ export const Label = forwardRef<HTMLLabelElement, LabelProps>(
 );
 
 Label.displayName = 'Label';
+
+export const TerminalLabel = ({
+  className,
+  children,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) => (
+  <div
+    className={cn(
+      'absolute -top-6 left-2 z-10 bg-background px-1 font-medium lowercase text-muted',
+      className
+    )}
+    {...props}
+  >
+    <label className="select-none ">{children}</label>
+  </div>
+);

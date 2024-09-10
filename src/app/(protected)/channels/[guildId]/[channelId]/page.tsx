@@ -13,6 +13,7 @@ import { getUser } from '@/lib/supabase/get-user';
 import { Chat } from '@/components/chat';
 import { GuildSidebar } from '@/components/guild/guild-sidebar';
 import { Guilds } from '@/components/guild/guilds';
+import { TerminalContainer } from '@/components/terminal-container';
 
 export default async function ChannelPage({
   params
@@ -34,16 +35,18 @@ export default async function ChannelPage({
     queryClient.prefetchQuery(useChannelsQuery(params.guildId)),
     queryClient.prefetchQuery(useGuildsQuery(user.id)),
     queryClient.prefetchQuery(useChannelQuery(params.channelId)),
-    queryClient.prefetchQuery(useMessagesQuery(params.channelId, 0))
+    queryClient.prefetchQuery(useMessagesQuery(params.channelId))
   ]);
 
   return (
     <main className="relative size-full flex-1 horizontal">
-      <HydrationBoundary state={dehydrate(queryClient)}>
-        <Guilds user={user} />
-        <GuildSidebar guildId={params.guildId} user={user} />
-        <Chat currentUser={user} guildId={params.guildId} channelId={params.channelId} />
-      </HydrationBoundary>
+      <TerminalContainer>
+          <HydrationBoundary state={dehydrate(queryClient)}>
+            <Guilds user={user} />
+            <GuildSidebar guildId={params.guildId} user={user} />
+            <Chat currentUser={user} guildId={params.guildId} channelId={params.channelId} />
+          </HydrationBoundary>
+      </TerminalContainer>
     </main>
   );
 }

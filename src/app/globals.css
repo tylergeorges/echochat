@@ -4,17 +4,11 @@
 
 @layer base {
   :root {
+    --font-default: var(--font-geist-sans);
+
     --background: 49 51 56;
     --background-secondary: 43 45 49;
     --background-tertiary: 30 31 34;
-
-    /* --background: 22 22 22;
-    --background-secondary: 30 31 34;
-    --background-tertiary: 30 31 34; */
-
-    /* --modifier-selected: var(--foreground);
-    --modifier-hover: 53 55 60;
-    --modifier-active: 59 61 68; */
 
     --foreground: 219 219 220;
 
@@ -26,7 +20,6 @@
 
     --primary: 88 101 242;
     --primary-foreground: 148 156 247;
-    /* --primary-foreground: 255 255 255; */
 
     --secondary: 51 51 51;
     --secondary-foreground: 255 255 255;
@@ -42,6 +35,7 @@
     --destructive: 237 66 69;
     --success: 36 128 70;
 
+    --border: var(--muted-foreground);
     --interactive-normal: 181 186 193;
     --interactive-muted: 78 80 88;
     --interactive-hover: 219 222 225;
@@ -63,14 +57,44 @@
 
 @layer base {
   * {
-    @apply border-muted-foreground;
+    @apply border-border;
   }
 
   html {
     @apply size-full flex-1 scroll-smooth;
   }
+
+  html[data-theme='default'] {
+    --font-default: var(--font-geist-sans);
+  }
+
+  html[data-theme='terminal'] {
+    --font-default: var(--font-geist-mono);
+    --background: 20 20 20;
+    --background-secondary: 29 29 29;
+
+    --foreground: 222 222 222;
+    --muted: 72 72 72;
+    --muted-foreground: 128 128 128;
+
+    --border: 48 48 48;
+
+    --destructive: 195 104 134;
+
+    --interactive-hover: 122 122 122;
+    --interactive-active: 190 190 190;
+    --interactive-normal: 116 116 116;
+    --interactive-muted: 72 72 72;
+
+    --channel-icon: 128 128 128;
+
+    --primary: 149 119 199;
+
+    letter-spacing: -0.05ch;
+  }
+
   body {
-    @apply bg-background text-primary;
+    @apply bg-background font-[var(--font-default)] text-primary;
     font-synthesis-weight: none;
     text-rendering: optimizeLegibility;
   }
@@ -140,14 +164,7 @@
     transparent 12%,
     rgb(var(--background-tertiary)) 16%
   );
-  /* --rainbow: repeating-linear-gradient(
-    100deg,
-    #60a5fa 10%,
-    #e879f9 15%,
-    #60a5fa 20%,
-    #5eead4 25%,
-    #60a5fa 30%
-  ); */
+
   --rainbow: repeating-linear-gradient(
     100deg,
     #818cf8 10%,

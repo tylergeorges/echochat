@@ -2,6 +2,8 @@
 
 import { redirect } from 'next/navigation';
 
+import { LandingContainer } from '@/components/landing-container';
+import { TerminalContainer } from '@/components/terminal-container';
 import { getGuildInfo } from '@/lib/db/queries/guild';
 import { getUser } from '@/lib/supabase/get-user';
 
@@ -21,10 +23,12 @@ export default async function GuildPage({ params }: PageProps<{ guildId: string 
   }
 
   return (
-    <div className="flex size-full flex-1 center">
-      <div className="max-w-lg">
-        <h1 className="font text-xl font-medium">Click a channel on the left </h1>
-      </div>
-    </div>
+    <TerminalContainer>
+      <LandingContainer>
+        <div className="flex size-full flex-1 center">
+          <h1 className="font text-xl font-medium">Click a channel on the left </h1>
+        </div>
+      </LandingContainer>
+    </TerminalContainer>
   );
 }

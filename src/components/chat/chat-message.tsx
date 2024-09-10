@@ -26,7 +26,7 @@ export const ChatMessage = ({ author, isOwner, content, createdAt, state }: Chat
       <Row className="gap-2">
         <ChatAuthorPopover author={author} isOwner={isOwner}>
           <Row className="inline gap-2 center">
-            <span className="inline font-semibold leading-5 text-interactive-active hover:underline">
+            <span className="inline font-semibold leading-5 text-foreground hover:underline">
               {author.username}
             </span>
 
