@@ -115,8 +115,8 @@ export const ChatMessages = ({ channelId, channel, guild }: ChatMessagesProps) =
   };
 
   return (
-    <Column className={cn('relative flex-1', 'terminal:my-4 terminal:border-2')}>
-      <TerminalLabel className="-top-4">messages</TerminalLabel>
+    <Column className={cn('relative flex-1', 'terminal:mt-4 terminal:border-2')}>
+      <TerminalLabel className="-top-3">messages</TerminalLabel>
 
       <Virtuoso
         alignToBottom

@@ -46,7 +46,7 @@ export const ProfileDropdown = ({ user }: ProfileDropdownProps) => {
       <DropdownMenuTrigger asChild>
         <button
           type="button"
-          className="h-9 rounded-md pl-0.5 transition horizontal center-v hover:bg-interactive-hover/15"
+          className="h-9 rounded-md pl-0.5 transition horizontal center-v hover:bg-interactive-hover/15 terminal:rounded-none"
         >
           <UserAvatar user={user} size="md" />
 
@@ -72,7 +72,7 @@ export const ProfileDropdown = ({ user }: ProfileDropdownProps) => {
               <Button
                 variant="ghost"
                 fill
-                className="group justify-start rounded-lg px-2 transition-none"
+                className="group justify-start rounded-lg px-2 transition-none terminal:rounded-none"
               >
                 <Icons.Pencil className="size-4" />
                 Theme

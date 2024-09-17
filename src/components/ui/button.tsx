@@ -8,7 +8,8 @@ const buttonVariants = tv({
   base: cn(
     'relative inline-flex w-fit cursor-pointer items-center whitespace-nowrap rounded-lg text-center text-sm text-white transition duration-300 ease-out',
     'outline-none ring-primary focus-visible:ring-2',
-    'items-center justify-center overflow-hidden align-middle font-medium disabled:cursor-not-allowed disabled:opacity-50'
+    'items-center justify-center overflow-hidden align-middle font-medium disabled:cursor-not-allowed disabled:opacity-50',
+    'terminal:rounded-none'
   ),
 
   variants: {
@@ -39,7 +40,7 @@ const buttonVariants = tv({
     },
 
     round: {
-      true: 'rounded-full'
+      true: 'rounded-full terminal:rounded-none'
     },
 
     fill: {
@@ -95,7 +96,7 @@ export interface ButtonProps
 }
 
 const ButtonLoadingDot = () => (
-  <div className="relative size-1.5 rounded-full bg-white opacity-30" />
+  <div className="relative size-1.5 rounded-full bg-white opacity-30 terminal:rounded-none" />
 );
 
 const LoadingEllipsis = () => {

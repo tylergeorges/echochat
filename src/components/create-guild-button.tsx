@@ -23,7 +23,7 @@ export const CreateGuildButton = ({ user }: CreateGuildButtonProps) => {
     <ActionTooltip label="Add a Guild" side="right" align="center">
       <button
         onClick={openGuildForm}
-        className="group relative mx-3 mt-2 flex size-12 overflow-hidden rounded-[24px] bg-background-secondary text-primary transition-all center hover:rounded-[16px] hover:bg-emerald-500"
+        className="group relative mx-3 mt-2 flex size-12 overflow-hidden rounded-[24px] bg-background-secondary text-primary transition-all center hover:rounded-[16px] hover:bg-emerald-500 terminal:rounded-none terminal:hover:rounded-none"
         type="button"
       >
         <Icons.Plus className="group text-emerald-500 transition group-hover:text-white" />

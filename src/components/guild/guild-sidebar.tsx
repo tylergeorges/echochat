@@ -27,7 +27,11 @@ export const GuildChannels = ({ guildId, userId }: GuildChannelsProps) => {
   if (!guild) return null;
 
   return (
-    <Column className={cn('h-full terminal:border-2 terminal:px-2')}>
+    <Column
+      className={cn(
+        'h-full terminal:border-2 terminal:border-r-0 terminal:px-2 terminal:md:border-r-2'
+      )}
+    >
       <GuildDropdown guild={guild} />
 
       {channels && (
@@ -55,10 +59,10 @@ export const GuildSidebar = ({ guildId, user }: GuildSidebarProps) => {
     <aside
       className={cn(
         'relative w-full rounded-b-none rounded-tl-xl bg-background-secondary vertical md:w-[240px] md:rounded-none',
-        'terminal:mx-4 terminal:my-4 terminal:bg-transparent'
+        'terminal:my-4 terminal:rounded-none terminal:bg-transparent terminal:md:mx-4'
       )}
     >
-      <TerminalLabel className="-top-4">guild</TerminalLabel>
+      <TerminalLabel className="-top-2">guild</TerminalLabel>
 
       {guildId ? (
         <GuildChannels guildId={guildId} userId={user.id} />

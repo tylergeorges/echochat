@@ -69,17 +69,17 @@ export const ChatInput = ({ channel }: ChatInputProps) => {
 
   return (
     <form onSubmit={onSubmit} className={cn('w-full px-4 pb-5', 'terminal:p-0')}>
-      <div className="relative">
+      <div className="relative terminal:flex terminal:h-14 terminal:items-center">
         <input
           type="text"
           className={cn(
             'h-10 w-full rounded-md bg-input px-2.5 outline-none ring-0',
-            'terminal:rounded-s-none terminal:border-2 terminal:bg-transparent terminal:placeholder:text-muted-foreground'
+            'terminal:rounded-s-none terminal:bg-transparent terminal:placeholder:text-muted-foreground'
           )}
           placeholder={`Message #${channel.name}`}
         />
 
-        {<TerminalLabel className="-top-3">input</TerminalLabel>}
+        <TerminalLabel className="-top-2">input</TerminalLabel>
       </div>
     </form>
   );

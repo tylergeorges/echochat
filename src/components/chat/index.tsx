@@ -46,7 +46,6 @@ export const Chat = ({ channelId, guildId, currentUser }: ChatProps) => {
           </ChatHeader>
 
           <ChatMessages guild={guild} channel={channel} channelId={channel.id} />
-
           <ChatInput channel={channel} />
         </ChatDrawer>
       </Column>
@@ -62,7 +61,6 @@ export const Chat = ({ channelId, guildId, currentUser }: ChatProps) => {
       </ChatHeader>
 
       <ChatMessages guild={guild} channel={channel} channelId={channel.id} />
-
       <ChatInput channel={channel} />
     </Column>
   );

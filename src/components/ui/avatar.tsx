@@ -5,7 +5,7 @@ import { type VariantProps, tv } from 'tailwind-variants';
 import { cn } from '@/lib/utils';
 
 const avatar = tv({
-  base: 'relative aspect-square overflow-hidden rounded-full',
+  base: 'relative aspect-square overflow-hidden rounded-full terminal:rounded-none',
 
   variants: {
     size: {
