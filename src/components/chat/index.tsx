@@ -8,7 +8,7 @@ import { useGuildQuery } from '@/hooks/use-guild-query';
 import { useIsMobile } from '@/hooks/use-is-mobile';
 import type { Guild } from '@/lib/db/queries/guild';
 import type { User } from '@/lib/db/schema';
-import { useTheme } from '@/providers/theme-provider';
+import { cn } from '@/lib/utils';
 
 import { ChatDrawer, ChatDrawerTrigger } from '@/components/chat/chat-drawer';
 import { ChatHeader } from '@/components/chat/chat-header';
@@ -16,7 +16,6 @@ import { ChatInput } from '@/components/chat/chat-input';
 import { ChatMessages } from '@/components/chat/chat-messages';
 import { Column } from '@/components/flex';
 import { Icons } from '@/components/icons';
-import { cn } from '@/lib/utils';
 
 interface ChatProps {
   channelId: string;
@@ -29,7 +28,6 @@ export const Chat = ({ channelId, guildId, currentUser }: ChatProps) => {
 
   const { data: channel } = useSuspenseQuery(useChannelQuery(channelId));
   const { data } = useSuspenseQuery(useGuildQuery(guildId, currentUser.id));
-  const { theme } = useTheme();
 
   const guild = data as Guild;
 
@@ -56,7 +54,7 @@ export const Chat = ({ channelId, guildId, currentUser }: ChatProps) => {
   }
 
   return (
-    <Column className={cn('relative size-full flex-1 pr-0', theme === 'terminal' && 'p-4')}>
+    <Column className={cn('relative size-full flex-1 pr-0', 'terminal:p-4')}>
       <ChatHeader>
         <Icons.TextChannelHash className="mr-2 text-channel-icon" />
 

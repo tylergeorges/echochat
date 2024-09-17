@@ -5,9 +5,16 @@ import { fontFamily } from 'tailwindcss/defaultTheme';
 import TailwindTypography from '@tailwindcss/typography';
 import TailwindAnimate from 'tailwindcss-animate';
 import TailwindAnimated from 'tailwindcss-animated';
-import { TailwindChildren, TailwindFlexible } from './src/lib/tailwind/tailwind-plugins';
+import TailwindMulti from 'tailwindcss-multi';
+import {
+  TailwindChildren,
+  TailwindFlexible,
+  TailwindThemes
+} from './src/lib/tailwind/tailwind-plugins';
 
 import { generateScreens } from './src/lib/tailwind/tailwind-screens';
+
+// const createTransformer = require('tailwind-group-variant')
 
 const config: Config = {
   darkMode: ['class'],
@@ -152,10 +159,13 @@ const config: Config = {
 
   plugins: [
     TailwindFlexible,
+    TailwindThemes,
+    TailwindChildren,
+
     TailwindAnimated,
     TailwindTypography,
-    TailwindChildren,
-    TailwindAnimate
+    TailwindAnimate,
+    TailwindMulti
   ]
 };
 

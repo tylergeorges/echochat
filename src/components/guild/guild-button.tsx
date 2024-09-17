@@ -6,7 +6,6 @@ import { useAppRouter } from '@/hooks/use-app-router';
 import type { Guild } from '@/lib/db/queries/guild';
 import { getGuildIcon } from '@/lib/get-bucket-asset';
 import { cn } from '@/lib/utils';
-import { useTheme } from '@/providers/theme-provider';
 
 import { ActionTooltip } from '@/components/ui/action-tooltip';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -18,8 +17,6 @@ interface GuildButtonProps {
 export const GuildButton = ({ guild }: GuildButtonProps) => {
   const router = useRouter();
   const { guildId } = useAppRouter();
-
-  const { theme } = useTheme();
 
   const isActive = guildId === guild.id;
 
@@ -41,7 +38,7 @@ export const GuildButton = ({ guild }: GuildButtonProps) => {
           className={cn(
             'ease group absolute left-0 h-[8px] w-[4px] rounded-r-full bg-foreground transition-all duration-300',
             isActive ? 'h-[40px]' : 'group-hover:h-[20px]',
-            theme === 'terminal' && 'rounded-none hover:rounded-none'
+            'terminal:rounded-none terminal:hover:rounded-none'
           )}
         />
         <button
@@ -53,7 +50,7 @@ export const GuildButton = ({ guild }: GuildButtonProps) => {
             className={cn(
               'group pointer-events-none size-full select-none transition-all duration-300',
               isActive ? 'rounded-2xl' : 'rounded-[50%] group-hover:rounded-[16px]',
-              theme === 'terminal' && 'rounded-none group-hover:rounded-none'
+              'terminal:rounded-none terminal:group-hover:rounded-none'
             )}
           >
             {guild.icon ? (

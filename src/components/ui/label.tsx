@@ -29,11 +29,11 @@ export const TerminalLabel = ({
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
     className={cn(
-      'absolute -top-6 left-2 z-10 bg-background px-1 font-medium lowercase text-muted',
+      'absolute -top-6 left-2 z-10 hidden bg-background px-1 font-medium lowercase text-muted terminal:block',
       className
     )}
     {...props}
   >
-    <label className="select-none ">{children}</label>
+    <label className="select-none">{children}</label>
   </div>
 );

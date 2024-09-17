@@ -50,3 +50,9 @@ export const TailwindFlexible = plugin(({ addUtilities }) => {
     }
   });
 });
+
+export const TailwindThemes = plugin(({ addVariant }) => {
+  addVariant('terminal', '&:is([data-theme="terminal"] *)');
+  addVariant('group-terminal', ':merge(.group):terminal &');
+  addVariant('peer-terminal', ':merge(.peer):terminal ~ &');
+});

@@ -6,7 +6,6 @@ import { useGuildMemberSubscription } from '@/hooks/use-guild-member-subscriptio
 import { useGuildsQuery } from '@/hooks/use-guilds-query';
 import type { User } from '@/lib/db/schema/users';
 import { cn } from '@/lib/utils';
-import { useTheme } from '@/providers/theme-provider';
 
 import { CreateGuildButton } from '@/components/create-guild-button';
 import { GuildButton } from '@/components/guild/guild-button';
@@ -18,18 +17,15 @@ interface GuildsProps {
 
 export const Guilds = ({ user }: GuildsProps) => {
   const { data: guilds } = useSuspenseQuery(useGuildsQuery(user.id));
-  const { theme } = useTheme();
 
   useGuildMemberSubscription(user.id);
 
   return (
     <aside
       className={cn(
-        'relative mb-0 mt-6 flex w-[72px] flex-col space-y-2 center-h md:mb-0',
+        'relative mb-0 mt-6 flex w-[72px] flex-col space-y-2 bg-background-tertiary center-h md:mb-0',
 
-        theme === 'terminal'
-          ? 'mx-4 my-4 rounded-none border-2 bg-transparent pt-4 md:my-4'
-          : 'bg-background-tertiary'
+        'terminal:mx-4 terminal:my-4 terminal:rounded-none terminal:border-2 terminal:bg-transparent terminal:pt-4 terminal:md:my-4'
       )}
     >
       {user && (
@@ -46,7 +42,7 @@ export const Guilds = ({ user }: GuildsProps) => {
         </>
       )}
 
-      {theme === 'terminal' && <TerminalLabel>nav</TerminalLabel>}
+      {<TerminalLabel>nav</TerminalLabel>}
     </aside>
   );
 };

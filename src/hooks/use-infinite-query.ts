@@ -15,6 +15,7 @@ type QueryFn<T = unknown, TQueryKey extends QueryKey = QueryKey> = (context: {
   signal: AbortSignal;
   meta: QueryMeta | undefined;
   pageParam: number;
+  lastItem?: T;
 }) => T[] | Promise<T[]>;
 
 type BaseOptions<
@@ -39,7 +40,9 @@ export const useInfiniteQuery = <
   TData = TQueryFnData,
   TQueryKey extends QueryKey = QueryKey
 >(
-  options: Options<TQueryFnData, TError, TData, TQueryKey>
+  options: Omit<Options<TQueryFnData, TError, TData, TQueryKey>, 'queryFn'> & {
+    queryFn: QueryFn<TData>;
+  }
 ) => {
   const queryClient = useQueryClient();
   const [page, setPage] = useState(1);
@@ -54,6 +57,7 @@ export const useInfiniteQuery = <
 
   const query = useSuspenseQuery({
     ...options,
+    // queryKey: options.queryKey,
     // @ts-expect-error
     queryKey:
       page === 1 ? [...options.queryKey] : ([...options.queryKey, page] as unknown as TQueryKey),
@@ -71,7 +75,6 @@ export const useInfiniteQuery = <
           meta: meta,
           signal: signal,
           pageParam: page,
-          // @ts-expect-error
           lastItem: newerItems[0]
         })) as TData[];
         console.log(page, olderItems, newerItems);
@@ -79,6 +82,15 @@ export const useInfiniteQuery = <
       }
 
       return newerItems;
+
+      //   queryClient.setQueryData<TData[]>(prevQueryKey.current, newerItems => {
+
+      //     return [...olderItems, ...(newerItems || [])];
+      //   });
+
+      //   return [...olderItems, ...newerItems];
+
+      //   prevQueryKey.current = [...prevQueryKey.current, page];
     }
   });
 

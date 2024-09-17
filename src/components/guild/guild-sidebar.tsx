@@ -8,13 +8,12 @@ import { useGuildQuery } from '@/hooks/use-guild-query';
 import { CreateChannelButton } from '@/components/create-channel-button';
 import { Column, Row } from '@/components/flex';
 import { GuildChannel } from '@/components/guild/guild-channel';
+import type { User } from '@/lib/db/schema';
 import { cn } from '@/lib/utils';
-import { useTheme } from '@/providers/theme-provider';
 
 import { GuildDropdown } from '@/components/guild/guild-dropdown';
 import { Label, TerminalLabel } from '@/components/ui/label';
 import { UserFooter } from '@/components/user-footer';
-import type { User } from '@/lib/db/schema';
 
 interface GuildChannelsProps {
   guildId: string;
@@ -25,12 +24,10 @@ export const GuildChannels = ({ guildId, userId }: GuildChannelsProps) => {
   const { data: guild } = useSuspenseQuery(useGuildQuery(guildId, userId));
   const { data: channels } = useSuspenseQuery(useChannelsQuery(guildId));
 
-  const { theme } = useTheme();
-
   if (!guild) return null;
 
   return (
-    <Column className={cn('h-full', theme === 'terminal' && 'border-2 px-2')}>
+    <Column className={cn('h-full terminal:border-2 terminal:px-2')}>
       <GuildDropdown guild={guild} />
 
       {channels && (
@@ -54,22 +51,19 @@ interface GuildSidebarProps {
 }
 
 export const GuildSidebar = ({ guildId, user }: GuildSidebarProps) => {
-  const { theme } = useTheme();
-
   return (
     <aside
       className={cn(
         'relative w-full rounded-b-none rounded-tl-xl bg-background-secondary vertical md:w-[240px] md:rounded-none',
-
-        theme === 'terminal' && 'mx-4 my-4 bg-transparent'
+        'terminal:mx-4 terminal:my-4 terminal:bg-transparent'
       )}
     >
-      {theme === 'terminal' && <TerminalLabel className="-top-4">guild</TerminalLabel>}
+      <TerminalLabel className="-top-4">guild</TerminalLabel>
 
       {guildId ? (
         <GuildChannels guildId={guildId} userId={user.id} />
       ) : (
-        <aside className="mb-4 flex-1 border-2" />
+        <aside className={cn('mb-4 flex-1 terminal:border-2')} />
       )}
 
       <UserFooter user={user} />

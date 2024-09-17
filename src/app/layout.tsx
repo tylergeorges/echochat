@@ -5,6 +5,7 @@ import './globals.css';
 import { siteConfig } from '@/config/site';
 import { fontMono, fontSans } from '@/lib/fonts';
 
+import { TerminalHeader } from '@/components/terminal-header';
 import { ModalRenderer } from '@/lib/modal';
 import { cn } from '@/lib/utils';
 import { ReactQueryProvider } from '@/providers/react-query-client-provider';
@@ -32,7 +33,10 @@ export default function RootLayout({
             <ModalRenderer />
             <Toaster richColors />
 
-            <div className="relative size-full flex-1 horizontal">{children}</div>
+            <div className="relative size-full flex-1  vertical">
+              <TerminalHeader />
+              {children}
+            </div>
           </ReactQueryProvider>
         </ThemeProvider>
       </body>

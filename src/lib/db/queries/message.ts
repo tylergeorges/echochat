@@ -1,6 +1,6 @@
 'use server';
 
-import { asc, eq } from 'drizzle-orm';
+import { and, asc, desc, eq, gt, lt, lte, or } from 'drizzle-orm';
 
 import { db } from '@/lib/db';
 import { type InsertMessage, type SelectMessage, messages } from '@/lib/db/schema/messages';
@@ -11,7 +11,12 @@ export interface PageCursor {
   createdAt: Date;
 }
 
-export const selectMessagesForChannel = async (channelId: string) => {
+export const selectMessagesForChannel = async (
+  channelId: string,
+  cursor?: PageCursor,
+  page = 1,
+  pageSize = 30
+) => {
   return db
     .select({
       content: messages.content,
@@ -26,7 +31,13 @@ export const selectMessagesForChannel = async (channelId: string) => {
     })
     .from(messages)
     .innerJoin(users, eq(users.id, messages.authorId))
-    .where(eq(messages.channelId, channelId))
+    .where(
+      cursor
+        ? and(eq(messages.channelId, channelId), and(eq(messages.id, cursor.id)))
+        : eq(messages.channelId, channelId)
+    )
+    .limit(pageSize)
+    .offset((page - 1) * pageSize)
     .orderBy(asc(messages.createdAt));
 };
 

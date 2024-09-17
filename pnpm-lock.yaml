@@ -71,9 +71,15 @@ dependencies:
   sonner:
     specifier: ^1.5.0
     version: 1.5.0(react-dom@18.3.1)(react@18.3.1)
+  tailwind-group-variant:
+    specifier: ^1.0.0
+    version: 1.0.0
   tailwind-variants:
     specifier: ^0.2.1
     version: 0.2.1(tailwindcss@3.4.10)
+  tailwindcss-multi:
+    specifier: ^0.4.6
+    version: 0.4.6
   vaul:
     specifier: ^0.9.1
     version: 0.9.1(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)
@@ -3012,6 +3018,12 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
+  /tailwind-group-variant@1.0.0:
+    resolution: {integrity: sha512-cyRQC0D1hxMm8FVIl/pYS3Gq792Led/q6VkRtkPr3ohhYb+w9REqUyBnzY3VR832Lp5pkAVfPi60wdMfDxDvvQ==}
+    dependencies:
+      '@babel/runtime': 7.25.0
+    dev: false
+
   /tailwind-merge@2.5.2:
     resolution: {integrity: sha512-kjEBm+pvD+6eAwzJL2Bi+02/9LFLal1Gs61+QB7HvTfQQ0aXwC5LGT8PEt1gS0CWKktKe6ysPTAy3cBC5MeiIg==}
 
@@ -3040,6 +3052,12 @@ packages:
     dependencies:
       tailwindcss: 3.4.10
     dev: true
+
+  /tailwindcss-multi@0.4.6:
+    resolution: {integrity: sha512-Bn9yLrMkeYFrJjRYuuTfqT9ibm6U2qnTwlIKYchWyGX3qgL+1+NN4JgiHJG1qrR4QQeU28eCl8sMSBobdzijvQ==}
+    dependencies:
+      '@types/node': 20.14.15
+    dev: false
 
   /tailwindcss@3.4.10:
     resolution: {integrity: sha512-KWZkVPm7yJRhdu4SRSl9d4AK2wM3a50UsvgHZO7xY77NQr2V+fIrEuoDGQcbvswWvFGbS2f6e+jC/6WJm1Dl0w==}
