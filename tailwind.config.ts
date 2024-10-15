@@ -4,7 +4,6 @@ import { fontFamily } from 'tailwindcss/defaultTheme';
 
 import TailwindTypography from '@tailwindcss/typography';
 import TailwindAnimate from 'tailwindcss-animate';
-import TailwindAnimated from 'tailwindcss-animated';
 import TailwindMulti from 'tailwindcss-multi';
 import {
   TailwindChildren,
@@ -89,12 +88,46 @@ const config: Config = {
           '0%': { transform: 'scale(1)', opacity: '1' },
           '50%': { transform: 'scale(0.8)', opacity: '0.3' },
           to: { transform: 'scale(1)', opacity: '1' }
+        },
+        'fade-in': {
+          from: { opacity: '0', transform: 'translateY(-10px)' },
+          to: { opacity: '1', transform: 'none' }
+        },
+        'fade-to-right': {
+          from: { opacity: '0', transform: 'translateX(-10px)' },
+          to: { opacity: '1', transform: 'none' }
+        },
+        'fade-to-left': {
+          from: { opacity: '0', transform: 'translateX(10px)' },
+          to: { opacity: '1', transform: 'none' }
+        },
+        'fade-up': {
+          from: { opacity: '0', transform: 'translateY(10px)' },
+          to: { opacity: '1', transform: 'none' }
+        },
+        'image-glow': {
+          '0%': {
+            opacity: '0',
+            'animation-timing-function': 'cubic-bezier(0.74, 0.25, 0.76, 1)'
+          },
+          '10%': {
+            opacity: '0.7',
+            'animation-timing-function': 'cubic-bezier(0.12, 0.01, 0.08, 0.99)'
+          },
+          '100%': {
+            opacity: '0.4'
+          }
         }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        ellipsis: 'ellipsis 1.4s infinite ease-in-out'
+        ellipsis: 'ellipsis 1.4s infinite ease-in-out',
+        'fade-in': 'fade-in 1000ms var(--animation-delay, 0ms) ease forwards',
+        'fade-to-right': 'fade-to-right 1000ms var(--animation-delay, 0ms) ease forwards',
+        'fade-to-left': 'fade-to-left 1000ms var(--animation-delay, 0ms) ease forwards',
+        'image-glow': 'image-glow 4100ms 600ms ease-out forwards',
+        'fade-up': 'fade-up 1000ms var(--animation-delay, 0ms) ease forwards'
       },
       colors: {
         foreground: 'rgb(var(--foreground) / <alpha-value>)',
@@ -161,8 +194,6 @@ const config: Config = {
     TailwindFlexible,
     TailwindThemes,
     TailwindChildren,
-
-    TailwindAnimated,
     TailwindTypography,
     TailwindAnimate,
     TailwindMulti

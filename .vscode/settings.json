@@ -7,8 +7,7 @@
   "editor.codeActionsOnSave": {
     "quickfix.biome": "explicit",
     "source.organizeImports.biome": "explicit",
-    "source.biome.fixAll": "explicit",
-    "source.fixAll": "explicit"
+    "source.biome.fixAll": "explicit"
   },
   "editor.formatOnSave": true,
   "typescript.tsdk": "node_modules\\typescript\\lib"

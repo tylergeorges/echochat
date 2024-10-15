@@ -2,7 +2,7 @@
 
 import { useSignIn } from '@/hooks/use-sign-in';
 
-import { Button, ButtonProps } from '@/components/ui/button';
+import { Button, type ButtonProps } from '@/components/ui/button';
 
 export const LoginButton = ({
   disabled,
@@ -28,6 +28,6 @@ export const LoginButton = ({
       color={color}
       disabled={disabled || isProviderLoading}
       {...props}
-    ></Button>
+    />
   );
 };

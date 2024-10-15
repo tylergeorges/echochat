@@ -27,7 +27,7 @@
       },
       "nursery": {
         "useSortedClasses": {
-          "fix": "none",
+          "fix": "unsafe",
           "level": "off",
           "options": {
             "attributes": ["classList"],
@@ -40,7 +40,15 @@
       },
       "style": {
         "noParameterAssign": "off",
-        "useBlockStatements": "off"
+        "useBlockStatements": "off",
+        "useSelfClosingElements": {
+          "fix": "safe",
+          "level": "error"
+        },
+        "noUnusedTemplateLiteral": {
+          "fix": "safe",
+          "level": "error"
+        }
       },
       "suspicious": {
         "noArrayIndexKey": "off",

@@ -27,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className={cn(fontSans.variable, fontMono.variable)}>
-      <body className="relative flex size-full h-full flex-1 bg-background font-sans text-foreground antialiased">
+      <body className="relative flex size-full h-full flex-1 bg-background font-sans text-foreground antialiased ">
         <ThemeProvider>
           <ReactQueryProvider>
             <ModalRenderer />
