@@ -1,6 +1,6 @@
 'use server';
 
-import { and, asc, desc, eq, gt, lt, lte, or } from 'drizzle-orm';
+import { and, asc, eq } from 'drizzle-orm';
 
 import { db } from '@/lib/db';
 import { type InsertMessage, type SelectMessage, messages } from '@/lib/db/schema/messages';
