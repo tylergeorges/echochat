@@ -17,6 +17,7 @@ const HeroBadgeButton = () => {
 
   return (
     <Button
+      size="sm"
       variant="outline"
       className={cn(
         'focus-visible:riz-10 group relative z-10 w-fit translate-y-[-1rem] animate-fade-in cursor-pointer overflow-hidden rounded-full pr-2 text-xs font-semibold opacity-0 outline-none horizontal center [--animation-delay:200ms]',
@@ -41,62 +42,59 @@ const HeroBadgeButton = () => {
 
 export const Hero = () => {
   return (
-    <Column className="h-full w-full flex-1 text-center center">
-      <div className="relative size-full flex-1 grid-cols-[repeat(2,_minmax(0,1fr))] justify-center gap-8 pl-12 center-v md:pt-32 vertical md:grid md:items-center md:py-[120px] flex-wrap lg:pl-32">
-        <div className="shrink-0 text-left md:ml-auto">
-          <HeroBadgeButton />
+    <Column className="size-full flex-1 text-center">
+      <div className="size-full flex-1 p-[calc(116*1px)_0_calc(128*1px)]">
+        <div className="grid size-full grid-cols-1 items-center gap-8 px-[max(5vw,(100vw_-_1160px)/2)] md:grid-cols-[repeat(2,1fr)]">
+          <div className="size-full items-start justify-end text-left vertical md:ml-auto md:justify-center lg:pl-[5rem]">
+            <HeroBadgeButton />
 
-          <div className="text relative mx-0 translate-y-[-1rem] animate-fade-in text-balance to-foreground pt-5 text-left text-5xl font-bold leading-[1.1] tracking-tighter text-white opacity-0 [--animation-delay:400ms] sm:text-7xl md:py-2">
-            Make your <br />
-            words&nbsp;
-            <SparklesText className="text-indigo-400">echo</SparklesText>
+            <div className="relative mx-0 translate-y-[-1rem] animate-fade-in text-balance to-foreground pt-5 text-left text-5xl font-bold leading-[1.1] tracking-tighter text-white opacity-0 [--animation-delay:400ms] md:py-2 md:text-7xl">
+              Make your <br />
+              words&nbsp;
+              <SparklesText className="text-indigo-400">echo</SparklesText>
+            </div>
+
+            <p className="max-w-[30ch] translate-y-[-1rem] animate-fade-in text-base font-medium text-foreground/50 opacity-0 [--animation-delay:800ms] md:max-w-[40ch] md:text-lg">
+              Echo your words and create ripples that engage your entire community.
+            </p>
+
+            <Row className="mt-6 gap-4 text-foreground lg:mt-8">
+              <LoginButton
+                size="xl"
+                className="group -translate-y-[1rem] animate-fade-in opacity-0 transition-none [--animation-delay:1000ms]"
+              >
+                <span className="group transition duration-300 group-hover:-translate-x-2">
+                  Get Started
+                </span>
+
+                <Icons.RightArrow className="absolute right-1 size-5 translate-x-full text-current opacity-0 transition duration-300 group-hover:-translate-x-1 group-hover:opacity-100" />
+              </LoginButton>
+
+              <ButtonLink
+                className="group relative size-14 -translate-y-[1rem] animate-fade-in overflow-hidden opacity-0 transition-none [--animation-delay:1000ms]"
+                target="_blank"
+                size="icon"
+                variant="outline"
+                color="secondary"
+                href={'https://github.com/tylergeorges/echochat'}
+              >
+                <Icons.GitHub className="size-6 text-current" />
+              </ButtonLink>
+            </Row>
           </div>
 
-          <p className="text-md max-w-[40ch] translate-y-[-1rem] animate-fade-in text-lg font-medium text-foreground/50 opacity-0 [--animation-delay:800ms] md:text-lg">
-            Echo your words and create ripples that engage your entire community.
-          </p>
-
-          <Row className="mt-6 gap-4 text-foreground lg:mt-8">
-            <LoginButton
-              size="xl"
-              className="group -translate-y-[1rem] animate-fade-in opacity-0 transition-none [--animation-delay:1000ms]"
-            >
-              <span className="group transition duration-300 group-hover:-translate-x-2">
-                Get Started
-              </span>
-
-              <Icons.RightArrow className="absolute right-1 size-5 translate-x-full text-current opacity-0 transition duration-300 group-hover:-translate-x-1 group-hover:opacity-100" />
-            </LoginButton>
-
-            <ButtonLink
-              className="group relative size-14 -translate-y-[1rem] animate-fade-in overflow-hidden opacity-0 transition-none [--animation-delay:1000ms]"
-              target="_blank"
-              size="icon"
-              variant="outline"
-              color="secondary"
-              href={'https://github.com/tylergeorges/echochat'}
-            >
-              <Icons.GitHub className="size-6 text-current" />
-            </ButtonLink>
-          </Row>
+          <Column className="relative size-full max-h-[25dvh]">
+            <div className="left-12 w-[60rem] animate-fade-to-left opacity-0 vertical [--animation-delay:400ms] after:absolute after:bottom-0 after:left-0 after:size-full after:bg-[linear-gradient(180deg,rgba(13,12,12,0)_0%,rgba(13,12,12,.7)_34.48%,rgb(13,12,12)_82.36%)] md:w-[80rem] lg:ml-32 xl:w-[100rem]">
+              <Image
+                width={1920}
+                height={1080}
+                alt="App preview."
+                src={'/echochat-preview.png'}
+                className="size-full rounded-xl"
+              />
+            </div>
+          </Column>
         </div>
-
-        <Column className="overflow-hidden max-h-[25dvh] size-full">
-          <div
-            style={{
-              '--gradient-color': '13 12 12'
-            }}
-            className="mt-8 w-[60rem] animate-fade-to-left opacity-0 vertical [--animation-delay:400ms] after:absolute after:bottom-0 after:left-0 after:size-full after:bg-[linear-gradient(180deg,rgb(var(--gradient-color)/0)_0%,rgb(var(--gradient-color)/70)_34.48%,rgb(var(--gradient-color))_82.36%)] md:w-[80rem]"
-          >
-            <Image
-              width={1920}
-              height={1080}
-              alt="App preview."
-              src={'/echochat-preview.png'}
-              className="bottom-0 left-0 right-0 top-0 rounded-xl size-full"
-            />
-          </div>
-        </Column>
       </div>
     </Column>
   );

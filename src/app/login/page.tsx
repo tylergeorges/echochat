@@ -11,7 +11,7 @@ export default async function LoginPage() {
   if (user) return redirect('/');
 
   return (
-    <Column className="relative size-full overflow-hidden bg-[#0d0c0c] horizontal center-h">
+    <Column className="relative size-full overflow-hidden bg-[rgb(13,12,12)] horizontal center-h">
       <div className="relative size-full flex-1">
         <Hero />
       </div>
