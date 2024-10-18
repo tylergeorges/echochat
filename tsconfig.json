@@ -29,7 +29,7 @@
   },
   "include": [
     "next-env.d.ts",
-    "./src/types/index.ts",
+    "src/types/index.d.ts",
     "**/*.ts",
     "**/*.tsx",
     "./.next/types/**/*.ts",

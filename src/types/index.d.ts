@@ -1,3 +1,5 @@
+import 'react';
+
 declare global {
   type ParamsBase = Record<string, string | undefined>;
 
@@ -23,4 +25,8 @@ declare global {
   } & {};
 }
 
-export type {};
+declare module 'react' {
+  interface CSSProperties {
+    [key: `--${string}`]: string | number;
+  }
+}

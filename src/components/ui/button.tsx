@@ -61,6 +61,12 @@ const buttonVariants = tv({
         'border border-primary bg-transparent text-primary hover:bg-primary hover:text-white'
     },
     {
+      color: 'secondary',
+      variant: 'outline',
+      className:
+        'border border-muted bg-transparent text-muted-foreground hover:bg-muted hover:text-white'
+    },
+    {
       color: 'destructive',
       variant: 'outline',
       className:
@@ -69,7 +75,7 @@ const buttonVariants = tv({
     {
       color: 'default',
       variant: 'outline',
-      className: 'border-accent hover:bg-accent border bg-transparent text-primary'
+      className: 'border-primary hover:bg-primary hover:text-foreground border bg-transparent text-primary'
     },
 
     {
